@@ -7,6 +7,9 @@ const Loader = () => {
         const content = document.querySelector('.content');
         const mainLogo = document.getElementById('main-logo');
 
+        // Disable scroll initially
+        document.body.style.overflow = 'hidden';
+
         setTimeout(() => {
             loader.style.opacity = '0';
 
@@ -16,6 +19,8 @@ const Loader = () => {
 
             setTimeout(() => {
                 loader.style.display = 'none';
+                // Re-enable scrolling after loader disappears
+                document.body.style.overflow = 'auto';
             }, 1000);
 
             if (mainLogo) mainLogo.style.animation = 'shrinkToHeader 1s forwards';
