@@ -24,7 +24,7 @@ const EventCalendar = () => {
       <div className="position-relative container" style={{ zIndex: 2 }}>
         <h2 className="fw-bold text-white display-3 mb-5">Event Calendar</h2>
 
-        <div className="row justify-content-center gx-4 gy-5 mb-4">
+        <div className="row justify-content-center align-items-center gx-5 gy-5 mb-4">
           {visibleEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
@@ -39,9 +39,11 @@ const EventCalendar = () => {
         .event-card {
           background-color: #f0f0f0;
           border-radius: 0 25px 0 25px;
-          max-width: 320px;
+          max-width: 420px;
+          min-width: 340px;
           cursor: pointer;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
+          padding: 2rem !important;
         }
 
         .event-card:hover {
@@ -52,7 +54,7 @@ const EventCalendar = () => {
         .calendar-box {
           border-radius: 10px;
           overflow: hidden;
-          min-width: 65px;
+          min-width: 90px;
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
         }
 
@@ -71,15 +73,15 @@ const EventCard = ({ event }) => {
   const year = date.getFullYear();
 
   return (
-    <div className="col-md-4 d-flex justify-content-center">
-      <div className="event-card d-flex p-3 align-items-start shadow w-100">
-        <div className="calendar-box text-center me-3">
-          <div className="bg-danger text-white fw-bold small py-1">{month}</div>
-          <div className="bg-white text-dark fw-bold fs-5 py-1">{day}</div>
-          <div className="bg-light text-muted small py-1">{year}</div>
+    <div className="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+      <div className="event-card d-flex p-5 align-items-start shadow-lg w-full" style={{ minWidth: 340, maxWidth: 420 }}>
+        <div className="calendar-box text-center me-4" style={{ minWidth: 90 }}>
+          <div className="bg-danger text-white fw-bold py-2" style={{ fontSize: 22 }}>{month}</div>
+          <div className="bg-white text-dark fw-bold py-2" style={{ fontSize: 32 }}>{day}</div>
+          <div className="bg-light text-muted py-2" style={{ fontSize: 18 }}>{year}</div>
         </div>
-        <div className="text-start mt-1">
-          <h6 className="fw-semibold text-dark mb-0">{event.title}</h6>
+        <div className="text-start mt-2">
+          <h5 className="fw-bold text-dark mb-2" style={{ fontSize: 22 }}>{event.title}</h5>
         </div>
       </div>
     </div>

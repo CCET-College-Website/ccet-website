@@ -12,7 +12,7 @@ const notices = [
 export default function NoticePanel() {
   return (
     
-    <div className="flex justify-center items-start bg-[#f7f4f4] p-8 gap-16 font-sans">
+    <div className="flex justify-center items-start bg-[#f7f4f4] p-8 gap-16 font-sans mt-8 mb-8 mr-2 ml-2 rounded-3xl shadow-lg">
       
       {/* Sidebar buttons */}
       <div className="flex flex-col gap-4">

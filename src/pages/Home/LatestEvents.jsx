@@ -27,7 +27,7 @@ const events = [
 
 export default function LatestEvents() {
   return (
-    <div className="bg-gradient-to-r from-blue-900 to-slate-900 shadow-2xl text-white rounded-3xl p-6 w-full max-w-5xl">
+    <div className="bg-gradient-to-r from-blue-900 to-slate-900 shadow-2xl text-white rounded-3xl p-6 w-full max-w-5xl mt-8 mb-8">
       <h2 className="text-4xl font-bold text-center mb-6">LATEST EVENTS</h2>
 
       {/* Filter Buttons */}
