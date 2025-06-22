@@ -43,8 +43,8 @@ const Header = () => {
             <img src={IndianEmblem} alt="Indian Emblem" className="h-10 w-auto" />
           </div>
 
-          {/* Row 2: Gold Menu Button */}
-          <div className="w-full flex justify-center pb-3">
+          {/* Row 2: Gold Menu Button (moved to right) */}
+          <div className="w-full flex justify-end pb-3 pr-4">
             <button
                 onClick={() => setMenuOpen(true)}
                 className="flex items-center gap-1 bg-yellow-400 hover:bg-yellow-500 text-red-700 px-2.5 py-1 rounded-full shadow text-xs font-medium"
@@ -105,12 +105,12 @@ const Header = () => {
           </nav>
         </div>
 
-        {/* Mobile Slide Drawer (Click outside to close + red/gold nav items) */}
+        {/* Mobile Slide Drawer (now slides in from right) */}
         {menuOpen && (
             <div className="fixed top-0 left-0 w-full h-full z-40">
               <div
                   ref={mobileNavRef}
-                  className="w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300"
+                  className="fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300"
               >
                 <div className="p-4 border-b font-semibold text-lg bg-blue-900 text-white">
                   Navigation

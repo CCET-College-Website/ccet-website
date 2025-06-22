@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.8",
-    "bootstrap": "^5.3.6",
+    "@tailwindcss/vite": "^4.1.10",
+    "bootstrap": "^5.3.7",
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",
+    "react-modal": "^3.16.3",
     "react-router-dom": "^7.6.2"
   },
   "devDependencies": {
