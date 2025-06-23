@@ -228,20 +228,37 @@
   }
 }
 
+/* MOBILE FIX FOR QUICK LINKS */
 @media (max-width: 600px) {
   .footer-columns {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
   }
 
   .footer-card-wrapper {
-    width: 90%;
-    padding: 30px 10px 20px;
+    width: 90% !important;
+    padding: 40px 16px 20px !important;
+    margin: 0 auto;
+    border-radius: 16px;
+    box-sizing: border-box;
   }
 
-  .footer-links-container {
-    margin-top: 10px;
+  .footer-heading {
+    position: relative !important;
+    left: 0 !important;
+    width: 100% !important;
+    padding: 12px !important;
+    font-size: 20px !important;
+    border-radius: 12px 12px 0 0;
+    text-align: center;
+  }
+
+  .footer-heading::after {
+    float: none;
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 16px;
   }
 
   .mobile-card .footer-links-container {
@@ -251,35 +268,48 @@
   .mobile-card.open .footer-links-container {
     display: flex;
     flex-direction: column;
-  }
-
-  .mobile-card.open.split-columns .footer-links-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 12px;
-    column-gap: 24px;
-    justify-items: stretch;
-  }
-
-  .footer-heading {
-    font-size: 20px;
-    left: 5px;
-    width: calc(100% - 10px);
-    padding: 8px 0;
+    gap: 10px;
+    width: 100%;
   }
 
   .footer-link {
-    font-size: 18px;
+    width: 100% !important;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #e0e0e0;
+    margin: 0 auto;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .footer-link-text {
     width: 100%;
-    margin-right: 0;
+    text-align: center;
   }
 
   .footer-bottom {
-    font-size: 16px;
-    padding: 10px;
+    font-size: 14px;
+    padding: 12px;
   }
 
   .footer-nav-links {
-    font-size: 16px;
+    font-size: 14px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* === Mobile Specific Footer Fix === */
+  /* All cards get same width and margin bottom */
+  .footer-card-wrapper {
+    width: 95% !important;
+    margin-bottom: 20px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Remove special width for 2nd card on mobile */
+  .footer-columns .footer-card-wrapper:nth-child(2) {
+    width: 95% !important;
   }
 }
