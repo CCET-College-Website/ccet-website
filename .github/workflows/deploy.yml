@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+
+permissions:
+    contents: write
+    pages: write
+    id-token: write
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout source
+              uses: actions/checkout@v3
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Set VITE_BASE for PR previews
+              if: github.event_name == 'pull_request'
+              run: |
+                  echo "VITE_BASE=/pr-${{ github.event.pull_request.number }}/" >> $GITHUB_ENV
+
+            - name: Set VITE_BASE for production
+              if: github.ref == 'refs/heads/main'
+              run: |
+                  echo "VITE_BASE=/ccet-website/" >> $GITHUB_ENV
+
+            - name: Build
+              run: |
+                  npm run build -- --base=$VITE_BASE
+
+            - name: Deploy to gh-pages (PR preview)
+              if: github.event_name == 'pull_request'
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./dist
+                  destination_dir: pr-${{ github.event.pull_request.number }}
+
+            - name: Deploy to gh-pages (main branch)
+              if: github.ref == 'refs/heads/main'
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./dist
+
+            - name: Comment on PR with preview link
+              if: github.event_name == 'pull_request'
+              uses: peter-evans/create-or-update-comment@v4
+              with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                issue-number: ${{ github.event.pull_request.number }}
+                body: |
+                    🚀 Preview for this PR is deployed and available at:  
+                    https://ccet-college-website.github.io/ccet-website/pr-${{ github.event.pull_request.number }}/

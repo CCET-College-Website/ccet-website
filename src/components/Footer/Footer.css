@@ -1,0 +1,285 @@
+/* ========== Base Footer ========== */
+.footer-section {
+  background: linear-gradient(to right, #1f4590, #09142a);
+  padding: 60px 0 0;
+  font-family: "Times New Roman", serif;
+  font-size: 24px;
+  color: white;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  margin-top: 50px;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.footer-title {
+  background-color: #ff9900;
+  color: black;
+  font-weight: bold;
+  font-size: 48px;
+  width: calc(100% - 8px);
+  max-width: 1150px;
+  text-align: center;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 0;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+/* ========== Layout Columns ========== */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  margin: 60px 0 30px;
+}
+
+/* ========== Footer Card ========== */
+.footer-card-wrapper {
+  background-color: white;
+  border-radius: 20px;
+  padding: 40px 10px 20px;
+  width: 220px;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+/* Special wider 2nd card */
+.footer-columns .footer-card-wrapper:nth-child(2) {
+  width: 380px;
+}
+
+/* ========== Card Heading ========== */
+.footer-heading {
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  width: calc(100% - 20px);
+  background-color: #ff9900;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 0;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 25px;
+  z-index: 2;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* Mobile dropdown icon */
+.footer-heading::after {
+  content: ' ▼';
+  font-size: 18px;
+  float: right;
+  margin-right: 10px;
+}
+
+.mobile-card.open .footer-heading::after {
+  content: ' ▲';
+}
+
+/* ========== Link Container ========== */
+.footer-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Split column layout */
+.footer-card-wrapper.split-columns .footer-links-container {
+  display: grid;
+  grid-template-columns: repeat(2, 160px);
+  column-gap: 20px;
+  row-gap: 12px;
+  justify-content: center;
+}
+
+/* ========== Individual Link ========== */
+.footer-link {
+  background-color: #e0e0e0;
+  font-family: "Times New Roman", serif;
+  color: black;
+  padding: 10px;
+  width: calc(100% + 20px);
+  margin-right: -20px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: underline;
+  transition: 0.3s ease;
+  cursor: pointer;
+  line-height: 1.2;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.footer-card-wrapper.split-columns .footer-link {
+  width: 160px;
+  margin-right: 0;
+}
+
+.footer-link:hover {
+  background-color: #d3d3d3;
+  transform: translateY(-1px);
+}
+
+/* ========== Link Text ========== */
+.footer-link-text {
+  color: black;
+  text-decoration: underline;
+  font-family: "Times New Roman", serif;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ========== Footer Bottom ========== */
+.footer-bottom {
+  background: linear-gradient(to right, #000000, #666666);
+  font-family: "Times New Roman", serif;
+  color: #ffffff;
+  text-align: center;
+  padding: 15px 40px;
+  font-size: 18px;
+  margin: 0 auto;
+  line-height: 1.5;
+  max-width: 1300px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-sizing: border-box;
+}
+
+/* Nav Links */
+.footer-nav-links {
+  margin-top: 5px;
+  font-size: 22px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-nav-links a {
+  font-family: "Times New Roman", serif;
+  color: #ffffff;
+  text-decoration: underline;
+  margin: 0 8px;
+}
+
+.footer-nav-links a:hover {
+  color: #d3d3d3;
+}
+
+/* ========== Responsive ========== */
+@media (min-width: 601px) and (max-width: 900px) {
+  .footer-columns {
+    gap: 24px;
+  }
+
+  .footer-card-wrapper {
+    width: 45%;
+  }
+
+  .footer-link {
+    font-size: 20px;
+    width: 180px;
+    margin-right: 0;
+  }
+
+  .footer-heading {
+    font-size: 22px;
+  }
+
+  .footer-bottom {
+    font-size: 17px;
+  }
+
+  .footer-nav-links {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 901px) {
+  .footer-card-wrapper {
+    width: 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-columns {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .footer-card-wrapper {
+    width: 90%;
+    padding: 30px 10px 20px;
+  }
+
+  .footer-links-container {
+    margin-top: 10px;
+  }
+
+  .mobile-card .footer-links-container {
+    display: none;
+  }
+
+  .mobile-card.open .footer-links-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-card.open.split-columns .footer-links-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 12px;
+    column-gap: 24px;
+    justify-items: stretch;
+  }
+
+  .footer-heading {
+    font-size: 20px;
+    left: 5px;
+    width: calc(100% - 10px);
+    padding: 8px 0;
+  }
+
+  .footer-link {
+    font-size: 18px;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .footer-bottom {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .footer-nav-links {
+    font-size: 16px;
+  }
+}

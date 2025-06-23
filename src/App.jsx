@@ -25,17 +25,17 @@ function App() {
         return <Loader />;
     }
 
-    return (
-        <HashRouter>
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="*" element={<NoPage />} />
-                {/* Add more routes here */}
-            </Routes>
-            <Footer />
-        </HashRouter>
-    );
+  return (
+    <HashRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<NoPage/>} />
+        {/* Add more routes here */}
+      </Routes>
+      <Footer />
+    </HashRouter>
+  );
 }
 
 export default App;
