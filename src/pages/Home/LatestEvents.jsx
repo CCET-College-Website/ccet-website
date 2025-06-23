@@ -1,26 +1,29 @@
 import React from "react";
+import tpc from './gallery-images/tpc.jpg'
+import crowd3 from './gallery-images/crowd3.jpg'
+import senior from './gallery-images/senior.jpg'
 
 const departments = ["CSE", "ECE", "ALL", "MECH", "CIVIL"];
 const events = [
   {
-    title: "CCET Website Competition",
+    title: "Tpc event",
     description:
       "College-Wide Website Development Competition took place on 1st October 2024 at the C BLOCK Seminar Hall with great enthusiastic participation from students across all branches.",
-    image: "https://via.placeholder.com/300x150", // Replace with actual image path
+    img:tpc , // Replace with actual image path
+   // link: "#"
+  },
+  {
+    title: "Masterclass",
+    description:
+      "College-Wide Website Development Competition took place on 1st October 2024 at the C BLOCK Seminar Hall with great enthusiastic participation from students across all branches.",
+    img: crowd3,
     link: "#"
   },
   {
-    title: "CCET Website Competition",
+    title: "Canon event",
     description:
       "College-Wide Website Development Competition took place on 1st October 2024 at the C BLOCK Seminar Hall with great enthusiastic participation from students across all branches.",
-    image: "https://via.placeholder.com/300x150",
-    link: "#"
-  },
-  {
-    title: "CCET Website Competition",
-    description:
-      "College-Wide Website Development Competition took place on 1st October 2024 at the C BLOCK Seminar Hall with great enthusiastic participation from students across all branches.",
-    image: "https://via.placeholder.com/300x150",
+    img:senior,
     link: "#"
   }
 ];
@@ -46,7 +49,7 @@ export default function LatestEvents() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {events.map((event, i) => (
           <div key={i} className="bg-white text-black rounded-3xl overflow-hidden shadow-md">
-            <img src={event.image} alt={event.title} className="w-full h-40 object-cover" />
+            <img src={event.img} alt={event.title} className="w-full h-40 object-cover" />
             <div className="p-4">
               <h3 className="font-semibold text-lg mb-2">{event.title}</h3>
               <p className="text-sm mb-2">{event.description}</p>

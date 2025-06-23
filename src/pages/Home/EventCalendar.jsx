@@ -24,8 +24,16 @@ const EventCalendar = () => {
       <div className="position-relative container" style={{ zIndex: 2 }}>
         <h2 className="fw-bold text-white display-3 mb-5">Event Calendar</h2>
 
+        {/* First row of 3 cards */}
         <div className="row justify-content-center align-items-center gx-5 gy-5 mb-4">
           {visibleEvents.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
+
+        {/* Second row of 3 more cards (next 3 events) */}
+        <div className="row justify-content-center align-items-center gx-5 gy-5 mb-4">
+          {events.slice(3, 6).map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
         </div>

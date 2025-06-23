@@ -1,6 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import achintyam from './gallery-images/achintyam.jpg';
+import beatles from './gallery-images/beatles.jpg';
+import crowd from './gallery-images/crowd.jpg';
+import apratim from './gallery-images/apratim.jpg'
+import crowd2 from './gallery-images/crowd2.jpeg'
+import tpc from './gallery-images/tpc.jpg'
 
 Modal.setAppElement('#root');
 
@@ -8,12 +14,12 @@ const Gallery = () => {
   const navigate = useNavigate();
 
   const allImages = [
-    { src: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp', alt: 'Boat on Calm Water' },
-    { src: 'https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp', alt: 'Mountain View' },
-    { src: 'https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp', alt: 'Mountain in Clouds' },
-    { src: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp', alt: 'Boat Again' },
-    { src: 'https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp', alt: 'Sea Waves' },
-    { src: 'https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp', alt: 'Yosemite National Park' },
+    { src: achintyam, alt: '' },
+    { src: crowd, alt: ' ' },
+    { src: beatles, alt: ' ' },
+    { src: apratim, alt: '' },
+    { src: crowd2, alt: '' },
+    { src: tpc, alt: '' },
   ];
 
   const [modalIsOpen, setModalIsOpen] = React.useState(false);

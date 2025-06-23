@@ -24,6 +24,10 @@ const events = [
     id: 5,
     title: "Cybersecurity & Ethical Hacking Bootcamp",
     date: "2025-08-30"
+  },{
+    id: 6,
+    title: "Cybersecurity & Ethical Hacking Bootcamp",
+    date: "2025-08-30"
   }
 ];
 
