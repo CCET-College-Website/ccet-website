@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
 import Header from './components/header/Header.jsx';
 import Footer from './components/Footer/Footer.jsx';
@@ -26,14 +26,14 @@ function App() {
     }
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
             <Footer />
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
