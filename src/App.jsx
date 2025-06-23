@@ -31,6 +31,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<NoPage />} />
+                {/* Add more routes here */}
             </Routes>
             <Footer />
         </HashRouter>
