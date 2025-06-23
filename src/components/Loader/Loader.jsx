@@ -20,7 +20,9 @@ const Loader = () => {
             setTimeout(() => {
                 loader.style.display = 'none';
                 // Re-enable scrolling after loader disappears
-                document.body.style.overflow = 'auto';
+                document.body.style.overflowY = 'auto';   // Allow vertical scroll
+                document.body.style.overflowX = 'hidden'; // Block horizontal scroll
+                document.documentElement.style.overflowX = 'hidden'; // For safety
             }, 1000);
 
             if (mainLogo) mainLogo.style.animation = 'shrinkToHeader 1s forwards';
