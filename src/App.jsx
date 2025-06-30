@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './index.css';
 import NoPage from './pages/Nopage/NoPage.jsx';
+import FAQ from './pages/FAQ/faq';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="*" element={<NoPage/>} />
+        <Route path="*" element={<NoPage />} />
+        <Route path="/faq" element={<FAQ />} />
         {/* Add more routes here */}
       </Routes>
       <Footer />

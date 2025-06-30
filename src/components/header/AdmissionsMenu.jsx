@@ -21,7 +21,7 @@ const AdmissionsMenu = () => {
     ];
 
     return (
-        <div className="absolute top-full left-1/2 transform -translate-x-[65%] hidden group-hover:grid grid-cols-4 bg-white/80 shadow-xl z-50 p-6 gap-6 text-1xl text-gray-800 rounded-lg border border-gray-100 min-w-[1000px] max-w-[90vw]">
+        <div className="absolute top-full left-1/2 transform -translate-x-[65%] hidden group-hover:grid grid-cols-4 bg-white/70 backdrop-blur-md shadow-xl z-50 p-6 gap-6 text-1xl text-gray-800 rounded-lg border border-gray-100 min-w-[1000px] max-w-[90vw]">
         {sections.map((section, i) => (
                 <div key={i}>
                     <div className="font-semibold border-b border-gray-200 pb-2 mb-3 text-red-700">{section.title}</div>

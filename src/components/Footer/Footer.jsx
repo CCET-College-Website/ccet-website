@@ -10,7 +10,7 @@ const useIsMobile = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   return isMobile;
-};
+}; 
 
 // Reusable FooterCard component
 function FooterCard({ title, links }) {
