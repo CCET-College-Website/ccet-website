@@ -207,39 +207,38 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Desktop View */}
-      <div className="hidden md:flex flex-col items-center px-2 py-3 w-full max-w-[1436px] mx-auto">
-        <div className="flex w-full items-center justify-center gap-2">
-          <div className="flex items-center h-full mx-14 min-w-[96px]">
-            <img className="h-24 w-auto object-contain" src={CCETLogo} alt="College Logo" />
-          </div>
-          <div className="flex flex-col flex-shrink items-center px-2 w-full max-w-[900px]">
-            <h1 className="font-serif text-white text-4xl text-center leading-tight">
-              Chandigarh College of Engineering and Technology
-            </h1>
-            <h2 className="font-serif text-white text-lg text-center leading-snug mt-1 mb-2 px-2">
-              (Government Institute Under Chandigarh UT Administration, Affiliated to Panjab University, Chandigarh)
-            </h2>
-            <div className="w-full px-4">
-              <div className="max-w-4xl mx-auto border-t-2 border-white mt-2 mb-2" />
+        {/* Desktop View */}
+        <div className="hidden lg:flex flex-col items-center px-2 py-3 w-full max-w-[1436px] mx-auto">
+          <div className="flex w-full items-center justify-center gap-2">
+            <div className="flex items-center h-full mx-14 min-w-[96px]">
+              <img className="h-24 w-auto object-contain" src={CCETLogo} alt="College Logo" />
+            </div>
+            <div className="flex flex-col flex-shrink items-center px-2 w-full max-w-[900px]">
+              <h1 className="font-serif text-white text-4xl text-center leading-tight">
+                Chandigarh College of Engineering and Technology
+              </h1>
+              <h2 className="font-serif text-white text-lg text-center leading-snug mt-1 mb-2 px-2">
+                (Government Institute Under Chandigarh UT Administration, Affiliated to Panjab University, Chandigarh)
+              </h2>
+              <div className="w-full px-4">
+                <div className="max-w-4xl mx-auto border-t-2 border-white mt-2 mb-2" />
+              </div>
+            </div>
+            <div className="flex items-center h-full mx-14 min-w-[96px]">
+              <img className="h-24 w-auto object-contain" src={IndianEmblem} alt="Indian Emblem" />
             </div>
           </div>
-          <div className="flex items-center h-full mx-14 min-w-[96px]">
-            <img className="h-24 w-auto object-contain" src={IndianEmblem} alt="Indian Emblem" />
-          </div>
-        </div>
 
-        <nav className="w-full flex justify-center items-center gap-3 -mt-0 -mb-2 relative z-50">
-          {menuItems.map(({ label, menu }) => (
-            <div
-              key={label}
-              className="relative group"
-              onMouseEnter={() => setActiveNav(label)}
-              onMouseLeave={() => setTimeout(() => setActiveNav(''), undefined)}
-              onClick={() => { if (label === 'Home') navigate('/'); }}
-            >
-              <div
-                className={`cursor-pointer px-3 py-1 rounded-md font-serif text-xl whitespace-nowrap transition-all duration-200
+          <nav className="w-full flex justify-center items-center gap-3 -mt-0 -mb-2 relative z-50">
+            {menuItems.map(({ label, menu }) => (
+                <div
+                    key={label}
+                    className="relative group"
+                    onMouseEnter={() => setActiveNav(label)}
+                    onMouseLeave={() => setTimeout(() => setActiveNav(''), undefined)}
+                >
+                  <div
+                      className={`cursor-pointer px-3 py-1 rounded-md font-serif text-xl whitespace-nowrap transition-all duration-200
                   ${activeNav === label
                     ? 'bg-yellow-400 text-red-700 shadow-md'
                     : 'text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md'
