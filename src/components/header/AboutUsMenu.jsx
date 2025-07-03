@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AboutUsMenu = () => {
     const sections = [
@@ -8,7 +9,12 @@ const AboutUsMenu = () => {
         },
         {
             title: 'Administration',
-            links: ['Principal', 'Officials at CCET', 'Academic Heads', 'Administrator'],
+            links: [
+                'Principal',
+                'Officials at CCET',
+                <Link to="/about/academic-heads" className="block w-full">Academic Heads</Link>,  // ✅ Only this link is clickable
+                'Administrator',
+            ],
         },
         {
             title: 'Life @ CCET',
@@ -25,8 +31,10 @@ const AboutUsMenu = () => {
                 <div key={i}>
                     <div className="font-semibold border-b border-gray-200 pb-2 mb-3 text-red-700">{section.title}</div>
                     <ul className="space-y-2">
-                        {section.links.map((link) => (
-                            <li className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded">{link}</li>
+                        {section.links.map((link, j) => (
+                            <li key={j} className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded">
+                                {link}
+                            </li>
                         ))}
                     </ul>
                 </div>

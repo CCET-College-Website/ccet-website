@@ -26,7 +26,8 @@ function FooterCard({ title, links }) {
   };
 
   const showLinks = !isMobile || isOpen;
-  const useSplit = links.length > 8 && showLinks;
+ const useSplit = title === "Important Links" || (links.length > 8 && showLinks);
+
 
   return (
     <div className={`footer-card-wrapper ${isMobile ? 'mobile-card' : ''} ${showLinks ? (useSplit ? 'split-columns' : '') : ''} ${isOpen ? 'open' : ''}`}>

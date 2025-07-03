@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Add this import
+import { Link } from 'react-router-dom';
 
 const AcademicsMenu = () => {
     const navigate = useNavigate(); // Add this line
@@ -8,21 +8,42 @@ const AcademicsMenu = () => {
         {
             title: 'Academic Departments',
             links: [
-                'Computer Science Engineering', 'Mechanical Engineering',
-                'Electronics And Communication Engineering', 'Civil Engineering', 'Applied Science'
+                'Computer Science Engineering', 
+                'Mechanical Engineering',
+                'Electronics And Communication Engineering', 
+                'Civil Engineering', 
+                'Applied Science'
             ],
         },
         {
             title: 'Academics',
-            links: ['Convocation 2023', 'Students Feedback', 'Examination', 'E-Akademik', 'E-Cell', 'NIRF', 'FAQs'],
+            links: [
+                'Convocation 2023', 
+                'Students Feedback', 
+                'Examination', 
+                'E-Akademik', 
+                'E-Cell', 
+                'NIRF', 
+                'FAQs'
+            ],
         },
         {
             title: 'Mandatory Disclosure',
-            links: ['EoA Report 2024-25', 'Application Part-1', 'Application Part-2', 'OLD AICTE EoAs'],
+            links: [
+                'EoA Report 2024-25', 
+                'Application Part-1', 
+                'Application Part-2', 
+                'OLD AICTE EoAs'
+            ],
         },
         {
             title: 'Overview',
-            links: ['Courses Offered', 'Academic Calendar', 'Academic Prospectus', 'Affiliating University'],
+            links: [
+                { name: 'Courses Offered', path: '/students-section/courses' },   // ✅ Now clickable
+                'Academic Calendar', 
+                'Academic Prospectus', 
+                'Affiliating University'
+            ],
         },
     ];
 
@@ -33,16 +54,12 @@ const AcademicsMenu = () => {
                     <div className="font-semibold border-b border-gray-200 pb-2 mb-3 text-red-700">{section.title}</div>
                     <ul className="space-y-2">
                         {section.links.map((link, j) => (
-                            <li
-                                key={j}
-                                className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded"
-                                onClick={() => {
-                                    if (link === 'FAQs') {
-                                        navigate('/faq');
-                                    }
-                                }}
-                            >
-                                {link}
+                            <li key={j} className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded">
+                                {typeof link === 'string' ? (
+                                    link
+                                ) : (
+                                    <Link to={link.path} className="block w-full h-full">{link.name}</Link>
+                                )}
                             </li>
                         ))}
                     </ul>

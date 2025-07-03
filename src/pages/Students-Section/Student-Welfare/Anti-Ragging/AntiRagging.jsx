@@ -14,7 +14,6 @@ import annexure1 from "../../../../assets/Anti-Ragging/Annexure-I.pdf";
 import annexure1st from "../../../../assets/Anti-Ragging/Annexure-I-1st.pdf";
 import annexure2nd from "../../../../assets/Anti-Ragging/Annexure-I-2nd.pdf";
 import annexure3rd from "../../../../assets/Anti-Ragging/Annexure-I-3rd.pdf";
-
 const AntiRagging = () => {
   return (
     <div className="px-4 md:px-16 py-10 max-w-6xl mx-auto">
@@ -185,6 +184,8 @@ const AntiRagging = () => {
         </ul>
       </div>
 
+
+
       {/* National Helpline */}
       <div className="text-center mt-10 text-gray-800">
         <p className="text-lg font-semibold">National Anti-Ragging Helpline :</p>
@@ -196,7 +197,9 @@ const AntiRagging = () => {
           <EnvelopeIcon className="w-5 h-5 text-blue-700" />
           <p>helpline@antiragging.in</p>
         </div>
+       
       </div>
+      
     </div>
   );
 };
