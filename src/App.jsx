@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import './index.css';
 import NoPage from './pages/Nopage/NoPage.jsx';
+import FAQ from './pages/FAQ/faq';
 import AntiRagging from "./pages/Students-Section/Student-Welfare/Anti-Ragging/AntiRagging.jsx";
 import AntiRaggingCommittee from './pages/Students-Section/Student-Welfare/Anti-Ragging-Committee/AntiRaggingCommittee';
 import Academicheads from './pages/AcadmicHeads/Academicheads.jsx';
@@ -16,6 +17,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="*" element={<NoPage />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="*" element={<NoPage/>} />
         <Route path="/anti-ragging" element={<AntiRagging />} />
         <Route path="/anti-ragging-committee" element={<AntiRaggingCommittee />} />
