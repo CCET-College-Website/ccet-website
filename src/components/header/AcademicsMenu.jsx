@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const AcademicsMenu = () => {
-    const navigate = useNavigate(); // Add this line
 
     const sections = [
         {
@@ -24,7 +23,7 @@ const AcademicsMenu = () => {
                 'E-Akademik', 
                 'E-Cell', 
                 'NIRF', 
-                'FAQs'
+                { name: 'FAQs', path: '/faq'},
             ],
         },
         {
