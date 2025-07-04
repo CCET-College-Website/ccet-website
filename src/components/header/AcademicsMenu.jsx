@@ -39,7 +39,7 @@ const AcademicsMenu = () => {
             links: [
                 { name: 'Courses Offered', path: '/students-section/courses' },   // ✅ Now clickable
                 'Academic Calendar', 
-                'Academic Prospectus', 
+                { name: 'Academic Prospectus', path: '/prospectus' },  
                 'Affiliating University'
             ],
         },
