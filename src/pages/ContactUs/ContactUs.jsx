@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import facebookIcon from '../../assets/socials/facebook.png';
+import instagramIcon from '../../assets/socials/instagram.png';
+import mailIcon from '../../assets/socials/mail.png';
+import linkedinIcon from '../../assets/socials/linkedin.png'
 
 const ContactUs = () => {
   const [activeTab, setActiveTab] = useState("EMAIL");
@@ -198,7 +202,7 @@ const [activeAddressTab, setActiveAddressTab] = useState("Roadways");
         rel="noopener noreferrer"
         className="w-40 h-40  bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
       >
-        <img src="linkedin.png" alt="LinkedIn" className="w-20 h-20" />
+        <img src={linkedinIcon} alt="Linkedin" className="w-20 h-20" />
       </a>
 
       {/* Instagram */}
@@ -208,17 +212,20 @@ const [activeAddressTab, setActiveAddressTab] = useState("Roadways");
         rel="noopener noreferrer"
         className="w-40 h-40  bg-[#102A56] from-pink-500 via-red-500 to-yellow-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
       >
-        <img src="instagram.png" alt="Instagram" className="w-20 h-20" />
+        <img src={instagramIcon} alt="Instagram" className="w-20 h-20" />
       </a>
 
       {/* Facebook */}
       <a
-        href="https://www.facebook.com/yourpage"
+        href="https://www.facebook.com"
         target="_blank"
         rel="noopener noreferrer"
         className="w-40 h-40 bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
       >
-        <img src="facebook.png" alt="Facebook" className="w-20 h-20" />
+       
+
+        <img src={facebookIcon} alt="Facebook" className="w-20 h-20" />
+
       </a>
 
       {/* Mail */}
@@ -228,7 +235,7 @@ const [activeAddressTab, setActiveAddressTab] = useState("Roadways");
         rel="noopener noreferrer"
         className="w-40 h-40  bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
       >
-        <img src="mail.png" alt="mail" className="w-20 h-20" />
+        <img src={mailIcon} alt="Mail" className="w-20 h-20" />
       </a>
     </div>
   </>
