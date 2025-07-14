@@ -32,7 +32,7 @@ const [activeAddressTab, setActiveAddressTab] = useState("Roadways");
     <div className="min-h-screen bg-white px-6 md:px-20 py-10 text-gray-800 font-sans">
       {/* Heading */}
       <div className="text-center mb-10">
-        <h1 className="text-6xl font-bold mb-4">CONTACT US</h1>
+        <h1 className="text-5xl font-bold mb-4">CONTACT US</h1>
         <p className="text-xl font-medium">
           Chandigarh College of Engineering & Technology (CCET)
           <br />
@@ -41,22 +41,22 @@ const [activeAddressTab, setActiveAddressTab] = useState("Roadways");
       </div>
 
       {/* Main Tabs */}
-      <div className="flex justify-between items-center rounded-full bg-gray-200 w-[70%] max-w-[1000px] mx-auto mb-10 px-6 py-4 text-3xl font-bold ">
+<div className="grid grid-cols-2 sm:flex justify-center gap-4 bg-gray-200 rounded-xl w-full max-w-3xl mx-auto mb-10 p-4 text-base sm:text-xl font-bold">
+  {tabs.map((tab) => (
+    <button
+      key={tab}
+      className={`w-full py-3 rounded-lg text-center transition-all duration-200 ${
+        activeTab === tab
+          ? "bg-[#102A56] text-white shadow-md"
+          : "bg-white text-black hover:bg-gray-300"
+      }`}
+      onClick={() => setActiveTab(tab)}
+    >
+      {tab}
+    </button>
+  ))}
+</div>
 
-        {tabs.map((tab) => (
-          <button
-            key={tab}
-            className={`px-6 py-3 focus:outline-none transition-all rounded-full  ${
-              activeTab === tab
-                ? "bg-[#102A56] text-white rounded-full"
-                : "text-black hover:bg-gray-300"
-            }`}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab}
-          </button>
-        ))}
-      </div>
 
       {/* EMAIL SECTION */}
   {activeTab === "EMAIL" && (
@@ -156,17 +156,13 @@ const [activeAddressTab, setActiveAddressTab] = useState("Roadways");
               key={index}
               className="border-t border-[#28446E] hover:bg-[#1F3B6E] transition-colors duration-200"
             >
-              <td className="px-6 py-4 text-lg lg:text-xl">{row.name}</td>
-              <td className="px-6 py-4 text-lg lg:text-xl border-l border-[#28446E] text-blue-200 font-bold">
-                {row.phone.split("\n").map((line, i) => (
-                  <div
-                    key={i}
-                    className="hover:text-yellow-300 transition-colors duration-200"
-                  >
-                    {line}
-                  </div>
-                ))}
-              </td>
+              <td className="px-6 py-4 text-lg lg:text-xl ">{row.name}</td>
+              <td className="px-4 py-3 border-l border-[#28446E] text-blue-200 font-bold whitespace-nowrap">
+              <span className="inline-block whitespace-nowrap">
+                {row.phone.replace(/\n/g, ' • ')}
+              </span>
+            </td>
+
             </tr>
           ))}
         </tbody>
@@ -194,51 +190,51 @@ const [activeAddressTab, setActiveAddressTab] = useState("Roadways");
       `}
     </style>
 
-    <div className="flex justify-center items-center gap-8 mt-10 animate-[popIn_0.5s_ease-out_forwards]">
-      {/* LinkedIn */}
-      <a
-        href="https://www.linkedin.com/in/ccet-degree-a82593264/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-40 h-40  bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
-      >
-        <img src={linkedinIcon} alt="Linkedin" className="w-20 h-20" />
-      </a>
+   <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-8 mt-10 animate-[popIn_0.5s_ease-out_forwards]">
+  <div className="grid grid-cols-2 sm:flex justify-center items-center gap-6 sm:gap-8 mt-10 animate-[popIn_0.5s_ease-out_forwards]">
+  {/* LinkedIn */}
+  <a
+    href="https://www.linkedin.com/in/ccet-degree-a82593264/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-28 h-28 sm:w-40 sm:h-40 bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+  >
+    <img src={linkedinIcon} alt="LinkedIn" className="w-12 h-12 sm:w-20 sm:h-20" />
+  </a>
 
-      {/* Instagram */}
-      <a
-        href="https://www.instagram.com/ccet_degree/?hl=en"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-40 h-40  bg-[#102A56] from-pink-500 via-red-500 to-yellow-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
-      >
-        <img src={instagramIcon} alt="Instagram" className="w-20 h-20" />
-      </a>
+  {/* Instagram */}
+  <a
+    href="https://www.instagram.com/ccet_degree/?hl=en"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-28 h-28 sm:w-40 sm:h-40 bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+  >
+    <img src={instagramIcon} alt="Instagram" className="w-12 h-12 sm:w-20 sm:h-20" />
+  </a>
 
-      {/* Facebook */}
-      <a
-        href="https://www.facebook.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-40 h-40 bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
-      >
-       
+  {/* Facebook */}
+  <a
+    href="https://www.facebook.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-28 h-28 sm:w-40 sm:h-40 bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+  >
+    <img src={facebookIcon} alt="Facebook" className="w-12 h-12 sm:w-20 sm:h-20" />
+  </a>
 
-        <img src={facebookIcon} alt="Facebook" className="w-20 h-20" />
+  {/* Mail */}
+  <a
+    href="mailto:pr@ccet.ac.in"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="w-28 h-28 sm:w-40 sm:h-40 bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
+  >
+    <img src={mailIcon} alt="Mail" className="w-12 h-12 sm:w-20 sm:h-20" />
+  </a>
+</div>
 
-      </a>
-
-      {/* Mail */}
-      <a
-        href="pr@ccet.ac.in"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-40 h-40  bg-[#102A56] rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg"
-      >
-        <img src={mailIcon} alt="Mail" className="w-20 h-20" />
-      </a>
-    </div>
-  </>
+</div>
+</>
 )}
 
  {/* ADDRESS SECTION */}
