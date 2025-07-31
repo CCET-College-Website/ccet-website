@@ -5,7 +5,10 @@ const AboutUsMenu = () => {
     const sections = [
         {
             title: 'About',
-            links: ['History', 'Vision and Mission', 'Campus Map', 'How To Reach Us'],
+            links: ['History',
+                 'Vision and Mission',
+                  'Campus Map',
+                    <Link to="/contact" className="block w-full">How To Reach Us</Link>,],
         },
         {
             title: 'Administration',

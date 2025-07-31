@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
-import { PhoneIcon } from "@heroicons/react/20/solid";
+import { PhoneIcon, GlobeAltIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import poster1 from "../../../../assets/Anti-Ragging/poster-1.jpg";
 import poster2 from "../../../../assets/Anti-Ragging/poster-2.jpg";
@@ -14,10 +14,10 @@ import annexure1 from "../../../../assets/Anti-Ragging/Annexure-I.pdf";
 import annexure1st from "../../../../assets/Anti-Ragging/Annexure-I-1st.pdf";
 import annexure2nd from "../../../../assets/Anti-Ragging/Annexure-I-2nd.pdf";
 import annexure3rd from "../../../../assets/Anti-Ragging/Annexure-I-3rd.pdf";
+
 const AntiRagging = () => {
   return (
     <div className="px-4 md:px-16 py-10 max-w-6xl mx-auto">
-      
       {/* Posters */}
       <div className="overflow-x-hidden w-full mb-10 relative">
         <div className="flex gap-6 animate-scroll-x">
@@ -46,13 +46,12 @@ const AntiRagging = () => {
           .animate-scroll-x {
             animation: scroll-x 25s linear infinite;
           }
-          /* Hide scrollbars for all browsers */
           .overflow-x-hidden::-webkit-scrollbar {
             display: none;
           }
           .overflow-x-hidden {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;     /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
           }
         `}</style>
       </div>
@@ -138,26 +137,16 @@ const AntiRagging = () => {
       {/* Supreme Court Box */}
       <div className="bg-gray-200 border border-gray-300 rounded-xl shadow-md p-6 mt-10">
         <h2 className="text-lg md:text-xl font-semibold mb-2 inline-block border-b border-blue-600">
-  Supreme Court & UGC regulations link :
+          Supreme Court & UGC regulations link :
         </h2>
         <ul className="list-none text-sm space-y-2 text-blue-700 mt-4">
           <li>
-            <a
-              href={antiRaggingRegulations}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-            >
+            <a href={antiRaggingRegulations} target="_blank" rel="noopener noreferrer" className="hover:underline">
               Anti-Ragging Regulations
             </a>
           </li>
           <li>
-            <a
-              href={antiRaggingAffidavitReg}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-            >
+            <a href={antiRaggingAffidavitReg} target="_blank" rel="noopener noreferrer" className="hover:underline">
               Anti Ragging Affidavit-reg
             </a>
           </li>
@@ -184,8 +173,6 @@ const AntiRagging = () => {
         </ul>
       </div>
 
-
-
       {/* National Helpline */}
       <div className="text-center mt-10 text-gray-800">
         <p className="text-lg font-semibold">National Anti-Ragging Helpline :</p>
@@ -197,11 +184,180 @@ const AntiRagging = () => {
           <EnvelopeIcon className="w-5 h-5 text-blue-700" />
           <p>helpline@antiragging.in</p>
         </div>
-       
       </div>
-      
+
+      <FloatHelpWidget />
     </div>
   );
 };
+
+function FloatHelpWidget() {
+  const [isOpen, setIsOpen] = useState(false);
+  const widgetRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (widgetRef.current && !widgetRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50">
+      {!isOpen && (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-red-700 transition-colors"
+        >
+          <span className="font-semibold">Quick Help</span>
+        </button>
+      )}
+
+      {isOpen && (
+        <div
+          ref={widgetRef}
+          className="w-80 bg-white border-2 border-blue-600 rounded-lg shadow-xl p-4 text-sm max-h-[90vh] overflow-y-auto"
+        >
+          <h3 className="text-base font-bold mb-2">
+            National Anti-Ragging Helpline
+          </h3>
+          <p className="mb-1 text-red-700 font-semibold">24×7 Toll Free</p>
+          <div className="mb-2 flex items-center gap-2">
+            <PhoneIcon className="w-4 h-4 text-blue-600" />
+            <span>1800-180-5522</span>
+          </div>
+          <div className="mb-2 flex items-center gap-2">
+            <EnvelopeIcon className="w-4 h-4 text-blue-600" />
+            <a
+              href="mailto:helpline@antiragging.in"
+              className="text-blue-600 hover:underline break-all"
+            >
+              helpline@antiragging.in
+            </a>
+          </div>
+          <div className="mb-4 flex items-center gap-2">
+            <GlobeAltIcon className="w-4 h-4 text-blue-600" />
+            <a
+              href="https://www.antiragging.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline break-all"
+            >
+              www.antiragging.in
+            </a>
+          </div>
+
+          <hr className="border-t border-blue-300 my-3" />
+
+          <h4 className="text-base font-bold mb-1">UGC Monitoring Agency</h4>
+          <p className="mb-1">Centre for Youth (C4Y)</p>
+          <div className="mb-2 flex items-center gap-2">
+            <EnvelopeIcon className="w-4 h-4 text-blue-600" />
+            <a
+              href="mailto:antiragging@c4yindia.org"
+              className="text-blue-600 hover:underline break-all"
+            >
+              antiragging@c4yindia.org
+            </a>
+          </div>
+          <div className="mb-2 flex items-center gap-2">
+            <GlobeAltIcon className="w-4 h-4 text-blue-600" />
+            <a
+              href="https://www.c4yindia.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline break-all"
+            >
+              www.c4yindia.org
+            </a>
+          </div>
+          <div className="mb-4 flex items-center gap-2">
+            <PhoneIcon className="w-4 h-4 text-blue-600" />
+            <span>+91 98180 44577</span>
+          </div>
+
+          <hr className="border-t border-blue-300 my-3" />
+
+          <h4 className="text-base font-bold mb-1">Important Helplines</h4>
+
+          <div className="mb-2">
+            <p className="font-medium">Professor‑in‑Charge Student Welfare</p>
+            <div className="flex items-center gap-2">
+              <PhoneIcon className="w-4 h-4 text-blue-600" />
+              <span>+91 98181 82457</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <EnvelopeIcon className="w-4 h-4 text-blue-600" />
+              <a
+                href="mailto:psw@ccet.ac.in"
+                className="text-blue-600 hover:underline break-all"
+              >
+                psw@ccet.ac.in
+              </a>
+            </div>
+          </div>
+
+          <div className="mb-2">
+            <p className="font-medium">Joint‑in‑Charge Student Welfare</p>
+            <div className="flex items-center gap-2">
+              <PhoneIcon className="w-4 h-4 text-blue-600" />
+              <span>+91 80549 77561</span>
+            </div>
+          </div>
+
+          <div className="mb-2">
+            <p className="font-medium">Head of Office</p>
+            <div className="flex items-center gap-2">
+              <PhoneIcon className="w-4 h-4 text-blue-600" />
+              <span>0172-275-0943</span>
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <p className="font-medium">In‑charge Security</p>
+            <div className="flex items-center gap-2">
+              <PhoneIcon className="w-4 h-4 text-blue-600" />
+              <span>+91 62845 61607</span>
+            </div>
+          </div>
+
+          <blockquote className="border-l-4 border-red-600 pl-4 italic text-xs text-red-700 mb-4">
+            RAGGING IS A CRIMINAL OFFENCE AND THE CULPRITS WILL ATTRACT PUNITIVE
+            ACTION AS MENTIONED IN THE UGC REGULATIONS.
+          </blockquote>
+
+          <button
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-1 text-sm text-red-600 hover:text-red-700 font-medium"
+          >
+            <XMarkIcon className="w-4 h-4" /> Close
+          </button>
+
+          <style>{`
+            .overflow-y-auto::-webkit-scrollbar {
+              width: 6px;
+            }
+            .overflow-y-auto::-webkit-scrollbar-thumb {
+              background-color: #3B82F6;
+              border-radius: 9999px;
+            }
+            .overflow-y-auto::-webkit-scrollbar-track {
+              background: #f1f1f1;
+            }
+          `}</style>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default AntiRagging;

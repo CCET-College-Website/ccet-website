@@ -1,0 +1,74 @@
+.academic-prospectus-container {
+  padding: 2rem;
+  background-color: #ffffff;
+  color: #1f2937; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.academic-prospectus-container h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.academic-prospectus-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.prospectus-viewer {
+  width: 100%;
+  height: 600px;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.download-button {
+  margin-top: 1rem;
+  display: inline-block;
+  background-color: #2563eb; 
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+  background-color: #1d4ed8; 
+}
+
+.previous-prospectus-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.prospectus-item {
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.prospectus-item:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.prospectus-item a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.prospectus-item a:hover {
+  text-decoration: underline;
+}

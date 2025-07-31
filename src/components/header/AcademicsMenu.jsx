@@ -21,7 +21,7 @@ const AcademicsMenu = () => {
                 'Examination', 
                 'E-Akademik', 
                 'E-Cell', 
-                'NIRF', 
+                { name: 'NIRF', path: '/academics/nirf' },  
                 'FAQs'
             ],
         },
@@ -39,8 +39,8 @@ const AcademicsMenu = () => {
             links: [
                 { name: 'Courses Offered', path: '/courses' },   // ✅ Now clickable
                 'Academic Calendar', 
-                'Academic Prospectus', 
-                'Affiliating University'
+                { name: 'Academic Prospectus', path: '/prospectus' }, 
+                { name: 'Affiliating University', path: 'https://puchd.ac.in/' }
             ],
         },
     ];
