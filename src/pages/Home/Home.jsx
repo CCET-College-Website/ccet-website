@@ -6,6 +6,7 @@ import OurAlumni from './OurAlumni'
 import Gallery from './Gallery'
 import EventCalendar from './EventCalendar'
 import bannerImg from "../../assets/home/banner.png"
+import Achievements from './Achievements';
 
 function Home() {
   return (
@@ -31,6 +32,9 @@ function Home() {
       </div>
       <EventCalendar />
       <NoticePanel />
+      
+      <Achievements />
+
       <Gallery />
       <OurAlumni />
       <Contact />
@@ -38,4 +42,5 @@ function Home() {
   )
 }
 
-export default Home
+export default Home;
+
