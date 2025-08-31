@@ -29,7 +29,10 @@ const StudentsSectionMenu = () => {
         { name: 'Student Council', url: '/student-council' },
         { name: 'Anti Ragging', url: '/anti-ragging' },
         { name: 'Anti Ragging Committee', url: '/anti-ragging-committee' },
-        { name: 'Student Fee Payment (HDFC)', url: '/student-fee-payment' },
+        {
+          name: 'Student Fee Payment (HDFC)',
+          url: 'https://paydirect.eduqfix.com/app/3qTjKfysWsfqEyNTM4giVFX4VGVYGZss5NYRHpY65DaJgmu14S3Ff6NKoVa3l2Ay/6593'
+        },
         { name: 'Application form to be a New Voter', url: '/new-voter' },
       ],
     },
