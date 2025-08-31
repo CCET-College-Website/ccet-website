@@ -16,7 +16,10 @@ const StudentsSectionMenu = () => {
     {
       title: 'Student Grievances Redressal System',
       links: [
-        { name: 'Grievance Redressal Portal', url: '/grievance-portal' },
+        {
+          name: 'Grievance Redressal Portal',
+          url: 'https://www.ccet.ac.in/grievances/login.php'
+        },
       ],
     },
     {
@@ -66,16 +69,18 @@ const StudentsSectionMenu = () => {
           </div>
           <ul className="space-y-2">
             {section.links.map((link, idx) => (
-              <li
-                key={idx}
-                className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded"
-              >
-                {link.url ? (
-                  <Link to={link.url}>{link.name}</Link>
-                ) : (
-                  link.name
-                )}
-              </li>
+                <li
+                    key={idx}
+                    className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded"
+                >
+                  {link.url.startsWith("http") ? (
+                      <a href={link.url} target="_blank" rel="noopener noreferrer">
+                        {link.name}
+                      </a>
+                  ) : (
+                      <Link to={link.url}>{link.name}</Link>
+                  )}
+                </li>
             ))}
           </ul>
         </div>
