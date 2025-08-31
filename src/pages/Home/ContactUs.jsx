@@ -34,11 +34,11 @@ const Contact = () => {
               }}
             >
               <p><strong>Address:</strong><br /> PRH5+3H6, Sector 26, Chandigarh, 160019</p>
-              <p><strong>Principal:</strong> <a href="#" style={{ textDecoration: 'none', color: '#007bff' }}>Dr Manpreet Singh</a></p>
+              <p><strong>Principal:</strong> Dr Manpreet Singh</p>
               <p><strong>Founded:</strong> 2002</p>
               <p><strong>Undergraduate Fees:</strong> 45,500 INR (2012–13)</p>
               <p><strong>Campus:</strong> 32 acres (13 ha), Urban</p>
-              <p><strong>Phone:</strong> <a href="tel:01722750872" style={{ textDecoration: 'none', color: '#007bff' }}>0172 275 0872</a></p>
+              <p><strong>Phone:</strong> 0172 275 0872</p>
             </div>
           </div>
 
