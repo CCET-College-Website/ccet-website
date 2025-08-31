@@ -24,8 +24,7 @@ const AcademicsMenu = () => {
                 'E-Cell', 
                 'NIRF', 
                 { name: 'FAQs', path: '/faq'},
-                { name: 'NIRF', path: '/academics/nirf' },  
-                'FAQs'
+                { name: 'NIRF', path: '/academics/nirf' }
             ],
         },
         {
