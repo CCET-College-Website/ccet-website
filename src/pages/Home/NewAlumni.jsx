@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import alumniInfo from "../../assets/home/Alumni/alumniInfo";
+
 import "./NewAlumni.css";
 
 const NewAlumni = () => {

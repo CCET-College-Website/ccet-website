@@ -5,7 +5,11 @@ import ece from './Headsimages/ece.png';
 import cse from './Headsimages/cse.png';
 import mech from './Headsimages/mech.png';
 import as from './Headsimages/applied-science.png';
-
+import cse_resume from './HeadsResume/Sunil_K_Singh.pdf';
+import ece_resume from './HeadsResume/DS_Saini.pdf';
+import mech_resume from './HeadsResume/Jatinder_Madan.pdf';
+import civil_resume from './HeadsResume/Rajesh_Kumar.pdf';
+import as_resume from './HeadsResume/Varun_Gupta.pdf';
 const academicHeads = [
   {
     department: 'Computer Science and Engineering',
@@ -18,6 +22,7 @@ const academicHeads = [
     email: 'sksingh@ccet.ac.in',
     room: 'Room no. 415, CSE Department, CCET Degree Wing',
     image: cse,
+    resume: cse_resume
   },
   {
     department: 'Civil Engineering',
@@ -30,6 +35,7 @@ const academicHeads = [
     email: 'rajeshkumar@ccet.ac.in',
     room: 'Room No.-305B, Block-B, CCET (Degree Wing)',
     image: civil,
+    resume: civil_resume
   },
   {
     department: 'Mechanical Engineering',
@@ -42,6 +48,7 @@ const academicHeads = [
     email: 'jatindermadan@ccet.ac.in',
     room: 'Room No. B 308, Block - B, CCET (Degree Wing)',
     image: mech,
+    resume :mech_resume
   },
   {
     department: 'Electronics and Communication Engineering',
@@ -54,6 +61,7 @@ const academicHeads = [
     email: 'dssaini@ccet.ac.in',
     room: 'Room No. 315, 2nd Floor, CCET (Degree Wing), Chandigarh',
     image: ece,
+    resume: ece_resume
   },
   {
     department: 'Applied Science',
@@ -66,6 +74,7 @@ const academicHeads = [
     email: 'varungupta@ccet.ac.in',
     room: 'Room No. 109, Ground Floor, Block A, Applied Science Department, CCET, Degree Wing',
     image: as,
+    resume: as_resume
   },
 ];
 
@@ -113,9 +122,10 @@ const Academicheads = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => window.open(head.resume, "_blank")}
                 className="mt-3 px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition self-start"
-              >
-                Read More
+               >
+               Resume
               </motion.button>
             </div>
           </motion.div>

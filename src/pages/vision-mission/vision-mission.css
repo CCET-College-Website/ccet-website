@@ -1,0 +1,261 @@
+.vision-mission-page body,
+.vision-mission-page html,
+.vision-mission-page #root {
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #ebf1fa 0%, #d6e0f7 100%);
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+
+.vision-mission-page.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  background: #ffffffdd;
+  box-shadow: 0 10px 25px rgba(29, 55, 130, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.vision-mission-page .header {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  border-bottom: 6px solid #1d3782;
+  border-radius: 20px 20px 0 0;
+}
+
+.vision-mission-page .banner-img {
+  width: 100vw;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75);
+  transition: transform 0.5s ease;
+  margin-top: 10px;
+}
+
+.vision-mission-page .banner-img:hover {
+  transform: scale(1.05);
+  filter: brightness(0.9);
+}
+
+.vision-mission-page .header-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #dde6f4;
+  text-align: center;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.vision-mission-page .header-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: 0 0 0.4rem 0;
+  letter-spacing: 2px;
+}
+
+.vision-mission-page .header-subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  margin: 0;
+  font-style: italic;
+}
+
+.vision-mission-page .main-content {
+  max-width: 900px;
+  margin: 40px auto 60px auto;
+  padding: 32px 16px;
+}
+
+.vision-mission-page .section-title {
+  text-align: center;
+  margin: 30px 0 40px 0;
+  font-weight: 900;
+  font-size: 2.8rem;
+  color: #1d3782;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+.vision-mission-page .section-title::after {
+  content: '';
+  display: block;
+  width: 140px;
+  height: 4px;
+  background-color: #154a8a;
+  margin: 10px auto 0 auto;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px #154a8aaa;
+}
+
+.vision-mission-page .vision-mission-section {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.vision-mission-page .vision-box,
+.vision-mission-page .mission-box {
+  flex: 1 1 320px;
+  min-width: 280px;
+}
+
+.vision-mission-page .mission-box h3,
+.vision-mission-page .vision-box h3 {
+  color: #1d3782;
+  font-weight: 800;
+  font-size: 1.8rem;
+  letter-spacing: 0.1rem;
+  margin-bottom: 15px;
+}
+
+.vision-mission-page .card {
+  border: 2px solid #1d3782;
+  border-radius: 15px;
+  padding: 28px 24px;
+  background: #f5f7fb;
+  min-height: 140px;
+  box-shadow: 0 8px 30px 0 rgba(29, 55, 130, 0.15);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vision-mission-page .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px 0 rgba(29, 55, 130, 0.35);
+}
+
+.vision-mission-page ul {
+  margin-top: 4px;
+  padding-left: 18px;
+  color: #3a4772;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.vision-mission-page ul li {
+  font-size: small;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+  font-weight: 500;
+}
+
+.vision-mission-page ul li::before {
+  position: absolute;
+  left: 0;
+  color: #1d3782;
+  font-size: 1rem;
+  line-height: 1;
+  top: 3px;
+}
+
+.vision-mission-page .peo-section {
+  margin: 50px 0 40px 0;
+  padding: 30px 25px;
+  background: #1d3782;
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(29, 55, 130, 0.4);
+}
+
+.vision-mission-page .peo-section h3,
+.vision-mission-page .peo-section p,
+.vision-mission-page .peo-section ul,
+.vision-mission-page .peo-section li {
+  color: #fff;
+}
+
+.vision-mission-page .pso-section {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  color: #fff;
+}
+
+.vision-mission-page .pso-card {
+  flex: 1 1 240px;
+  min-width: 200px;
+  background: linear-gradient(135deg, #1d3782, #435eaa);
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 20px rgba(29, 55, 130, 0.6);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: background 0.4s ease;
+}
+
+.vision-mission-page .pso-card:hover {
+  background: linear-gradient(135deg, #0f1f47, #2a3e7a);
+  box-shadow: 0 10px 40px rgba(15, 31, 71, 0.8);
+}
+
+.vision-mission-page .pso-card h4 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.vision-mission-page .pso-card .placeholder-text {
+  font-style: normal;
+  padding-top: 12px;
+  font-size: 1rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .vision-mission-page .vision-mission-section {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .vision-mission-page .pso-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .vision-mission-page .header {
+    height: 300px;
+  }
+  .vision-mission-page .header-title {
+    font-size: 1.8rem;
+  }
+  .vision-mission-page .header-subtitle {
+    font-size: 1rem;
+  }
+}
+
+.vision-mission-page .placeholder-text {
+  color: #4563a3;
+  font-style: italic;
+  padding-top: 10px;
+  font-weight: 600;
+}
+
+.vision-mission-page ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.vision-mission-page ::-webkit-scrollbar-track {
+  background: #d1d9ef;
+  border-radius: 20px;
+}
+
+.vision-mission-page ::-webkit-scrollbar-thumb {
+  background: #1d3782;
+  border-radius: 20px;
+  border: 2px solid #d1d9ef;
+}
+
+.vision-mission-page .card h2{
+  font-size: x-large;
+  margin: 7px;
+}

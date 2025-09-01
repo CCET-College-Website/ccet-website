@@ -7,9 +7,11 @@ const AboutUsMenu = () => {
       title: "About",
       links: [
         "History",
-        "Vision and Mission",
+        <Link to="/vision-mission" className="block w-full" key="vision-mission">
+          Vision and Mission
+        </Link>,
         "Campus Map",
-        <Link to="/contact" className="block w-full">
+        <Link to="/contact" className="block w-full" key="contact">
           How To Reach Us
         </Link>,
       ],
