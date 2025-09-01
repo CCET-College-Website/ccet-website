@@ -3,6 +3,7 @@ import LatestEvents from './LatestEvents'
 import NewsPanel from './NewsPanel'
 import Contact from './ContactUs'
 import OurAlumni from './OurAlumni'
+import NewAlumni from './NewAlumni'
 import Gallery from './Gallery'
 import EventCalendar from './EventCalendar'
 import bannerImg from "../../assets/home/banner.png"
@@ -36,7 +37,8 @@ function Home() {
       <Achievements />
 
       <Gallery />
-      <OurAlumni />
+      <NewAlumni />
+      {/* <OurAlumni /> */}
       <Contact />
     </div>
   )

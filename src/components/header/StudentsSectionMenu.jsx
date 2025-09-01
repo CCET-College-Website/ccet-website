@@ -1,64 +1,70 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const StudentsSectionMenu = () => {
   const sections = [
     {
-      title: 'Academics',
+      title: "Academics",
       links: [
-        { name: 'Student Forms', url: '/student-forms' },
-        { name: 'Vidya Lakshmi (Education Loan)', url: '/vidya-lakshmi' },
-        { name: 'National Apprenticeship Training', url: '/national-apprenticeship' },
-        { name: 'Scholarships', url: '/scholarships' },
-        { name: 'Fit India', url: '/fit-india' },
+        { name: "Student Forms", url: "/student-forms" },
+        { name: "Vidya Lakshmi (Education Loan)", url: "/vidya-lakshmi" },
+        {
+          name: "National Apprenticeship Training",
+          url: "/national-apprenticeship",
+        },
+        { name: "Scholarships", url: "/scholarships" },
+        { name: "Fit India", url: "/fit-india" },
       ],
     },
     {
-      title: 'Student Grievances Redressal System',
+      title: "Student Grievances Redressal System",
       links: [
         {
-          name: 'Grievance Redressal Portal',
-          url: 'https://www.ccet.ac.in/grievances/login.php'
+          name: "Grievance Redressal Portal",
+          url: "https://www.ccet.ac.in/grievances/login.php",
         },
       ],
     },
     {
-      title: 'Student Welfare',
+      title: "Student Welfare",
       links: [
-        { name: 'Officials @ Student Welfare', url: '/officials' },
-        { name: 'Student Council', url: '/student-council' },
-        { name: 'Anti Ragging', url: '/anti-ragging' },
-        { name: 'Anti Ragging Committee', url: '/anti-ragging-committee' },
+        { name: "Officials @ Student Welfare", url: "/officials" },
+        { name: "Student Council", url: "/student-council" },
+        { name: "Anti Ragging", url: "/anti-ragging" },
+        { name: "Anti Ragging Committee", url: "/anti-ragging-committee" },
         {
-          name: 'Student Fee Payment (HDFC)',
-          url: 'https://paydirect.eduqfix.com/app/3qTjKfysWsfqEyNTM4giVFX4VGVYGZss5NYRHpY65DaJgmu14S3Ff6NKoVa3l2Ay/6593'
+          name: "Student Fee Payment (HDFC)",
+          url: "https://paydirect.eduqfix.com/app/3qTjKfysWsfqEyNTM4giVFX4VGVYGZss5NYRHpY65DaJgmu14S3Ff6NKoVa3l2Ay/6593",
         },
-        { name: 'Application form to be a New Voter', url: '/new-voter' },
+        { name: "Application form to be a New Voter", url: "/new-voter" },
       ],
     },
     {
-      title: 'Hostel',
+      title: "Hostel",
       links: [
-        { name: 'Boys Hostel', url: '/boys-hostel' },
-        { name: 'Girls Hostel', url: '/girls-hostel' },
+        { name: "Boys Hostel", url: "/boys-hostel" },
+        { name: "Girls Hostel", url: "/girls-hostel" },
       ],
     },
     {
-      title: 'Events',
+      title: "Events",
       links: [
-        { name: 'Student Chapters/Clubs', url: '/student-chapters' },
-        { name: 'Apratim', url: '/apratim' },
-        { name: 'ACM @ CCET', url: 'https://ccet.acm.org/' },
-        { name: 'ASME @ CCET', url: '/asme' },
-        { name: 'NSS', url: '/nss' },
+        { name: "Student Chapters/Clubs", url: "/student-chapters" },
+        { name: "Apratim", url: "/apratim" },
+        { name: "ACM @ CCET", url: "https://ccet.acm.org/" },
+        {
+          name: "ASME @ CCET",
+          url: "https://sites.google.com/view/asme-ccet-student-section/home/about",
+        },
+        { name: "NSS", url: "/nss" },
       ],
     },
     {
-      title: 'Sports',
+      title: "Sports",
       links: [
-        { name: 'Sports Facilities', url: '/sports-facilities' },
-        { name: 'Fit India Initiative', url: '/fit-india-initiative' },
-        { name: 'Sports Tournaments', url: '/sports-tournaments' },
+        { name: "Sports Facilities", url: "/sports-facilities" },
+        { name: "Fit India Initiative", url: "/fit-india-initiative" },
+        { name: "Sports Tournaments", url: "/sports-tournaments" },
       ],
     },
   ];
@@ -72,18 +78,18 @@ const StudentsSectionMenu = () => {
           </div>
           <ul className="space-y-2">
             {section.links.map((link, idx) => (
-                <li
-                    key={idx}
-                    className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded"
-                >
-                  {link.url.startsWith("http") ? (
-                      <a href={link.url} target="_blank" rel="noopener noreferrer">
-                        {link.name}
-                      </a>
-                  ) : (
-                      <Link to={link.url}>{link.name}</Link>
-                  )}
-                </li>
+              <li
+                key={idx}
+                className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded"
+              >
+                {link.url.startsWith("http") ? (
+                  <a href={link.url} target="_blank" rel="noopener noreferrer">
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link to={link.url}>{link.name}</Link>
+                )}
+              </li>
             ))}
           </ul>
         </div>
