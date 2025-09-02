@@ -23,7 +23,7 @@ import ECell from './pages/ECell/ECell.jsx';
 
 
 import SportsFacility from './pages/Sports/SportsFacility.jsx';
-
+import FitIndiaPage from "./pages/Students-Section/Academics/FitIndia/FitIndiaPage.jsx";
 
 function App() {
   return (
@@ -53,6 +53,7 @@ function App() {
         <Route path='/ecell' element={<ECell />} />
         <Route path='/examinations' element={<Examinations />} />
         <Route path='/sports-facility' element={<SportsFacility />} />
+         <Route path="/fit-india" element={<FitIndiaPage />} />
         {/* Add more routes here */}
       </Routes>
       <Footer />
