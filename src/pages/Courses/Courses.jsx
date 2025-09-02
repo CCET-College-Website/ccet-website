@@ -1,6 +1,7 @@
 import React from "react";
 import { AcademicCapIcon, ComputerDesktopIcon, CpuChipIcon, CogIcon, BuildingOffice2Icon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const courses = [
   {
@@ -51,6 +52,17 @@ const fadeInUp = {
 };
 
 const Courses = () => {
+  const navigate = useNavigate(); // Add this hook
+
+  // Map course titles to their detail page routes
+  const courseRoutes = {
+    "Computer Science and Engineering (CSE)": "/cse",
+    "Electronics and Communication Engineering (ECE)": "/ece",
+    "Mechanical Engineering (ME)": "/me",
+    "Civil Engineering (CE)": "/ce",
+    "Doctoral Program (Ph.D.)": "http://phdadmissions.puchd.ac.in",
+  };
+
   return (
     <div
       className="px-4 md:px-16 py-14 max-w-7xl mx-auto"
@@ -122,9 +134,23 @@ const Courses = () => {
 
               {/* Know More Button */}
               <div>
-                <button className="bg-yellow-400 text-black font-semibold px-4 py-2 rounded hover:bg-yellow-500 shadow-md transition">
-                  Know more...
-                </button>
+                {course.title === "Doctoral Program (Ph.D.)" ? (
+                  <a
+                    href={courseRoutes[course.title]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-yellow-400 text-black font-semibold px-4 py-2 rounded hover:bg-yellow-500 shadow-md transition inline-block"
+                  >
+                    Know more...
+                  </a>
+                ) : (
+                  <button
+                    className="bg-yellow-400 text-black font-semibold px-4 py-2 rounded hover:bg-yellow-500 shadow-md transition"
+                    onClick={() => navigate(courseRoutes[course.title])}
+                  >
+                    Know more...
+                  </button>
+                )}
               </div>
             </motion.div>
           );

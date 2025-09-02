@@ -9,7 +9,7 @@ const AcademicsMenu = () => {
             links: [
                 'Computer Science Engineering', 
                 'Mechanical Engineering',
-                'Electronics And Communication Engineering', 
+                { name: 'Electronics and Communication Engineering', path: '/ece'},
                 'Civil Engineering', 
                 'Applied Science'
             ],
@@ -24,8 +24,7 @@ const AcademicsMenu = () => {
                 'E-Cell', 
                 'NIRF', 
                 { name: 'FAQs', path: '/faq'},
-                { name: 'NIRF', path: '/academics/nirf' },  
-                'FAQs'
+                { name: 'NIRF', path: '/academics/nirf' }
             ],
         },
         {

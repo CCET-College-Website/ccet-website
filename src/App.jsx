@@ -15,6 +15,7 @@ import Principal from './pages/Principal/Principal.jsx';
 import AcademicProspectusPage from './pages/Academic-Prospectus/AcademicProspectusPage.jsx';
 import ContactUs from './pages/ContactUs/ContactUs.jsx';
 import NIRF from "./pages/NIRF/nirf.jsx";
+import DepartmentPage from "./pages/ECE-Department/ece-overview";
 
 function App() {
   return (
@@ -24,16 +25,17 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NoPage />} />
         <Route path="/faq" element={<FAQ />} />
-        <Route path="*" element={<NoPage/>} />
+        <Route path="*" element={<NoPage />} />
         <Route path="/anti-ragging" element={<AntiRagging />} />
         <Route path="/anti-ragging-committee" element={<AntiRaggingCommittee />} />
-        <Route path="/about/academic-heads" element={<Academicheads />} /> 
+        <Route path="/about/academic-heads" element={<Academicheads />} />
         <Route path="/courses" element={<Courses />} />
-        <Route path="/about/principal" element={<Principal />}/>
+        <Route path="/about/principal" element={<Principal />} />
         <Route path="/students-section/courses" element={<Courses />} />
         <Route path="/prospectus" element={<AcademicProspectusPage />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/academics/nirf" element={<NIRF />} />
+        <Route path="/ece" element={<DepartmentPage />} />
         {/* Add more routes here */}
       </Routes>
       <Footer />
