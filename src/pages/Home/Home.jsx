@@ -3,9 +3,11 @@ import LatestEvents from './LatestEvents'
 import NewsPanel from './NewsPanel'
 import Contact from './ContactUs'
 import OurAlumni from './OurAlumni'
+import NewAlumni from './NewAlumni'
 import Gallery from './Gallery'
 import EventCalendar from './EventCalendar'
 import bannerImg from "../../assets/home/banner.png"
+import Achievements from './Achievements';
 
 function Home() {
   return (
@@ -31,11 +33,16 @@ function Home() {
       </div>
       <EventCalendar />
       <NoticePanel />
+      
+      <Achievements />
+
       <Gallery />
-      <OurAlumni />
+      <NewAlumni />
+      {/* <OurAlumni /> */}
       <Contact />
     </div>
   )
 }
 
-export default Home
+export default Home;
+

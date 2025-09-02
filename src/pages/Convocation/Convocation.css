@@ -1,0 +1,328 @@
+/* Convocation.css */
+
+.convocation-container {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  color: #2d2d2d;
+}
+
+.convocation-header {
+  background: #11295a;
+  color: #fff;
+  padding: 0 0 18px 0;
+  border-bottom: 3px solid #f6a622;
+  text-align: center;
+}
+
+.ccet-title {
+  font-size: 19px;
+  padding-top: 16px;
+  font-weight: 500;
+  letter-spacing: .02em;
+}
+
+.annual-title {
+  margin-top: 14px;
+}
+
+.annual-text {
+  font-size: 64px;
+  font-weight: 500;
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 0.9;
+}
+
+.convocation-year {
+  color: #f6a622;
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 13px;
+  font-size: 64px;
+  font-weight: 500;
+}
+
+.convocation-info {
+  margin: 32px auto 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  max-width: 900px;
+}
+
+.info-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 1px 2px 6px #0001;
+  padding: 20px 30px;
+  text-align: center;
+  min-width: 170px;
+}
+
+.info-icon {
+  font-size: 26px;
+  display: block;
+  margin-bottom: 7px;
+  color: #204497;
+}
+
+.info-label {
+  font-weight: 600;
+  font-size: 21px;
+  margin-bottom: 5px;
+}
+
+.info-value {
+  margin-top: 4px;
+  font-size: 16px;
+  color: #444;
+  font-family: inherit;
+}
+
+.section-title {
+  margin: 46px auto 12px auto; /* top, sides auto for center, bottom space */
+  background: #f6a622;
+  display: block;
+  padding: 8px 28px;
+  color: #222;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 28px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  width: fit-content; /* ensures centering by content width */
+}
+
+.gallery-title,
+.schedule-title,
+.speakers-title,
+.venue-title,
+.updates-title {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+}
+
+
+.gallery-desc, .schedule-desc, .speakers-desc {
+  margin: 14px auto;
+  text-align: center;
+  font-size: 17px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 180px);
+  grid-gap: 30px;
+  justify-content: center;
+  margin: 15px auto 0 auto;
+  margin-bottom: 30px;
+}
+.gallery-box {
+  background: #f3f3f3;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  height: 100px;
+  width: 170px;
+  display: inline-block;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 256px);
+  grid-gap: 26px;
+  justify-content: center;
+  margin: 25px auto 16px auto;
+}
+
+.schedule-item {
+  background: #fff;
+  border: 1.5px solid #d2dbe7;
+  border-radius: 9px;
+  box-shadow: 0 1.5px 6px #0001;
+  padding: 12px 10px 10px 16px;
+}
+
+.time {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e345e;
+}
+
+.item-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 2px 0;
+}
+
+.item-desc {
+  font-size: 14px;
+  margin-top: 3px;
+  color: #494949;
+}
+
+.speakers-desc {
+  font-size: 17px;
+  margin-bottom: 24px;
+}
+
+.speakers-grid {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  margin: 28px 0 35px 0;
+}
+
+.speaker-card {
+  background: #fafbff;
+  border: 1.5px solid #d2dbe7;
+  border-radius: 12px;
+  width: 265px;
+  box-shadow: 0 1px 6px #0001;
+  padding-bottom: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 270px;
+}
+
+.avatar {
+  background: #756cc3;
+  border-radius: 50%;
+  width: 62px;
+  height: 62px;
+  margin: 30px auto 13px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 34px;
+}
+.speaker-name {
+  font-weight: bold;
+  font-size: 15px;
+}
+.speaker-title {
+  font-size: 14px;
+  color: #3379a1;
+  margin-bottom: 7px;
+}
+.speaker-desc {
+  font-size: 15px;
+  margin-top: 11px;
+}
+
+.updates-title {
+  margin-top: 40px;
+}
+.updates-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  max-width: 900px;
+  margin: 16px auto 16px auto;
+  justify-content: center;
+}
+
+.update-box {
+  background: #f8f7fa;
+  border: 1.5px solid #d2dbe7;
+  border-radius: 10px;
+  min-width: 300px;
+  padding: 10px 16px;
+  min-height: 90px;
+}
+
+.update-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.update-desc {
+  font-size: 14px;
+  color: #44495f;
+}
+
+.venue-info {
+  background: #fafbff;
+  box-shadow: 0 1px 4px #0001;
+  border: 1.5px solid #d2dbe7;
+  border-radius: 10px;
+  max-width: 550px;
+  margin: 25px auto 30px auto;
+  padding: 23px 23px 8px 23px;
+}
+
+.venue-name {
+  font-size: 21px;
+  font-weight: bold;
+  color: #18407d;
+  margin-bottom: 6px;
+}
+
+.venue-address {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 7px;
+  color: #363e5a;
+}
+
+.venue-features {
+  font-size: 15px;
+  margin-top: 7px;
+}
+.venue-features div {
+  margin-bottom: 2px;
+  margin-left: 8px;
+  position: relative;
+}
+.venue-features div:before {
+  content: "•";
+  color: #f6a622;
+  margin-right: 7px;
+  position: absolute;
+  left: -13px;
+}
+
+.contact-info {
+  max-width: 530px;
+  background: #fafbff;
+  border: 1.5px solid #d2dbe7;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px #0001;
+  margin: 29px auto 12px auto;
+  padding: 16px 22px 10px 22px;
+  font-size: 15px;
+  color: #08203e;
+}
+
+@media (max-width: 1100px) {
+  .convocation-info, .gallery-grid, .schedule-grid, .speakers-grid, .updates-grid {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    grid-template-columns: none !important;
+  }
+  .gallery-grid, .schedule-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .annual-text, .convocation-year {
+    font-size: 34px;
+  }
+  .gallery-grid .gallery-box,
+  .schedule-grid .schedule-item,
+  .speakers-grid .speaker-card {
+    width: 100%;
+    min-width: unset;
+    max-width: 90vw;
+  }
+  .convocation-container, .venue-info {
+    padding: 0 8px;
+  }
+}

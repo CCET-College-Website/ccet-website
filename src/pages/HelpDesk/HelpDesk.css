@@ -1,0 +1,66 @@
+.helpdesk-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-left: 5px solid #0066cc; /* Accent bar */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: left; /* Left aligned */
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #004080;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #222;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 5px;
+}
+
+.contact-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.contact-list li {
+  font-size: 1.05rem;
+  margin: 10px 0;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.contact-list span {
+  font-weight: 600;
+  color: #000;
+  margin-right: 6px;
+}
+
+.email {
+  margin-top: 25px;
+  font-size: 1.05rem;
+  color: #333;
+}
+
+.email a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.email a:hover {
+  color: #004080;
+  text-decoration: underline;
+}

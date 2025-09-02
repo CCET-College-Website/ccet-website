@@ -11,13 +11,12 @@ import NoticesMenu from './NoticesMenu';
 import AdmissionsMenu from './AdmissionsMenu';
 
 const Header = () => {
-  const navigate = useNavigate(); // <-- Add this line
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeNav, setActiveNav] = useState('Home');
   const [expandedMenu, setExpandedMenu] = useState(null);
   const mobileNavRef = useRef(null);
 
-  // For Mobiles
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (mobileNavRef.current && !mobileNavRef.current.contains(event.target)) {
@@ -34,138 +33,211 @@ const Header = () => {
     };
   }, [menuOpen]);
 
+  // Enhanced menu items with proper routing
   const menuItems = [
-    { label: 'Home' },
+    { label: 'Home', path: '/' },
     {
-      label: 'About Us', menu: <AboutUsMenu />, sections: [
+      label: 'About Us',
+      menu: <AboutUsMenu />,
+      sections: [
         {
           title: 'About',
-          links: ['History', 'Vision and Mission', 'Campus Map', 'How To Reach Us'],
+          links: [
+            { name: 'History', path: '/about/history' },
+            { name: 'Vision and Mission', path: '/about/vision-mission' },
+            { name: 'Campus Map', path: '/about/campus-map' },
+            { name: 'How To Reach Us', path: '/contact' }
+          ],
         },
         {
           title: 'Administration',
-          links: ['Principal', 'Officials at CCET', 'Academic Heads', 'Administrator'],
+          links: [
+            { name: 'Principal', path: '/about/principal' },
+            { name: 'Officials at CCET', path: '/about/officials' },
+            { name: 'Academic Heads', path: '/about/academic-heads' },
+            { name: 'Administrator', path: '/about/administrator' }
+          ],
         },
         {
           title: 'Life @ CCET',
           links: [
-            'Campus Virtual Tour', 'Library', 'Class Rooms', 'Canteen', 'Infrastructure',
-            'Policy on use of IT Resources', 'Sports Facility'
+            { name: 'Campus Virtual Tour', path: '/life/virtual-tour' },
+            { name: 'Library', path: '/life/library' },
+            { name: 'Class Rooms', path: '/life/classrooms' },
+            { name: 'Canteen', path: '/life/canteen' },
+            { name: 'Infrastructure', path: '/life/infrastructure' },
+            { name: 'Policy on use of IT Resources', path: '/life/it-policy' },
+            { name: 'Sports Facility', path: '/life/sports' }
           ],
         },
       ]
     },
     {
-      label: 'Academics', menu: <AcademicsMenu />, sections: [
+      label: 'Academics',
+      menu: <AcademicsMenu />,
+      sections: [
         {
           title: 'Academic Departments',
           links: [
-            'Computer Science Engineering', 'Mechanical Engineering',
-            'Electronics And Communication Engineering', 'Civil Engineering', 'Applied Science'
+            { name: 'Computer Science Engineering', path: '/academics/cse' },
+            { name: 'Mechanical Engineering', path: '/academics/me' },
+            { name: 'Electronics And Communication Engineering', path: '/academics/ece' },
+            { name: 'Civil Engineering', path: '/academics/civil' },
+            { name: 'Applied Science', path: '/academics/applied-science' }
           ],
         },
         {
           title: 'Academics',
-          links: ['Convocation 2023', 'Students Feedback', 'Examination', 'E-Akademik', 'E-Cell', 'NIRF', 'FAQs'],
+          links: [
+            { name: 'Convocation 2023', path: '/academics/convocation-2023' },
+            { name: 'Students Feedback', path: '/academics/feedback' },
+            { name: 'Examination', path: '/academics/examination' },
+            { name: 'E-Akademik', path: '/academics/e-akademik' },
+            { name: 'E-Cell', path: '/academics/e-cell' },
+            { name: 'NIRF', path: '/academics/nirf' },
+            { name: 'FAQs', path: '/faq' }
+          ],
         },
         {
           title: 'Mandatory Disclosure',
-          links: ['EoA Report 2024-25', 'Application Part-1', 'Application Part-2', 'OLD AICTE EoAs'],
+          links: [
+            { name: 'EoA Report 2024-25', path: '/academics/eoa-report-2024-25' },
+            { name: 'Application Part-1', path: '/academics/application-part-1' },
+            { name: 'Application Part-2', path: '/academics/application-part-2' },
+            { name: 'OLD AICTE EoAs', path: '/academics/old-aicte-eoas' }
+          ],
         },
         {
           title: 'Overview',
-          links: ['Courses Offered', 'Academic Calendar', 'Academic Prospectus', 'Affiliating University'],
+          links: [
+            { name: 'Courses Offered', path: '/courses' },
+            { name: 'Academic Calendar', path: '/academics/calendar' },
+            { name: 'Academic Prospectus', path: '/prospectus' },
+            { name: 'Affiliating University', path: 'https://puchd.ac.in/', external: true }
+          ],
         },
       ]
     },
     {
-      label: 'Students Section', menu: <StudentsSectionMenu />, sections: [
+      label: 'Students Section',
+      menu: <StudentsSectionMenu />,
+      sections: [
         {
           title: 'Academics',
           links: [
-            'Student Forms',
-            'Vidya Lakshmi (Education Loan)',
-            'National Apprenticeship Training',
-            'Scholarships',
-            'Fit India'
+            { name: 'Student Forms', path: '/student-forms' },
+            { name: 'Vidya Lakshmi (Education Loan)', path: '/vidya-lakshmi' },
+            { name: 'National Apprenticeship Training', path: '/national-apprenticeship' },
+            { name: 'Scholarships', path: '/scholarships' },
+            { name: 'Fit India', path: '/fit-india' }
           ],
         },
         {
           title: 'Student Grievances Redressal System',
-          links: [],
+          links: [
+            { name: 'Grievance Portal', path: '/grievance-portal' }
+          ],
         },
         {
           title: 'Student Welfare',
           links: [
-            'Officials @ Student Welfare',
-            'Student Council',
-            'Anti Ragging',
-            'Anti Ragging Committee',
-            'Student Fee Payment (HDFC)',
-            'Application form to be a New Voter'
+            { name: 'Officials @ Student Welfare', path: '/student-welfare/officials' },
+            { name: 'Student Council', path: '/student-welfare/council' },
+            { name: 'Anti Ragging', path: '/student-welfare/anti-ragging' },
+            { name: 'Anti Ragging Committee', path: '/student-welfare/anti-ragging-committee' },
+            { name: 'Student Fee Payment (HDFC)', path: '/student-welfare/fee-payment' },
+            { name: 'Application form to be a New Voter', path: '/student-welfare/new-voter' }
           ],
         },
         {
           title: 'Hostel',
           links: [
-            'Boys Hostel',
-            'Girls Hostel'
+            { name: 'Boys Hostel', path: '/hostel/boys' },
+            { name: 'Girls Hostel', path: '/hostel/girls' }
           ],
         },
         {
           title: 'Events',
           links: [
-            'Student Chapters/Clubs',
-            'Apratim',
-            'ACM @ CCET',
-            'ASME @ CCET',
-            'NSS'
+            { name: 'Student Chapters/Clubs', path: '/events/clubs' },
+            { name: 'Apratim', path: '/events/apratim' },
+            { name: 'ACM @ CCET', path: 'https://ccet.acm.org/', external: true },
+            { name: 'ASME @ CCET', path: '/events/asme' },
+            { name: 'NSS', path: '/events/nss' }
           ],
         },
         {
           title: 'Sports',
           links: [
-            'Sports Facilities',
-            'Fit India Initiative',
-            'Sports Tournaments'
+            { name: 'Sports Facilities', path: '/sports/facilities' },
+            { name: 'Fit India Initiative', path: '/sports/fit-india' },
+            { name: 'Sports Tournaments', path: '/sports/tournaments' }
           ],
         },
       ]
     },
     {
-      label: 'Admissions', menu: <AdmissionsMenu />, sections: [
+      label: 'Admissions',
+      menu: <AdmissionsMenu />,
+      sections: [
         {
           title: 'Admissions',
-          links: ['Admission Notices', 'Help Desk'],
+          links: [
+            { name: 'Admission Notices', path: '/admissions/notices' },
+            { name: 'Help Desk', path: '/admissions/help-desk' }
+          ],
         },
         {
           title: 'Programmes',
-          links: ['Degree Course', 'Degree Course (PU-LEET)', 'Doctorate (PhD)'],
+          links: [
+            { name: 'Degree Course', path: '/admissions/degree-course' },
+            { name: 'Degree Course (PU-LEET)', path: '/admissions/pu-leet' },
+            { name: 'Doctorate (PhD)', path: '/admissions/phd' }
+          ],
         },
         {
           title: 'JAC',
-          links: ['Portal', 'Counselling Schedule', 'JAC Brochure 2025', 'Opening/Closing Rank'],
+          links: [
+            { name: 'Portal', path: '/admissions/jac-portal' },
+            { name: 'Counselling Schedule', path: '/admissions/counselling-schedule' },
+            { name: 'JAC Brochure 2025', path: '/admissions/jac-brochure-2025' },
+            { name: 'Opening/Closing Rank', path: '/admissions/opening-closing-rank' }
+          ],
         },
         {
           title: 'Criteria',
-          links: ['Eligibility'],
+          links: [
+            { name: 'Eligibility', path: '/admissions/eligibility' }
+          ],
         },
       ]
     },
-    { label: 'Placements' },
+    { label: 'Placements', path: '/placements' },
     {
-      label: 'Notices', menu: <NoticesMenu />, sections: [
+      label: 'Notices',
+      menu: <NoticesMenu />,
+      sections: [
         {
           title: 'Old Notices',
-          links: ['Forms', 'Tenders', 'Online Fee Payment Link'],
+          links: [
+            { name: 'Forms', path: '/notices/forms' },
+            { name: 'Tenders', path: '/notices/tenders' },
+            { name: 'Online Fee Payment Link', path: '/notices/fee-payment' }
+          ],
         },
         {
           title: 'E-News Letters (pdf\'s)',
-          links: ['FingerPrint (Volume-VII, Issue I)', 'FingerPrint (Volume-VII, Issue II)'],
+          links: [
+            { name: 'FingerPrint (Volume-VII, Issue I)', path: '/notices/fingerprint-vol7-i' },
+            { name: 'FingerPrint (Volume-VII, Issue II)', path: '/notices/fingerprint-vol7-ii' }
+          ],
         },
         {
           title: 'Detailed Info (B.E. Exams)',
-          links: ['Exam Notice 1', 'Exam Notice 2'],
+          links: [
+            { name: 'Exam Notice 1', path: '/notices/exam-notice-1' },
+            { name: 'Exam Notice 2', path: '/notices/exam-notice-2' }
+          ],
         },
       ]
     },
@@ -176,6 +248,29 @@ const Header = () => {
       setExpandedMenu(null);
     } else {
       setExpandedMenu(label);
+    }
+  };
+
+  const handleNavigation = (item) => {
+    if (item.external) {
+      window.open(item.path, '_blank');
+    } else {
+      navigate(item.path);
+    }
+    setMenuOpen(false);
+    setExpandedMenu(null);
+  };
+
+  // Handle main menu item clicks
+  const handleMainMenuClick = (menuItem) => {
+    if (menuItem.path) {
+      // Direct navigation for items with paths
+      navigate(menuItem.path);
+      setActiveNav(menuItem.label);
+      setMenuOpen(false);
+    } else if (menuItem.sections) {
+      // Toggle submenu for items with sections
+      toggleSubmenu(menuItem.label);
     }
   };
 
@@ -207,7 +302,8 @@ const Header = () => {
         </div>
       </div>
 
-        {/* Desktop View */}
+
+
         <div className="hidden lg:flex flex-col items-center px-2 py-3 w-full max-w-[1436px] mx-auto">
           <div className="flex w-full items-center justify-center gap-2">
             <div className="flex items-center h-full mx-14 min-w-[96px]">
@@ -230,7 +326,7 @@ const Header = () => {
           </div>
 
           <nav className="w-full flex justify-center items-center gap-3 -mt-0 -mb-2 relative z-50">
-            {menuItems.map(({ label, menu }) => (
+            {menuItems.map(({ label, menu, path }) => (
                 <div
                     key={label}
                     className="relative group"
@@ -240,21 +336,22 @@ const Header = () => {
                   <div
                       className={`cursor-pointer px-3 py-1 rounded-md font-serif text-xl whitespace-nowrap transition-all duration-200
                   ${activeNav === label
-                    ? 'bg-yellow-400 text-red-700 shadow-md'
-                    : 'text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md'
-                  }`}
-              >
-                {label}
-              </div>
-              {menu && activeNav === label && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-0">
-                  {menu}
+                          ? 'bg-yellow-400 text-red-700 shadow-md'
+                          : 'text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md'
+                      }`}
+                      onClick={() => path && navigate(path)}
+                  >
+                    {label}
+                  </div>
+                  {menu && activeNav === label && (
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-0">
+                        {menu}
+                      </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
-        </nav>
-      </div>
+            ))}
+          </nav>
+        </div>
 
       {/* Mobile Slide Drawer */}
       {menuOpen && (
@@ -275,66 +372,54 @@ const Header = () => {
               </button>
             </div>
 
-            {menuItems.map(({ label, sections }) => (
-              <div key={label} className="border-b border-gray-200">
-                <div
-                  className={`px-4 py-3 cursor-pointer transition-all duration-200 font-medium flex justify-between items-center
-                    ${activeNav === label ? 'bg-yellow-400 text-red-700' : 'text-gray-800 hover:bg-gray-100'}`}
-                  onClick={() => {
-                    if (sections) {
-                      toggleSubmenu(label);
-                    } else {
-                      setActiveNav(label);
-                      setMenuOpen(false);
-                    }
-                  }}
-                >
-                  <span>{label}</span>
-                  {sections && (
-                    <svg
-                      className={`w-5 h-5 transition-transform duration-200 ${expandedMenu === label ? 'transform rotate-180' : ''}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  )}
-                </div>
-
-                {sections && expandedMenu === label && (
-                  <div className="bg-gray-50 pl-6 pr-4 py-2">
-                    {sections.map((section, i) => (
-                      <div key={i} className="mb-3">
-                        <div className="font-semibold border-b border-gray-300 pb-1 mb-2 text-red-700 text-sm">
-                          {section.title}
-                        </div>
-                        <ul className="space-y-1">
-                          {section.links.map((link, j) => (
-                            <li
-                              key={j}
-                              className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded text-sm"
-                              onClick={() => {
-                                if (link === 'FAQs') {
-                                  navigate('/faq'); // <-- Adjust the path if your route is different
-                                  setMenuOpen(false);
-                                }
-                              }}
+                {menuItems.map((menuItem) => (
+                    <div key={menuItem.label} className="border-b border-gray-200">
+                      <div
+                          className={`px-4 py-3 cursor-pointer transition-all duration-200 font-medium flex justify-between items-center
+                    ${activeNav === menuItem.label ? 'bg-yellow-400 text-red-700' : 'text-gray-800 hover:bg-gray-100'}`}
+                          onClick={() => handleMainMenuClick(menuItem)}
+                      >
+                        <span>{menuItem.label}</span>
+                        {menuItem.sections && (
+                            <svg
+                                className={`w-5 h-5 transition-transform duration-200 ${expandedMenu === menuItem.label ? 'transform rotate-180' : ''}`}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
                             >
-                              {link}
-                            </li>
-                          ))}
-                        </ul>
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        )}
                       </div>
-                    ))}
-                  </div>
-                )}
+
+                      {menuItem.sections && expandedMenu === menuItem.label && (
+                          <div className="bg-gray-50 pl-6 pr-4 py-2">
+                            {menuItem.sections.map((section, i) => (
+                                <div key={i} className="mb-3">
+                                  <div className="font-semibold border-b border-gray-300 pb-1 mb-2 text-red-700 text-sm">
+                                    {section.title}
+                                  </div>
+                                  <ul className="space-y-1">
+                                    {section.links.map((link, j) => (
+                                        <li
+                                            key={j}
+                                            className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded text-sm"
+                                            onClick={() => handleNavigation(link)}
+                                        >
+                                          {link.name}
+                                        </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                            ))}
+                          </div>
+                      )}
+                    </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
+            </div>
+        )}
+      </div>
   );
 };
 
