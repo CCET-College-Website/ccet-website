@@ -89,6 +89,7 @@ function App() {
 				<Route path="/notices/tenders" element={<Tenders />} />
         <Route path="/about/history" element={<History />} />
 
+
               {/* Add more routes here */}
 			</Routes>
 			<Footer />
