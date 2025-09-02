@@ -1,12 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './History.module.css';
-import bgImage from '../../assets/History/bg-image.png';
+import bgImage from '../../assets/History/bg-image.jpeg';
 import coreValueImage from '../../assets/History/Core-Value.png';
 
 const History = () => {
     const observerRef = useRef(null);
 
     useEffect(() => {
+        // Set background image as CSS variable on body
+        document.body.style.setProperty('--bg-image', `url(${bgImage})`);
+
         // Create intersection observer for scroll-triggered animations
         const observerOptions = {
             threshold: 0.15,
@@ -33,6 +36,8 @@ const History = () => {
             if (observerRef.current) {
                 observerRef.current.disconnect();
             }
+            // Clean up: remove background when component unmounts
+            document.body.style.removeProperty('--bg-image');
         };
     }, []);
 
@@ -76,7 +81,7 @@ const History = () => {
     return (
         <div className={styles.container}>
             {/* Hero Section with History Timeline */}
-            <section className={styles.heroSection} style={{ backgroundImage: `url(${bgImage})` }}>
+            <section className={styles.heroSection}>
                 <div className={styles.heroOverlay}></div>
                 <div className={styles.historyContent}>
                     <h1 className={`${styles.historyTitle} ${styles.scaleIn}`}>History</h1>

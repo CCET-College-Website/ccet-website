@@ -6,7 +6,9 @@ const AboutUsMenu = () => {
     {
       title: "About",
       links: [
-        "History",
+        <Link to="/about/history" className="block w-full" key="history">
+          History
+        </Link>,
         <Link to="/vision-mission" className="block w-full" key="vision-mission">
           Vision and Mission
         </Link>,

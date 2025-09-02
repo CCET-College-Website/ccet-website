@@ -29,6 +29,7 @@ import Leet from "./pages/Degree-PU-LEET/Degree-pu-leet.jsx";
 import Doctorate from "./pages/Doctorate/PhdProgrammes.jsx";
 import Degree from "./pages/Degree/Degree.jsx";
 import Tenders from "./pages/Tenders/Tenders.jsx";
+import History from "./pages/History/History.jsx";
 
 function App() {
 	return (
@@ -86,8 +87,9 @@ function App() {
 				<Route path="/programmes/phd" element={<Doctorate />} />
 				<Route path="/programmes/degree" element={<Degree />} />
 				<Route path="/notices/tenders" element={<Tenders />} />
+                <Route path="/about/history" element={<History />} />
 
-				{/* Add more routes here */}
+              {/* Add more routes here */}
 			</Routes>
 			<Footer />
 		</HashRouter>
