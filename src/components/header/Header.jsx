@@ -78,11 +78,8 @@ const Header = () => {
 						{ name: "Library", path: "/life/library" },
 						{ name: "Class Rooms", path: "/life/classrooms" },
 						{ name: "Canteen", path: "/life/canteen" },
-						{
-							name: "Infrastructure",
-							path: "/life/infrastructure",
-						},
-						{
+						{ name: "Infrastructure", path: "/infrastructure" }
+						, {
 							name: "Policy on use of IT Resources",
 							path: "/life/it-policy",
 						},
@@ -502,11 +499,10 @@ const Header = () => {
 						>
 							<div
 								className={`cursor-pointer px-3 py-1 rounded-md font-serif text-xl whitespace-nowrap transition-all duration-200
-                  ${
-						activeNav === label
-							? "bg-yellow-400 text-red-700 shadow-md"
-							: "text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md"
-					}`}
+                  ${activeNav === label
+										? "bg-yellow-400 text-red-700 shadow-md"
+										: "text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md"
+									}`}
 								onClick={() => {
 									if (path) {
 										if (path.includes("http")) {
@@ -565,11 +561,10 @@ const Header = () => {
 							>
 								<div
 									className={`px-4 py-3 cursor-pointer transition-all duration-200 font-medium flex justify-between items-center
-                    ${
-						activeNav === menuItem.label
-							? "bg-yellow-400 text-red-700"
-							: "text-gray-800 hover:bg-gray-100"
-					}`}
+                    ${activeNav === menuItem.label
+											? "bg-yellow-400 text-red-700"
+											: "text-gray-800 hover:bg-gray-100"
+										}`}
 									onClick={() => {
 										handleMainMenuClick(menuItem);
 									}}
@@ -577,11 +572,10 @@ const Header = () => {
 									<span>{menuItem.label}</span>
 									{menuItem.sections && (
 										<svg
-											className={`w-5 h-5 transition-transform duration-200 ${
-												expandedMenu === menuItem.label
+											className={`w-5 h-5 transition-transform duration-200 ${expandedMenu === menuItem.label
 													? "transform rotate-180"
 													: ""
-											}`}
+												}`}
 											fill="none"
 											stroke="currentColor"
 											viewBox="0 0 24 24"
