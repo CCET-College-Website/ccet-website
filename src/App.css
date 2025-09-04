@@ -8,18 +8,10 @@ html, body {
     overflow-x: hidden;
 }
 
-
 #root {
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
-}
-.navigation-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; 
 }
 
 @layer utilities {
