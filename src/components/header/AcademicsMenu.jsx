@@ -1,7 +1,82 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AcademicsMenu = () => {
+ main
+  const sections = [
+    {
+      title: 'Academic Departments',
+      links: [
+        'Computer Science Engineering',
+        'Mechanical Engineering',
+        'Electronics And Communication Engineering',
+        'Civil Engineering',
+        'Applied Science',
+      ],
+    },
+    {
+      title: 'Academics',
+      links: [
+        'Convocation 2023',
+        { name: 'Students Feedback', path: 'https://smartcookie.in/' }, 
+        'Examination',
+        { name: 'E-Akademik', path: 'https://eakadamik.in/ccet/' },
+        'E-Cell',
+        { name: 'NIRF', path: '/academics/nirf' },
+        { name: 'FAQs', path: '/faq' },
+      ],
+    },
+    {
+      title: 'Mandatory Disclosure',
+      links: [
+        'EoA Report 2024-25',
+        'Application Part-1',
+        'Application Part-2',
+        'OLD AICTE EoAs',
+      ],
+    },
+    {
+      title: 'Overview',
+      links: [
+        { name: 'Courses Offered', path: '/courses' },
+        'Academic Calendar',
+        { name: 'Academic Prospectus', path: '/prospectus' },
+        { name: 'Affiliating University', path: 'https://puchd.ac.in/' },
+      ],
+    },
+  ];
+
+  return (
+    <div className="absolute top-full left-1/2 transform -translate-x-[31%] hidden group-hover:grid grid-cols-4 bg-white/70 backdrop-blur-md shadow-xl z-50 p-6 gap-6 text-1xl text-gray-800 rounded-lg border border-gray-100 w-[1000px] max-w-[90vw]">
+      {sections.map((section, i) => (
+        <div key={i}>
+          <div className="font-semibold border-b border-gray-200 pb-2 mb-3 text-red-700">
+            {section.title}
+          </div>
+          <ul className="space-y-2">
+            {section.links.map((link, j) => (
+              <li
+                key={j}
+                className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded"
+              >
+                {typeof link === 'string' ? (
+                  link
+                ) : link.path.startsWith('http') ? (
+                  <a
+                    href={link.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full h-full"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link to={link.path} className="block w-full h-full">
+                    {link.name}
+                  </Link>
+                )}
+              </li>
+
 
     const sections = [
         {
@@ -17,7 +92,7 @@ const AcademicsMenu = () => {
         {
             title: 'Academics',
             links: [
-                'Convocation 2023', 
+                 { name: 'Convocation', path: '/Convocation'},
                 'Students Feedback', 
                 'Examination', 
                 'E-Akademik', 
@@ -64,6 +139,7 @@ const AcademicsMenu = () => {
                         ))}
                     </ul>
                 </div>
+ main
             ))}
         </div>
     );

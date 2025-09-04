@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import CCETLogo from "../../assets/header/CCET-Logo.png";
+import CCETLogo from "../../assets/header/ccetLogo.png";
 import IndianEmblem from "../../assets/header/Indian-Emblem.png";
 
 // For Desktops
@@ -12,11 +12,249 @@ import NoticesMenu from "./NoticesMenu";
 import AdmissionsMenu from "./AdmissionsMenu";
 
 const Header = () => {
+ main
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeNav, setActiveNav] = useState('Home');
+  const [expandedMenu, setExpandedMenu] = useState(null);
+  const mobileNavRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileNavRef.current && !mobileNavRef.current.contains(event.target)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  // Enhanced menu items with proper routing
+  const menuItems = [
+    { label: 'Home', path: '/' },
+    {
+      label: 'About Us',
+      menu: <AboutUsMenu />,
+      sections: [
+        {
+          title: 'About',
+          links: [
+            { name: 'History', path: '/about/history' },
+            { name: 'Vision and Mission', path: '/about/vision-mission' },
+            { name: 'Campus Map', path: '/about/campus-map' },
+            { name: 'How To Reach Us', path: '/contact' }
+          ],
+        },
+        {
+          title: 'Administration',
+          links: [
+            { name: 'Principal', path: '/about/principal' },
+            { name: 'Officials at CCET', path: '/about/officials' },
+            { name: 'Academic Heads', path: '/about/academic-heads' },
+            { name: 'Administrator', path: '/about/administrator' }
+          ],
+        },
+        {
+          title: 'Life @ CCET',
+          links: [
+            { name: 'Campus Virtual Tour', path: '/life/virtual-tour' },
+            { name: 'Library', path: '/life/library' },
+            { name: 'Class Rooms', path: '/life/classrooms' },
+            { name: 'Canteen', path: '/life/canteen' },
+            { name: 'Infrastructure', path: '/life/infrastructure' },
+            { name: 'Policy on use of IT Resources', path: '/life/it-policy' },
+            { name: 'Sports Facility', path: '/life/sports' }
+          ],
+        },
+      ]
+    },
+    {
+      label: 'Academics',
+      menu: <AcademicsMenu />,
+      sections: [
+        {
+          title: 'Academic Departments',
+          links: [
+            { name: 'Computer Science Engineering', path: '/academics/cse' },
+            { name: 'Mechanical Engineering', path: '/academics/me' },
+            { name: 'Electronics And Communication Engineering', path: '/academics/ece' },
+            { name: 'Civil Engineering', path: '/academics/civil' },
+            { name: 'Applied Science', path: '/academics/applied-science' }
+          ],
+        },
+        {
+          title: 'Academics',
+          links: [
+            { name: 'Convocation 2023', path: '/academics/convocation-2023' },
+            { name: 'Students Feedback', path: '/academics/feedback' },
+            { name: 'Examination', path: '/academics/examination' },
+            { name: 'E-Akademik', path: '/academics/e-akademik' },
+            { name: 'E-Cell', path: '/academics/e-cell' },
+            { name: 'NIRF', path: '/academics/nirf' },
+            { name: 'FAQs', path: '/faq' }
+          ],
+        },
+        {
+          title: 'Mandatory Disclosure',
+          links: [
+            { name: 'EoA Report 2024-25', path: '/academics/eoa-report-2024-25' },
+            { name: 'Application Part-1', path: '/academics/application-part-1' },
+            { name: 'Application Part-2', path: '/academics/application-part-2' },
+            { name: 'OLD AICTE EoAs', path: '/academics/old-aicte-eoas' }
+          ],
+        },
+        {
+          title: 'Overview',
+          links: [
+            { name: 'Courses Offered', path: '/courses' },
+            { name: 'Academic Calendar', path: '/academics/calendar' },
+            { name: 'Academic Prospectus', path: '/prospectus' },
+            { name: 'Affiliating University', path: 'https://puchd.ac.in/', external: true }
+          ],
+        },
+      ]
+    },
+    {
+      label: 'Students Section',
+      menu: <StudentsSectionMenu />,
+      sections: [
+        {
+          title: 'Academics',
+          links: [
+            { name: 'Student Forms', path: '/student-forms' },
+            { name: 'Vidya Lakshmi (Education Loan)', path: '/vidya-lakshmi' },
+            { name: 'National Apprenticeship Training', path: '/national-apprenticeship' },
+            { name: 'Scholarships', path: '/scholarships' },
+            { name: 'Fit India', path: '/fit-india' }
+          ],
+        },
+        {
+          title: 'Student Grievances Redressal System',
+          links: [
+            { name: 'Grievance Portal', path: '/grievance-portal' }
+          ],
+        },
+        {
+          title: 'Student Welfare',
+          links: [
+            { name: 'Officials @ Student Welfare', path: '/student-welfare/officials' },
+            { name: 'Student Council', path: '/student-welfare/council' },
+            { name: 'Anti Ragging', path: '/student-welfare/anti-ragging' },
+            { name: 'Anti Ragging Committee', path: '/student-welfare/anti-ragging-committee' },
+            { name: 'Student Fee Payment (HDFC)', path: '/student-welfare/fee-payment' },
+            { name: 'Application form to be a New Voter', path: '/student-welfare/new-voter' }
+          ],
+        },
+        {
+          title: 'Hostel',
+          links: [
+            { name: 'Boys Hostel', path: '/hostel/boys' },
+            { name: 'Girls Hostel', path: '/hostel/girls' }
+          ],
+        },
+        {
+          title: 'Events',
+          links: [
+            { name: 'Student Chapters/Clubs', path: '/events/clubs' },
+            { name: 'Apratim', path: '/events/apratim' },
+            { name: 'ACM @ CCET', path: 'https://ccet.acm.org/', external: true },
+            { name: 'ASME @ CCET', path: '/events/asme' },
+            { name: 'NSS', path: '/events/nss' }
+          ],
+        },
+        {
+          title: 'Sports',
+          links: [
+            { name: 'Sports Facilities', path: '/sports/facilities' },
+            { name: 'Fit India Initiative', path: '/sports/fit-india' },
+            { name: 'Sports Tournaments', path: '/sports/tournaments' }
+          ],
+        },
+      ]
+    },
+    {
+      label: 'Admissions',
+      menu: <AdmissionsMenu />,
+      sections: [
+        {
+          title: 'Admissions',
+          links: [
+            { name: 'Admission Notices', path: '/admissions/notices' },
+            { name: 'Help Desk', path: '/admissions/help-desk' }
+          ],
+        },
+        {
+          title: 'Programmes',
+          links: [
+            { name: 'Degree Course', path: '/admissions/degree-course' },
+            { name: 'Degree Course (PU-LEET)', path: '/admissions/pu-leet' },
+            { name: 'Doctorate (PhD)', path: '/admissions/phd' }
+          ],
+        },
+        {
+          title: 'JAC',
+          links: [
+            { name: 'Portal', path: '/admissions/jac-portal' },
+            { name: 'Counselling Schedule', path: '/admissions/counselling-schedule' },
+            { name: 'JAC Brochure 2025', path: '/admissions/jac-brochure-2025' },
+            { name: 'Opening/Closing Rank', path: '/admissions/opening-closing-rank' }
+          ],
+        },
+        {
+          title: 'Criteria',
+          links: [
+            { name: 'Eligibility', path: '/admissions/eligibility' }
+          ],
+        },
+      ]
+    },
+    {
+  label: 'Placements',
+  path: 'https://www.ccet.ac.in/tnp/index.html',
+  external: true,
+},
+
+    {
+      label: 'Notices',
+      menu: <NoticesMenu />,
+      sections: [
+        {
+          title: 'Old Notices',
+          links: [
+            { name: 'Forms', path: '/notices/forms' },
+            { name: 'Tenders', path: '/notices/tenders' },
+            { name: 'Online Fee Payment Link', path: '/notices/fee-payment' }
+          ],
+        },
+        {
+          title: 'E-News Letters (pdf\'s)',
+          links: [
+            { name: 'FingerPrint (Volume-VII, Issue I)', path: '/notices/fingerprint-vol7-i' },
+            { name: 'FingerPrint (Volume-VII, Issue II)', path: '/notices/fingerprint-vol7-ii' }
+          ],
+        },
+        {
+          title: 'Detailed Info (B.E. Exams)',
+          links: [
+            { name: 'Exam Notice 1', path: '/notices/exam-notice-1' },
+            { name: 'Exam Notice 2', path: '/notices/exam-notice-2' }
+          ],
+        },
+      ]
+    },
+
 	const navigate = useNavigate();
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [activeNav, setActiveNav] = useState("Home");
 	const [expandedMenu, setExpandedMenu] = useState(null);
 	const mobileNavRef = useRef(null);
+ main
 
 	useEffect(() => {
 		const handleClickOutside = (event) => {
@@ -118,8 +356,8 @@ const Header = () => {
 					title: "Academics",
 					links: [
 						{
-							name: "Convocation 2023",
-							path: "/academics/convocation-2023",
+							name: "Convocation",
+							path: "/Convocation",
 						},
 						{
 							name: "Students Feedback",
@@ -411,24 +649,24 @@ const Header = () => {
 		<div className="w-full bg-white md:bg-gradient-to-r md:from-blue-900 md:to-slate-900 relative z-50">
 			{/* Mobile View */}
 			<div className="lg:hidden w-full bg-gradient-to-r from-blue-900 to-slate-900 shadow">
-				<div className="w-full px-4 py-3 flex items-center justify-between">
+				<div className="w-full px-2 py-3 flex items-center justify-between">
 					<img
 						src={CCETLogo}
 						alt="CCET Logo"
-						className="h-10 w-auto"
+						className="h-16 w-auto"
 					/>
 					<div className="flex-1 text-center px-2">
-						<h1 className="text-white text-2xl font-serif leading-tight">
+						<h1 className="text-white text-[16px] font-serif leading-snug">
 							Chandigarh College of Engineering and Technology
 						</h1>
-						<p className="text-[20px] text-gray-300 font-serif leading-none mt-1">
+						<p className="text-[14px] text-gray-300 font-serif leading-none mt-1">
 							(PU | Chandigarh)
 						</p>
 					</div>
 					<img
 						src={IndianEmblem}
 						alt="Indian Emblem"
-						className="h-10 w-auto"
+						className="h-16 w-auto"
 					/>
 				</div>
 
@@ -460,7 +698,7 @@ const Header = () => {
 				<div className="flex w-full items-center justify-center gap-2">
 					<div className="flex items-center h-full mx-14 min-w-[96px]">
 						<img
-							className="h-24 w-auto object-contain"
+							className="h-36 w-auto object-contain"
 							src={CCETLogo}
 							alt="College Logo"
 						/>
@@ -480,7 +718,7 @@ const Header = () => {
 					</div>
 					<div className="flex items-center h-full mx-14 min-w-[96px]">
 						<img
-							className="h-24 w-auto object-contain"
+							className="h-34 w-auto object-contain"
 							src={IndianEmblem}
 							alt="Indian Emblem"
 						/>
@@ -500,6 +738,30 @@ const Header = () => {
 							<div
 								className={`cursor-pointer px-3 py-1 rounded-md font-serif text-xl whitespace-nowrap transition-all duration-200
                   ${activeNav === label
+main
+                          ? 'bg-yellow-400 text-red-700 shadow-md'
+                          : 'text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md'
+                      }`}
+                      onClick={() => {
+                      if (label === "Placements") {
+                     window.open(path, "_blank");   // only Placements goes external
+                      } else if (path) {
+                       navigate(path);                // all other buttons use React Router
+                        }
+                      }}
+
+                  >
+                    {label}
+                  </div>
+                  {menu && activeNav === label && (
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-0">
+                        {menu}
+                      </div>
+                  )}
+                </div>
+            ))}
+          </nav>
+        </div>
 										? "bg-yellow-400 text-red-700 shadow-md"
 										: "text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md"
 									}`}
@@ -524,6 +786,7 @@ const Header = () => {
 					))}
 				</nav>
 			</div>
+ main
 
 			{/* Mobile Slide Drawer */}
 			{menuOpen && (

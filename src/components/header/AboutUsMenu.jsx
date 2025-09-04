@@ -40,8 +40,10 @@ const AboutUsMenu = () => {
         </Link>,
         "Class Rooms",
         "Canteen",
-        <Link to="/infrastructure" className="block w-full"> Infrastructure</Link>,
-        "Policy on use of IT Resources",
+        <Link to="/infrastructure" className="block w-full">Infrastructure</Link>,
+        <Link to="https://ccet.ac.in/pdf/notices/general/Policy_on_use_of_IT%20_esources_of_Government_of_India_0%20(1).pdf" className="block w-full">
+          Policy on use of IT Resources
+        </Link>,
         <Link to="/sports-facility" className="block w-full">
           Sports Facility
         </Link>,
