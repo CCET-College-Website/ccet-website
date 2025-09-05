@@ -1,6 +1,7 @@
 import NoticePanel from './NoticePanel'
 import LatestEvents from './LatestEvents'
 import NewsPanel from './NewsPanel'
+import NewsDetails from './NewsDetails'
 import Contact from './ContactUs'
 import OurAlumni from './OurAlumni'
 import NewAlumni from './NewAlumni'

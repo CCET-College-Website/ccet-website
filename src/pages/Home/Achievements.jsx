@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { FaTrophy, FaBriefcase, FaUniversity, FaUsers } from "react-icons/fa";
+import "./Achievements.css"; // make sure this is imported
+
 
 function Achievements() {
   useEffect(() => {
@@ -16,32 +18,32 @@ function Achievements() {
   }, []);
 
   return (
-    <div className="p-6 bg-white shadow-lg rounded-2xl">
-      <h2 className="text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
+    <div className="achievements-section p-6 shadow-lg rounded-2xl ">
+      <h2 className="achievements -title text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2 ">
         <FaTrophy className="text-yellow-500" /> ACHIEVEMENTS
       </h2>
 
-      <div id="achievements-scroll" className="h-96 overflow-hidden space-y-6 pr-2">
+      <div id="achievements-scroll" className="achievements -scroll h-96 overflow-hidden space-y-6 pr-2">
 
         {/* General Achievements */}
-        <section>
-          <h3 className="font-bold text-lg text-gray-700 mb-2 flex items-center gap-2">
+        <section className="achievement-category">
+          <h3 className=" font-bold text-lg  mb-2 flex items-center gap-2">
             <FaTrophy className="text-yellow-500" /> Achievements
           </h3>
-          <p className="text-sm bg-gray-50 p-2 rounded">
+          <p className="text-sm  p-2 rounded">
             Chandigarh College of Engineering and Technology (CCET) received NBA accreditation for its B.E. (Computer Science and Engineering) and B.E. (Electronics and Communication Engineering) programs on February 12, 2025, recognizing its commitment to academic excellence and quality education.
           </p>
-          <p className="text-sm bg-gray-50 p-2 rounded">
+          <p className="text-sm p-2 rounded">
             Team CCET won 1st place at Cyberthon.AI 2025, a national hackathon by Chandigarh Police, Infosys, and CSRC-PEC, beating 81 teams in the finals at Infosys Campus, Chandigarh.
           </p>
         </section>
 
         {/* CSE Placements */}
-        <section>
-          <h3 className="font-bold text-lg text-gray-700 mb-2 flex items-center gap-2">
+        <section className="achievement-category">
+          <h3 className=" font-bold text-lg  mb-2 flex items-center gap-2">
             <FaBriefcase className="text-green-500" /> Students from CSE with Placements in Good Companies
           </h3>
-          <ul className="list-disc pl-5 space-y-1 text-sm">
+          <ul className="list-disc pl-5 space-y-1 text-sm ">
             <li>Aman Tangri (CSE, 2023): Placed with CVENT, a leading company known for high-paying roles.</li>
             <li>Kriti Aggarwal (CSE, 2023): Secured placement in FIS, which offers strong career opportunities and competitive salaries.</li>
             <li>Vyom Verma (CSE, 2024): Successfully placed with uTrade, a prominent firm offering attractive packages.</li>
@@ -56,11 +58,11 @@ function Achievements() {
         </section>
 
         {/* ECE Placements */}
-        <section>
-          <h3 className="font-bold text-lg text-gray-700 mb-2 flex items-center gap-2">
+        <section className="achievement-category">
+          <h3 className="font-bold text-lg  mb-2 flex items-center gap-2">
             <FaBriefcase className="text-blue-500" /> Students from ECE with Placements in Good Companies
           </h3>
-          <ul className="list-disc pl-5 space-y-1 text-sm">
+          <ul className="list-disc pl-5 space-y-1 text-sm text-gray-900 dark:text-gray-900">
             <li>Kanishka Singh (ECE, 2023): Recruited by uTrade (QA), a top-tier company in financial technology.</li>
             <li>Anika Takkar (ECE, 2024): Secured a position with uTrade, emphasizing her strong technical skills.</li>
             <li>Rishika (ECE, 2024): Placed with Elite Safety Sciences, a reputable organization in its sector.</li>
@@ -75,18 +77,18 @@ function Achievements() {
         </section>
 
         {/* Higher Studies */}
-        <section>
-          <h3 className="font-bold text-lg text-gray-700 mb-2 flex items-center gap-2">
+        <section className="achievement-category">
+          <h3 className="font-bold text-lg text-gray-700 dark:text-gray-700 mb-2 flex items-center gap-2">
             <FaUniversity className="text-purple-500" /> Students Placed in Good Colleges after Graduation
           </h3>
-          <ul className="list-disc pl-5 space-y-1 text-sm">
+          <ul className="list-disc pl-5 space-y-1 text-sm text-gray-900 dark:text-gray-900">
             <li>Gopal Mengi (CO, 2020): Pursuing MSc at Universität des Saarlandes, Germany.</li>
             <li>Gagandeep Mangat (CO, 2016): Secured admission for M.Tech at IIT Kanpur through GATE (AIR 202).</li>
             <li>Saksham Gupta (CO, 2016): Enrolled in PGP at the Indian School of Business, India.</li>
             <li>Shreya Attri (CO, 2016): Accepted into the MBA program at NMIMS, Bangalore, India, via CAT.</li>
             <li>Avinash Kaur Sama (CO, 2016): Pursuing M.E. CSE at UIET, Chandigarh, India, through PUCET.</li>
             <li>Abhishek Kaushik (CO, 2017): Admitted to M.Tech CS at IISC, Bangalore, India, with GATE (AIR 106).</li>
-            <li>Lakshay Mittal (CO, 2017): Currently pursuing an MS in Computer Science (2022-2024) at San Francisco State University, United States.</li>
+             <li>Lakshay Mittal (CO, 2017): Currently pursuing an MS in Computer Science (2022-2024) at San Francisco State University, United States.</li>
             <li>Manvi Goel (CO, 2017): Enrolled in the MBA (Analytics) program (2023-2025) at IIM Kashipur, India.</li>
             <li>Neha Garg (CO, 2017): Pursuing M.Tech at IIIT Allahabad, India.</li>
             <li>Paritosh Singh (CO, 2017): Completed an MS in Computer Science (AI, 2021-23) at the University of Southern California, United States.</li>
@@ -95,25 +97,25 @@ function Achievements() {
             <li>Rashandeep Singh (CO, 2018): Enrolled in ME Computer Engineering at the University of Waterloo, Canada.</li>
             <li>Udayveer Singh (CO, 2018): Co-founder of Gane Solutions.</li>
             <li>Kaniskha Tikko (CO, 2018): Pursuing Postgraduate Management at the University of Buffalo, United States.</li>
-            <li>Abhishek Sharma (CO, 2019): Accepted into M.Tech at IIIT Bangalore, India, via GATE.</li>
+            <li>Abhishek Sharma (CO, 2019): Accepted into M.Tech at IIIT Bangalore, India, via GATE.</li> 
           </ul>
         </section>
 
         {/* Other Achievements */}
-        <section>
-          <h3 className="font-bold text-lg text-gray-700 mb-2 flex items-center gap-2">
+        <section className="achievement-category">
+          <h3 className="font-bold text-lg text-gray-700 dark:text-gray-700 mb-2 flex items-center gap-2">
             <FaUsers className="text-red-500" /> Other Notable Achievements
           </h3>
-          <p className="text-sm bg-gray-50 p-2 rounded">
+          <p className="text-sm   p-2 rounded">
             On 9th August 2023, The National Service Scheme (NSS) unit of Chandigarh College of Engineering and Technology (degree wing), organized a Plantation Drive for Medicinal Plants. As part of 'Meri Maati Mera Desh,' 75 medicinal plants were planted, nurturing both environment and community
           </p>
-          <p className="text-sm bg-gray-50 p-2 rounded">
+          <p className="text-sm  p-2 rounded">
             Apostle of Speech, the Literary and Debating Society of CCET, has once again proven its excellence in the field of debate by emerging as the champions of the IIT Kanpur Antragani Fest Parliamentary Debate Competition, held from 17th March to 20th March 2023. The team, comprising Chatenya from Mechanical Engineering 3rd year, Ishita from Computer Science Engineering 3rd year, and Raj from Computer Science Engineering 1st year, secured the coveted 1st position in the competition, showcasing their skills and knowledge of various pertinent issues.
           </p>
-          <p className="text-sm bg-gray-50 p-2 rounded">
+          <p className="text-sm  p-2 rounded">
             In addition to their team win, individual members of the Apostle of Speech team also received top honors in the competition. Ishita was awarded the Best Speaker of the competition, while Chatenya was named the Second Best Speaker. Their eloquence, wit, and astute observations set them apart from the other participants, and rightfully earned them the recognition they deserve.
           </p>
-          <p className="text-sm bg-gray-50 p-2 rounded">
+          <p className="text-sm p-2 rounded">
             Congratulations to the team and we wish them all the best for their future endeavors AOS Club is proud to announce following achievements:
           </p>
         </section>

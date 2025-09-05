@@ -49,7 +49,7 @@ const StudentsSectionMenu = () => {
     {
       title: "Events",
       links: [
-        { name: "Student Chapters/Clubs", url: "/student-chapters" },
+        { name: "Student Chapters/Clubs", url: "/student-chapters-clubs" }, 
         { name: "Apratim", url: "/apratim" },
         { name: "ACM @ CCET", url: "https://ccet.acm.org/" },
         {

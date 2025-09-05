@@ -14,7 +14,7 @@ const NewAlumni = () => {
   return (
     <div className="">
         <div className="text-center m-2 p-2">
-        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 relative inline-block">
+        <h2 className="text-4xl lg:text-5xl font-bold text-gray-700 dark:text-[#30709aff] mb-4 relative inline-block">
           Our Alumni
         </h2>
       </div>

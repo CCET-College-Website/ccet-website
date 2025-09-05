@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Dark mode global styles */
+.dark {
+  background-color: #121212;
+  color: #ffffff;
+}
