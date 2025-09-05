@@ -1,7 +1,7 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home.jsx";
 import Header from "./components/header/Header.jsx";
-import Footer from "./components/Footer/Footer.jsx";
+import Footer from "./components/footer/Footer.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./index.css";
@@ -30,6 +30,10 @@ import Tenders from "./pages/Tenders/Tenders.jsx";
 import History from "./pages/History/History.jsx";
 import StudentChaptersandClubs from "./pages/StudentChaptersandClubs/StudentChaptersandClubs.jsx";
 import NewsDetails from "./pages/Home/NewsDetails.jsx";
+import EceOverview from "./pages/ECE-Department/ece-overview.jsx";
+import ECE_Faculty from "./pages/ECE-Department/ece-faculty.jsx";
+import EceLabs from "./pages/ECE-Department/ece-labs.jsx";
+
 function App() {
   return (
     <HashRouter>
@@ -309,6 +313,31 @@ function App() {
             </>
           }
         />
+
+        <Route path="/ece" element={
+          <>
+            <Header />
+            <EceOverview />
+            <Footer />
+          </>
+        } />
+
+        <Route path="/ece/ece-faculty" element={
+          <>
+            <Header />
+            <ECE_Faculty />
+            <Footer />
+          </>
+        } />
+
+        <Route path="/ece/ece-labs" element={
+          <>
+            <Header />
+            <EceLabs />
+            <Footer />
+          </>
+        } />
+
       </Routes>
     </HashRouter>
   );

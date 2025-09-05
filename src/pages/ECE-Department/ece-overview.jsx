@@ -1,70 +1,49 @@
 import React from "react";
-
-// Import images from src/assets/ECE-Department
-import eceBanner from "../../assets/ECE-Department/ece-banner.png";
 import bookResearch from "../../assets/ECE-Department/book_research.png";
 import boxIdea from "../../assets/ECE-Department/box_idea.png";
 import money from "../../assets/ECE-Department/money.png";
 import paper from "../../assets/ECE-Department/paper.png";
+import ECEQuickLinksSidebar from "./sidebar";
+import ECEHeader from "./ece_header";
 
-function DepartmentPage() {
+function EceOverview() {
+    const stats = [
+        { value: "17+", label: "Years\nof Service" },
+        { value: "20", label: "Faculty\nMembers" },
+        { value: "400", label: "Students" },
+        { value: "100", label: "Courses\nOffered", highlight: true }
+    ];
     return (
-        <div className="bg-white min-h-screen font-sans">
-            {/* Banner with vertical right-side stats sidebar */}
-            <section className="relative bg-gray-900">
-                <img
-                    src={eceBanner}
-                    alt="Electronics Banner"
-                    className="w-full h-[32rem] object-cover opacity-60"
-                />
-                {/* Department Title/Subtitle */}
-                <div className="absolute top-1/4 left-12 z-10 max-w-2xl">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow">
-                        Electronics and Communication Engineering Department
-                    </h1>
-                    <p className="mt-4 text-xl md:text-2xl text-white drop-shadow">
-                        Chandigarh College of Engineering and Technology
-                    </p>
-                </div>
-                {/* Vertical right-side stats sidebar - improved for text fit and perfect circles */}
-                <aside className="absolute inset-y-0 right-12 flex flex-col justify-between items-end h-[32rem] py-8 z-10">
-                    {[
-                        {
-                            value: "17+",
-                            label: "Years\nof Service"
-                        },
-                        {
-                            value: "20",
-                            label: "Faculty\nMembers"
-                        },
-                        {
-                            value: "400",
-                            label: "Students"
-                        },
-                        {
-                            value: "100",
-                            label: "Courses\nOffered",
-                            highlight: true
-                        }
-                    ].map(({value, label, highlight}, i) => (
-                    <div
-                        key={i}
-                        className={`flex flex-col items-center justify-center border-2 w-32 h-32 rounded-full bg-black/60
-                                ${highlight ? "border-yellow-400" : "border-white"}`}
-                    >
-                        <span className={`text-2xl md:text-3xl font-bold ${highlight ? "text-yellow-400" : "text-yellow-400"}`}>
-                            {value}
-                        </span>
-                        <span
-                            className={`text-white text-base mt-1 text-center leading-tight px-2 ${highlight ? "text-yellow-400 font-bold" : ""}`}
-                            style={{ whiteSpace: "pre-line" }}
+        <div className="bg-white min-h-screen font-serif">
+            <ECEQuickLinksSidebar />
+            <div className="relative w-full">
+                <ECEHeader />
+                {/* Vertically centered aside */}
+                <aside className="absolute inset-y-0 right-12 flex flex-col justify-center items-center h-[32rem] py-8 z-10 space-y-6">
+                    {stats.map(({ value, label, highlight }, i) => (
+                        <div
+                            key={i}
+                            className={`flex flex-col items-center justify-center border-2 w-32 h-32 rounded-full bg-black/60 ${highlight ? "border-yellow-400" : "border-white"
+                                }`}
                         >
-                            {label}
-                        </span>
-                    </div>
+                            <span
+                                className={`text-2xl md:text-3xl font-bold ${highlight ? "text-yellow-400" : "text-yellow-400"
+                                    }`}
+                            >
+                                {value}
+                            </span>
+                            <span
+                                className={`text-white text-base mt-1 text-center leading-tight px-2 ${highlight ? "text-yellow-400 font-bold" : ""
+                                    }`}
+                                style={{ whiteSpace: "pre-line" }}
+                            >
+                                {label}
+                            </span>
+                        </div>
                     ))}
                 </aside>
-            </section>
+            </div>
+
 
             <main className="container mx-auto px-3 md:px-8 py-8">
                 {/* HOD's Message */}
@@ -250,4 +229,4 @@ function DepartmentPage() {
     );
 }
 
-export default DepartmentPage;
+export default EceOverview;
