@@ -62,7 +62,7 @@ function FooterCard({ title, links }) {
   );
 }
 
-// Footer Component
+// footer Component
 function Footer() {
   const sections = [
     {
