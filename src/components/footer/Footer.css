@@ -1,4 +1,4 @@
-/* ========== Government College Footer Styles ========== */
+/* ========== Government College footer Styles ========== */
 .footer-section {
   background: linear-gradient(to right, #1e3a8a, #0f172a);
   color: #ffffff;
@@ -15,7 +15,7 @@
   position: relative;
 }
 
-/* ========== Footer Header ========== */
+/* ========== footer Header ========== */
 .footer-header {
   text-align: center;
   padding: 0 0 30px;   /* reduced spacing */
@@ -44,7 +44,7 @@
   background: #f59e0b;
 }
 
-/* ========== Footer Content ========== */
+/* ========== footer Content ========== */
 .footer-content {
   padding-bottom: 30px; /* reduced spacing */
 }
@@ -56,7 +56,7 @@
   margin: 0 auto;
 }
 
-/* ========== Footer Cards ========== */
+/* ========== footer Cards ========== */
 .footer-card {
   background: transparent;
   border: none;
@@ -118,7 +118,7 @@
   font-size: 0.95rem;
 }
 
-/* ========== Footer Bottom ========== */
+/* ========== footer Bottom ========== */
 .footer-bottom {
   border-top: 1px solid #4b5563;
   padding-top: 20px; /* reduced spacing */

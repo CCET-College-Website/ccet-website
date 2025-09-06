@@ -19,12 +19,20 @@
   white-space: nowrap;
 }
 
+
 .updates-marquee {
   flex: 1;
   margin-left: 20px;
   color: #222;
 }
-
+  
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: white;
+}
+  
 .new-tag {
   color: red;
   font-weight: bold;

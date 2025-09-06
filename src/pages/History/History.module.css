@@ -1,11 +1,12 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.historyWrapper {
+    position: relative;
+    min-height: 100vh;
+    font-family: 'Times New Roman', serif;
+    overflow-x: hidden;
 }
 
-/* Fixed background for entire page */
-body::before {
+/* Local background image */
+.historyWrapper::before {
     content: '';
     position: fixed;
     top: 0;
@@ -17,11 +18,11 @@ body::before {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    z-index: -2;
+    z-index: -0,5;
 }
 
-/* Black overlay for entire page */
-body::after {
+/* Local black overlay */
+.historyWrapper::after {
     content: '';
     position: fixed;
     top: 0;
@@ -29,14 +30,7 @@ body::after {
     width: 100%;
     height: 100vh;
     background: linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%);
-    z-index: -1;
-}
-
-body {
-    font-family: 'Times New Roman', serif;
-    background: transparent;
-    overflow-x: hidden;
-    position: relative;
+    z-index: -0.5;
 }
 
 .container {
@@ -49,7 +43,6 @@ body {
 .heroSection {
     position: relative;
     min-height: 100vh;
-    background: none; /* Remove background from hero section */
     border-bottom-left-radius: 70px;
     border-bottom-right-radius: 70px;
     overflow: hidden;
@@ -123,10 +116,7 @@ body {
 .timelineYear::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: linear-gradient(135deg, #FFD700 0%, #FF9900 100%);
     border-radius: 50%;
     opacity: 0;
@@ -216,6 +206,7 @@ body {
     position: relative;
     background: transparent;
     border-radius: 30px;
+    z-index: 2;
 }
 
 .sectionHeader {
@@ -280,57 +271,34 @@ body {
     transform: scale(1.02);
 }
 
-/* Animation Classes */
+/* Animations */
 .fadeIn {
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
-
-.fadeIn.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+.fadeIn.visible { opacity: 1; transform: translateY(0); }
 
 .fadeInLeft {
     opacity: 0;
     transform: translateX(-80px);
     transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
-
-.fadeInLeft.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
+.fadeInLeft.visible { opacity: 1; transform: translateX(0); }
 
 .fadeInRight {
     opacity: 0;
     transform: translateX(80px);
     transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
-
-.fadeInRight.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
+.fadeInRight.visible { opacity: 1; transform: translateX(0); }
 
 .scaleIn {
     opacity: 0;
     transform: scale(0.8);
     transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
-
-.scaleIn.visible {
-    opacity: 1;
-    transform: scale(1);
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+.scaleIn.visible { opacity: 1; transform: scale(1); }
 
 @keyframes bounce {
     0%, 20%, 60%, 100% { transform: translateY(0) scale(1); }
@@ -345,65 +313,22 @@ body {
     }
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1200px) {
-    .container {
-        max-width: 100%;
-        padding: 0 20px;
-    }
+    .container { max-width: 100%; padding: 0 20px; }
 }
-
 @media (max-width: 768px) {
-    .historyTitle {
-        font-size: 60px;
-        margin-bottom: 60px;
-    }
-
-    .timelineYear {
-        width: 150px;
-        height: 150px;
-        font-size: 28px;
-    }
-
-    .timelineDescription {
-        font-size: 18px;
-    }
-
-    .contentBox {
-        font-size: 20px;
-        padding: 30px;
-    }
-
-    .missionContent {
-        font-size: 18px;
-        text-align: center;
-    }
-
-    .sectionHeader {
-        font-size: 36px;
-        padding: 15px 0;
-    }
-
-    .accreditationBadge {
-        font-size: 24px;
-        padding: 20px 40px;
-    }
-
-    .coreValues {
-        font-size: 24px;
-    }
+    .historyTitle { font-size: 60px; margin-bottom: 60px; }
+    .timelineYear { width: 150px; height: 150px; font-size: 28px; }
+    .timelineDescription { font-size: 18px; }
+    .contentBox { font-size: 20px; padding: 30px; }
+    .missionContent { font-size: 18px; text-align: center; }
+    .sectionHeader { font-size: 36px; padding: 15px 0; }
+    .accreditationBadge { font-size: 24px; padding: 20px 40px; }
+    .coreValues { font-size: 24px; }
 }
-
 @media (max-width: 480px) {
-    .historyContent {
-        padding: 40px 20px;
-    }
-
-    .missionSection {
-        padding: 60px 20px;
-    }
-
-    .historyTitle {
-        font-size: 48px;
-    }
+    .historyContent { padding: 40px 20px; }
+    .missionSection { padding: 60px 20px; }
+    .historyTitle { font-size: 48px; }
 }

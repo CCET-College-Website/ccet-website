@@ -1,30 +1,42 @@
 import { useEffect } from "react";
 import { FaTrophy, FaBriefcase, FaUniversity, FaUsers } from "react-icons/fa";
-import "./Achievements.css"; // make sure this is imported
-
+import "./Achievements.css";
 
 function Achievements() {
   useEffect(() => {
     const container = document.getElementById("achievements-scroll");
+
+    if (!container) return;
+
+    // Duplicate content once for seamless loop
+    container.innerHTML += container.innerHTML;
+
     let interval = setInterval(() => {
       if (container) {
         container.scrollTop += 1;
-        if (container.scrollTop >= container.scrollHeight - container.clientHeight) {
+
+        // Reset halfway instead of bottom (smooth loop)
+        if (container.scrollTop >= container.scrollHeight / 2) {
           container.scrollTop = 0;
         }
       }
     }, 50);
+
     return () => clearInterval(interval);
   }, []);
 
+
+
   return (
-    <div className="achievements-section p-6 shadow-lg rounded-2xl ">
-      <h2 className="achievements -title text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2 ">
+    <div className="achievements-section p-6 shadow-lg rounded-2xl">
+      <h2 className="achievements-title text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
         <FaTrophy className="text-yellow-500" /> ACHIEVEMENTS
       </h2>
 
-      <div id="achievements-scroll" className="achievements -scroll h-96 overflow-hidden space-y-6 pr-2">
-
+      <div
+        id="achievements-scroll"
+        className="achievements-scroll h-96 overflow-hidden space-y-6 pr-2"
+      >
         {/* General Achievements */}
         <section className="achievement-category">
           <h3 className=" font-bold text-lg  mb-2 flex items-center gap-2">
@@ -88,7 +100,7 @@ function Achievements() {
             <li>Shreya Attri (CO, 2016): Accepted into the MBA program at NMIMS, Bangalore, India, via CAT.</li>
             <li>Avinash Kaur Sama (CO, 2016): Pursuing M.E. CSE at UIET, Chandigarh, India, through PUCET.</li>
             <li>Abhishek Kaushik (CO, 2017): Admitted to M.Tech CS at IISC, Bangalore, India, with GATE (AIR 106).</li>
-             <li>Lakshay Mittal (CO, 2017): Currently pursuing an MS in Computer Science (2022-2024) at San Francisco State University, United States.</li>
+            <li>Lakshay Mittal (CO, 2017): Currently pursuing an MS in Computer Science (2022-2024) at San Francisco State University, United States.</li>
             <li>Manvi Goel (CO, 2017): Enrolled in the MBA (Analytics) program (2023-2025) at IIM Kashipur, India.</li>
             <li>Neha Garg (CO, 2017): Pursuing M.Tech at IIIT Allahabad, India.</li>
             <li>Paritosh Singh (CO, 2017): Completed an MS in Computer Science (AI, 2021-23) at the University of Southern California, United States.</li>
@@ -97,7 +109,7 @@ function Achievements() {
             <li>Rashandeep Singh (CO, 2018): Enrolled in ME Computer Engineering at the University of Waterloo, Canada.</li>
             <li>Udayveer Singh (CO, 2018): Co-founder of Gane Solutions.</li>
             <li>Kaniskha Tikko (CO, 2018): Pursuing Postgraduate Management at the University of Buffalo, United States.</li>
-            <li>Abhishek Sharma (CO, 2019): Accepted into M.Tech at IIIT Bangalore, India, via GATE.</li> 
+            <li>Abhishek Sharma (CO, 2019): Accepted into M.Tech at IIIT Bangalore, India, via GATE.</li>
           </ul>
         </section>
 

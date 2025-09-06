@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-import classroom1 from "../../assets/classrooms/LH8_1_KT.jpg";
-import classroom2 from "../../assets/classrooms/classroom-1.jpg";
-import classroom3 from "../../assets/classrooms/classroom-3.jpg";
-import classroom4 from "../../assets/classrooms/new.jpg";
-import classroom5 from "../../assets/classrooms/PICTURE.jpg";
+import classroom1 from "../../assets/Classrooms/LH8_1_KT.jpg";
+import classroom2 from "../../assets/Classrooms/classroom-1.jpg";
+import classroom3 from "../../assets/Classrooms/classroom-3.jpg";
+import classroom4 from "../../assets/Classrooms/new.jpg";
+import classroom5 from "../../assets/Classrooms/PICTURE.jpg";
 
 
 const images = [classroom1, classroom2, classroom3,classroom4,classroom5];
@@ -23,12 +23,10 @@ const Classrooms = () => {
   return (
     <div className="w-full bg-white py-10">
       <div className="max-w-5xl mx-auto text-center">
-        {/* Heading */}
         <h1 className="text-3xl font-bold mb-6 text-gray-800">
           CLASS ROOMS
         </h1>
 
-        {/* Slider Container */}
         <div className="relative w-full h-[500px] overflow-hidden rounded-lg shadow-lg bg-white">
           <img
             src={images[current]}
