@@ -39,6 +39,7 @@ import ECE_Faculty from "./pages/ECE-Department/ece-faculty.jsx";
 import EceLabs from "./pages/ECE-Department/ece-labs.jsx";
 import CampusVirtualTour from "./pages/CampusVirtualTour.jsx";
 import Classrooms from "./pages/Classrooms/Classrooms.jsx";
+import CampusMap from "./pages/CampusMap/CampusMap.jsx";
 
 function App() {
     return (
@@ -64,7 +65,8 @@ function App() {
                 <Route path="/about/academic-heads" element={<Academicheads/>}/>
                 <Route path="/about/principal" element={<Principal/>}/>
                 <Route path="/about/history" element={<History/>}/>
-                <Route path="/life/virtual-tour" element={<CampusVirtualTour/>}/>  
+                <Route path="/life/virtual-tour" element={<CampusVirtualTour/>}/>
+                <Route path="/about/campus-map" element={<CampusMap />}  />
 
                 {/* Programmes */}
                 <Route path="/programmes/pu-leet" element={<Leet/>}/>

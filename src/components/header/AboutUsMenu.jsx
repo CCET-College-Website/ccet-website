@@ -14,9 +14,9 @@ const AboutUsMenu = () => {
         <Link to="/vision-mission" className="block w-full" key="vision-mission">
           Vision and Mission
         </Link>,
-        <span key="campus-map" className="block w-full cursor-default">
+        <Link to="/about/campus-map" className="block w-full" key="campus-map">
           Campus Map
-        </span>,
+        </Link>,,
         <Link to="/contact" className="block w-full" key="contact">
           How To Reach Us
         </Link>,
