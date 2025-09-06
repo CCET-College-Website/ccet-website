@@ -64,7 +64,7 @@ const Header = () => {
 						{ name: 'Campus Virtual Tour', path: '/life/virtual-tour' },
 						{ name: 'Library', path: '/life/library' },
 						{ name: 'Class Rooms', path: '/life/classrooms' },
-						{ name: 'Canteen', path: '/life/canteen' },
+						{ name: 'Canteen', path: '/about/canteen' },
 						{ name: 'Infrastructure', path: '/life/infrastructure' },
 						{ name: 'Policy on use of IT Resources', path: '/life/it-policy' },
 						{ name: 'Sports Facility', path: '/life/sports' }
