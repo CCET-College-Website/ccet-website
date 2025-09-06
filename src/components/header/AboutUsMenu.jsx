@@ -73,9 +73,9 @@ const AboutUsMenu = () => {
         <Link to="/classrooms" className="block w-full" key="classrooms">
           Class Rooms
         </Link>,
-        <span key="canteen" className="block w-full cursor-default">
-          Canteen
-        </span>,
+          <Link to="/about/canteen" className="block w-full" key="canteen">
+              Canteen
+          </Link>,
         <Link
             to="/infrastructure"
             className="block w-full"

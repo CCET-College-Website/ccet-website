@@ -32,6 +32,7 @@ import History from "./pages/History/History.jsx";
 import RecentUpdates from "./pages/RecentUpdates.jsx";
 import StudentChaptersandClubs from "./pages/StudentChaptersandClubs/StudentChaptersandClubs.jsx";
 import NewsDetails from "./pages/Home/NewsDetails.jsx";
+import Canteen from "./pages/Canteen/Canteen.jsx";
 
 // ECE Department
 import EceOverview from "./pages/ECE-Department/ece-overview.jsx";
@@ -64,7 +65,8 @@ function App() {
                 <Route path="/about/academic-heads" element={<Academicheads/>}/>
                 <Route path="/about/principal" element={<Principal/>}/>
                 <Route path="/about/history" element={<History/>}/>
-                <Route path="/life/virtual-tour" element={<CampusVirtualTour/>}/>  
+                <Route path="/life/virtual-tour" element={<CampusVirtualTour/>}/>
+                <Route path="/about/canteen" element={<Canteen />}  />
 
                 {/* Programmes */}
                 <Route path="/programmes/pu-leet" element={<Leet/>}/>
