@@ -109,7 +109,7 @@ function App() {
         <Route path="/anti-ragging" element={<AntiRagging />} />
         <Route path="/anti-ragging-committee" element={<AntiRaggingCommittee />}/>
         <Route path="/student-chapters-clubs" element={<StudentChaptersandClubs />}/>
-        <Route path="//student-welfare/officials" element={<StudentWelfare/>}/>
+        <Route path="/student-welfare/officials" element={<StudentWelfare/>}/>
 
         {/* About Section */}
         <Route path="/about/academic-heads" element={<Academicheads />} />
