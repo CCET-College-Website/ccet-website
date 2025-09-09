@@ -110,15 +110,15 @@ const AboutUsMenu = () => {
                     <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
                       <Link
                         to="https://ccet.ac.in/pdf/notices/general/NBA%20Accreditation%20Letter.pdf"
-                        className="block w-full"
+                        className="block w-full text-black"
                       >
                         NBA Accreditation Letter
                       </Link>
                     </li>
-                    <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
+                    <li className="px-4 py-2  hover:bg-orange-400 hover:text-white rounded">
                       <Link
                         to="/nba/cse"
-                        className="block w-full"
+                        className="block w-full text-black"
                       >
                         CSE
                       </Link>
@@ -126,7 +126,7 @@ const AboutUsMenu = () => {
                     <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
                       <Link
                         to="/nba/ece"
-                        className="block w-full"
+                        className="block w-full text-black"
                       >
                         ECE
                       </Link>
@@ -134,7 +134,8 @@ const AboutUsMenu = () => {
                     <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
                       <Link
                         to="/nba/mech"
-                        className="block w-full"
+                        className="block w-full text-black"
+
                       >
                         MECH
                       </Link>
@@ -142,7 +143,7 @@ const AboutUsMenu = () => {
                     <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
                       <Link
                         to="/nba/civil"
-                        className="block w-full"
+                        className="block w-full text-black"
                       >
                         CIVIL
                       </Link>
@@ -188,7 +189,6 @@ const AboutUsMenu = () => {
         >
           Policy on use of IT Resources
         </a>,
-
         <Link to="/sports-facility" className="block w-full" key="sports-facility">
           Sports Facility
         </Link>,
