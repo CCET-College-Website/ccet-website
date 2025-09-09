@@ -214,7 +214,6 @@ const Header = () => {
 		},
 		{ label: 'Placements', path: 'https://ccet.ac.in/tnp/', external: true },
 		
-		
 		{
 			label: 'Notices',
 			menu: <NoticesMenu />,
@@ -332,7 +331,6 @@ const Header = () => {
 							src={CCETLogo}
 							alt="College Logo"
 						/>
-
 					</div>
 					<div className="flex flex-col flex-shrink items-center px-2 w-full max-w-[900px]">
 						<h1 className="font-serif text-white text-4xl text-center leading-tight">
