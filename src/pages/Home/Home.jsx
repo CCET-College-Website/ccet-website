@@ -40,7 +40,6 @@ function Home() {
         </div>
       </div>
 
-      <EventCalendar />
       <NoticePanel />
       <Achievements />
       <Gallery />

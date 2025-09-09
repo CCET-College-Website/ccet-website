@@ -249,7 +249,7 @@ const EventCalendar = () => {
             {/* Header */}
             <div className={styles.header}>
                 <h1 className={styles.title}>
-                    CCET EVENT CALENDAR
+                    Latest News
                     <div className={styles.underline}></div>
                 </h1>
             </div>

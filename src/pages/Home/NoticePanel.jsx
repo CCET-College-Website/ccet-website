@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook
 
 const notices = [
   { title: "Notice Regarding Confirmation of Examination Schedule", date: "2025-05-29" },
@@ -9,6 +10,8 @@ const notices = [
 ];
 
 export default function NoticePanel() {
+  const navigate = useNavigate(); // Initialize the navigate function
+
   return (
     <div className="flex justify-center items-start bg-[#f7f4f4] dark:bg-gray-700 p-8 gap-16 font-sans mt-8 mb-8 mr-2 ml-2 rounded-3xl shadow-lg transition-colors duration-300">
       
@@ -41,7 +44,20 @@ export default function NoticePanel() {
             </li>
           ))}
         </ul>
+
+        {/* Read More Button */}
+        <div className="text-center mt-8">
+          <button 
+            onClick={() => navigate("/news")} 
+            className="inline-block bg-yellow-500 text-black font-bold px-6 py-3 rounded-lg shadow-md hover:bg-yellow-600 transition-colors duration-300" 
+            style={{ fontSize: "1.1rem" }}
+          >
+            Read More
+          </button>
+        </div>
+
       </div>
     </div>
   );
 }
+
