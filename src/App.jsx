@@ -59,6 +59,10 @@ import Webmasters from "./pages/webmasters.jsx";
 import ExamNotice2 from "./pages/ExamNotice/ExamNotice2.jsx";
 import Scholarship from './pages/Students-Section/Scholarship.jsx';
 import Forms from './pages/Forms/Forms.jsx';
+import NBA_CSE from "./pages/NBA/NBA_CSE";
+import NBA_ECE from "./pages/NBA/NBA_ECE";
+import NBA_MECH from "./pages/NBA/NBA_MECH";
+import NBA_CIVIL from "./pages/NBA/NBA_CE";
 
 // ECE Department
 import EceOverview from "./pages/ECE-Department/ece-overview.jsx";
@@ -76,6 +80,7 @@ import ASLabs from "./pages/AS-Department/ASLabs.jsx";
 import ASResearch from "./pages/AS-Department/ASResearch.jsx";
 import ASSyllabus from "./pages/AS-Department/ASSyllabus.jsx";
 import ASTimeTable from "./pages/AS-Department/ASTimeTable.jsx";
+
 
 //Civil Department
 import CivilOverview from "./pages/Civil-Department/CivilOverview.jsx";
@@ -145,6 +150,10 @@ function App() {
                  <Route path="/administrator/rules-policies" element={<RulesPolicies />} />
                  <Route path="/administrator/audit-report" element={<AuditReport />} />
                  <Route path="/administrator/nba" element={<Nba />} />
+                 <Route path="/nba/cse" element={<NBA_CSE />} />
+                 <Route path="/nba/ece" element={<NBA_ECE />} />
+                 <Route path="/nba/mech" element={<NBA_MECH />} />
+                 <Route path="/nba/civil" element={<NBA_CIVIL />} />
 
                 {/* Programmes */}
                 <Route path="/programmes/pu-leet" element={<Leet />} />

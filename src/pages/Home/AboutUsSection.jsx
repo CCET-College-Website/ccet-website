@@ -21,7 +21,7 @@ const AboutUsSection = () => {
             Communication Engineering, Computer Science & Engineering, Mechanical
             Engineering and Civil Engineering.
           </p>
-          <a href="#" className="enews-btn">
+           <a href="https://www.ccet.ac.in/pdf/ENewsLetter/Newsletter-Vol%20IX%20Issue%20I.pdf"  target="_blank" className="enews-btn">
             E-News Letter
           </a>
         </div>

@@ -69,7 +69,7 @@ export default function NewsPanel() {
       <div className="news-link-wrapper">
         <button
           className="news-link"
-          onClick={() => navigate("/news")}
+          onClick={() => navigate("/event-calendar")}
         >
           READ MORE
         </button>
