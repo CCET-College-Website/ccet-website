@@ -17,6 +17,9 @@ import AntiRaggingCommittee from "./pages/Students-Section/Student-Welfare/Anti-
 import Academicheads from "./pages/AcadmicHeads/Academicheads.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
 import Principal from "./pages/Principal/Principal.jsx";
+import RulesPolicies from "./pages/Administrator/RulesPolicies.jsx";
+import AuditReport from "./pages/Administrator/AuditReport.jsx";
+import Nba from "./pages/Administrator/Nba.jsx";
 import AcademicProspectusPage from "./pages/Academic-Prospectus/AcademicProspectusPage.jsx";
 import ContactUs from "./pages/ContactUs/ContactUs.jsx";
 import NIRF from "./pages/NIRF/nirf.jsx";
@@ -135,6 +138,9 @@ function App() {
                 <Route path="/about/campus-map" element={<CampusMap />} />
                 <Route path="/about/canteen" element={<Canteen />} />
                 <Route path="/about/classrooms" element={<Classrooms />} />
+                 <Route path="/administrator/rules-policies" element={<RulesPolicies />} />
+                 <Route path="/administrator/audit-report" element={<AuditReport />} />
+                 <Route path="/administrator/nba" element={<Nba />} />
 
                 {/* Programmes */}
                 <Route path="/programmes/pu-leet" element={<Leet />} />
