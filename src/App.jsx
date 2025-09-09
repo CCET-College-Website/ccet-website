@@ -55,6 +55,7 @@ import GirlsHostel from "./pages/GirlsHostel/GirlsHostel.jsx";
 import FingerPrintIssue1 from "./pages/FingerPrint/FingerPrint1.jsx";
 import FingerPrintIssue2 from "./pages/FingerPrint/FingerPrint2.jsx";
 import Webmasters from "./pages/webmasters.jsx";
+import OfficialCCET from "./pages/Officials-Page/OfficialsPage.jsx"
 
 import ExamNotice2 from "./pages/ExamNotice/ExamNotice2.jsx";
 import Scholarship from './pages/Students-Section/Scholarship.jsx';
@@ -150,6 +151,7 @@ function App() {
                  <Route path="/administrator/rules-policies" element={<RulesPolicies />} />
                  <Route path="/administrator/audit-report" element={<AuditReport />} />
                  <Route path="/administrator/nba" element={<Nba />} />
+                <Route path="/about/ccet-official" element={<OfficialCCET/>} />
                  <Route path="/nba/cse" element={<NBA_CSE />} />
                  <Route path="/nba/ece" element={<NBA_ECE />} />
                  <Route path="/nba/mech" element={<NBA_MECH />} />

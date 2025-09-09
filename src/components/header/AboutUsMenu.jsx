@@ -29,9 +29,9 @@ const AboutUsMenu = () => {
         <Link to="/about/principal" className="block w-full" key="principal">
           Principal
         </Link>,
-        <span key="officials" className="block w-full cursor-default">
+        <Link to="/about/ccet-official" className="block w-full" key="principal">
           Officials at CCET
-        </span>,
+        </Link>,
         <Link
           to="/about/academic-heads"
           className="block w-full"

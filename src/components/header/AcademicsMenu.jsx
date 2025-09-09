@@ -28,10 +28,11 @@ const AcademicsMenu = () => {
         {
             title: "Mandatory Disclosure",
             links: [
-                { name: "EoA Report 2024-25", path: "/eoa-2024" },
-                { name: "Application Part-1", path: "/application-part1" },
-                { name: "Application Part-2", path: "/application-part2" },
-                { name: "OLD AICTE EoAs", path: "/old-aicte" },
+                { name: "EoA Report 2025-26", path: "/academics/eoa-report-latest" },
+                { name: "Application Part-1", path: "/academics/application-part-1" },
+                { name: "Application Part-2", path: "/academics/application-part-2" },
+                { name: 'Deficiency Report', path: '/academics/deficiency-report' },
+                { name: "OLD AICTE EoAs", path: "/academics/old-aicte-eoas" },
             ],
         },
         {

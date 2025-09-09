@@ -59,7 +59,7 @@ const Header = () => {
 					title: "Administration",
 					links: [
 						{ name: "Principal", path: "/about/principal" },
-						{ name: "Officials at CCET", path: "/about/officials" },
+						{ name: "Officials at CCET", path: "/about/ccet-official" },
 						{
 							name: "Academic Heads",
 							path: "/about/academic-heads",
