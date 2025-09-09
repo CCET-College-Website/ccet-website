@@ -28,10 +28,11 @@ const AcademicsMenu = () => {
         {
             title: "Mandatory Disclosure",
             links: [
-                { name: "EoA Report 2024-25", path: "/eoa-2024" },
-                { name: "Application Part-1", path: "/application-part1" },
-                { name: "Application Part-2", path: "/application-part2" },
-                { name: "OLD AICTE EoAs", path: "/old-aicte" },
+                { name: "EoA Report 2025-26", path: "/academics/eoa-report-latest" },
+                { name: "Application Part-1", path: "/academics/application-part-1" },
+                { name: "Application Part-2", path: "/academics/application-part-2" },
+                { name: 'Deficiency Report', path: '/academics/deficiency-report' },
+                { name: "OLD AICTE EoAs", path: "/academics/old-aicte-eoas" },
             ],
         },
         {
@@ -43,10 +44,10 @@ const AcademicsMenu = () => {
                 { name: "Affiliating University", path: "https://puchd.ac.in/" },
             ],
         },
-    ];
+    ]
 
     return (
-        <div className="absolute top-full left-1/2 transform -translate-x-[31%] hidden group-hover:grid grid-cols-4 bg-white/70 backdrop-blur-md shadow-xl z-50 p-6 gap-6 text-1xl text-gray-800 rounded-lg border border-gray-100 w-[1000px] max-w-[90vw]">
+        <div className="absolute top-full left-1/2 transform -translate-x-[45%] hidden group-hover:grid grid-cols-4 bg-white/70 backdrop-blur-md shadow-xl z-50 p-6 gap-6 text-1xl text-gray-800 rounded-lg border border-gray-100 w-[1000px] max-w-[90vw]">
             {sections.map((section, i) => (
                 <div key={i}>
                     <div className="font-semibold border-b border-gray-200 pb-2 mb-3 text-red-700">

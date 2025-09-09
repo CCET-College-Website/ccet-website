@@ -32,7 +32,7 @@ const NewsDetails = () => {
     return (
         <>
         <section className="news-section">
-            <h2 className="news-title1">Latest News</h2>
+            <h2 className="news-title1">Notices</h2>
             <div className="news-list">
                 {newsList.map((news, idx) => (
                     <div className="news-card" key={idx}>
