@@ -69,8 +69,7 @@ const Header = () => {
 						{ name: 'Class Rooms', path: '/life/classrooms' },
 						{ name: 'Canteen', path: '/about/canteen' },
 						{ name: 'Infrastructure', path: '/life/infrastructure' },
-						{ name: 'Policy on use of IT Resources', path: '/life/it-policy' },
-						{ name: 'Sports Facility', path: '/life/sports' }
+						{ name: 'Policy on use of IT Resources', path: '/life/it-policy' }
 					],
 				},
 			]

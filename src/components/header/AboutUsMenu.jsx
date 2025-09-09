@@ -124,6 +124,7 @@ const AboutUsMenu = () => {
         >
           Policy on use of IT Resources
         </a>,
+ main
         <Link
             to="/sports-facility"
             className="block w-full"
@@ -132,6 +133,8 @@ const AboutUsMenu = () => {
  main
           Sports Facility
         </Link>,
+
+ main
       ],
     },
   ];

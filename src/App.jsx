@@ -74,6 +74,7 @@ import FingerPrintIssue2 from "./pages/FingerPrint/FingerPrint2.jsx";
 import ExamNotice1 from "./pages/ExamNotice/ExamNotice1.jsx";
 import ExamNotice2 from "./pages/ExamNotice/ExamNotice2.jsx";
 import Scholarship from './pages/Students-Section/Scholarship.jsx';
+import Forms from './pages/Forms/Forms.jsx';
 
 // ECE Department
 import EceOverview from "./pages/ECE-Department/ece-overview.jsx";
@@ -150,7 +151,7 @@ main
         <Route path="/girls-hostel" element={<GirlsHostel/>}/>
         <Route path="/sports-facilities" element={<SportsFacility/>}/>
         <Route path="/scholarships" element={<Scholarship />} />
-
+        <Route path="/student-forms" element={<Forms/>} />
 
         {/* About Section */}
  main
