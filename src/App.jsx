@@ -54,6 +54,7 @@ import BoysHostel from "./pages/BoysHostel/BoysHostel.jsx";
 import GirlsHostel from "./pages/GirlsHostel/GirlsHostel.jsx";
 import FingerPrintIssue1 from "./pages/FingerPrint/FingerPrint1.jsx";
 import FingerPrintIssue2 from "./pages/FingerPrint/FingerPrint2.jsx";
+import Webmasters from "./pages/webmasters.jsx";
 
 import ExamNotice2 from "./pages/ExamNotice/ExamNotice2.jsx";
 import Scholarship from './pages/Students-Section/Scholarship.jsx';
@@ -226,6 +227,9 @@ function App() {
                 <Route path="/magazine/fingerprint-vii-2" element={<FingerPrintIssue2 />} />
 
                 <Route path="/notices/exam-notice-2" element={<ExamNotice2 />} />
+
+                {/*Webmasters*/}
+                <Route path="/webmasters" element={<Webmasters />} />
 
             </Routes>
             <Footer />
