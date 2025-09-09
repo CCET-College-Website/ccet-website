@@ -1,3 +1,4 @@
+// src/components/header/AboutUsMenu.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -19,13 +20,15 @@ const AboutUsMenu = () => {
     {
       title: "Administration",
       links: [
-        <Link to="/about/principal" className="block w-full">
+        <Link to="/about/principal" className="block w-full" key="principal">
           Principal
         </Link>,
-        "Officials at CCET",
-        <Link to="/about/academic-heads" className="block w-full">
+        <Link to="/about/officials" className="block w-full" key="officials">
+          Officials at CCET
+        </Link>,
+        <Link to="/about/academic-heads" className="block w-full" key="academic-heads">
           Academic Heads
-        </Link>, // ✅ Only this link is clickable
+        </Link>,
         "Administrator",
       ],
     },
@@ -33,14 +36,20 @@ const AboutUsMenu = () => {
       title: "Life @ CCET",
       links: [
         "Campus Virtual Tour",
-        <Link to="https://ccet.ac.in/library/" className="block w-full">
+        <a
+          href="https://ccet.ac.in/library/"
+          className="block w-full"
+          key="library"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Library
-        </Link>,
+        </a>,
         "Class Rooms",
         "Canteen",
         "Infrastructure",
         "Policy on use of IT Resources",
-        <Link to="/sports-facility" className="block w-full">
+        <Link to="/sports-facility" className="block w-full" key="sports-facility">
           Sports Facility
         </Link>,
       ],
@@ -60,7 +69,7 @@ const AboutUsMenu = () => {
                 key={j}
                 className="hover:bg-[#FB923C] hover:text-white cursor-pointer transition-colors duration-200 px-2 py-1 rounded"
               >
-                {link}
+                {React.isValidElement(link) ? link : <span className="block w-full">{link}</span>}
               </li>
             ))}
           </ul>
