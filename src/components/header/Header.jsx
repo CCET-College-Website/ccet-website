@@ -75,6 +75,42 @@ const Header = () => {
 			]
 		},
 		{
+			label: 'Admissions',
+			menu: <AdmissionsMenu />,
+			sections: [
+				{
+					title: 'Admissions',
+					links: [
+						{ name: 'Admission Notices', path: '/admissions/notices' },
+						{ name: 'Help Desk', path: '/admissions/help-desk' }
+					],
+				},
+				{
+					title: 'Programmes',
+					links: [
+						{ name: 'Degree Course', path: '/admissions/degree-course' },
+						{ name: 'Degree Course (PU-LEET)', path: '/admissions/pu-leet' },
+						{ name: 'Doctorate (PhD)', path: '/admissions/phd' }
+					],
+				},
+				{
+					title: 'JAC',
+					links: [
+						{ name: 'Portal', path: '/admissions/jac-portal' },
+						{ name: 'Counselling Schedule', path: '/admissions/counselling-schedule' },
+						{ name: 'JAC Brochure 2025', path: '/admissions/jac-brochure-2025' },
+						{ name: 'Opening/Closing Rank', path: '/admissions/opening-closing-rank' }
+					],
+				},
+				{
+					title: 'Criteria',
+					links: [
+						{ name: 'Eligibility', path: '/admissions/eligibility' }
+					],
+				},
+			]
+		},
+		{
 			label: 'Academics',
 			menu: <AcademicsMenu />,
 			sections: [
@@ -177,42 +213,7 @@ const Header = () => {
 			]
 		},
 		{ label: 'Placements', path: 'https://ccet.ac.in/tnp/', external: true },
-		{
-			label: 'Admissions',
-			menu: <AdmissionsMenu />,
-			sections: [
-				{
-					title: 'Admissions',
-					links: [
-						{ name: 'Admission Notices', path: '/admissions/notices' },
-						{ name: 'Help Desk', path: '/admissions/help-desk' }
-					],
-				},
-				{
-					title: 'Programmes',
-					links: [
-						{ name: 'Degree Course', path: '/admissions/degree-course' },
-						{ name: 'Degree Course (PU-LEET)', path: '/admissions/pu-leet' },
-						{ name: 'Doctorate (PhD)', path: '/admissions/phd' }
-					],
-				},
-				{
-					title: 'JAC',
-					links: [
-						{ name: 'Portal', path: '/admissions/jac-portal' },
-						{ name: 'Counselling Schedule', path: '/admissions/counselling-schedule' },
-						{ name: 'JAC Brochure 2025', path: '/admissions/jac-brochure-2025' },
-						{ name: 'Opening/Closing Rank', path: '/admissions/opening-closing-rank' }
-					],
-				},
-				{
-					title: 'Criteria',
-					links: [
-						{ name: 'Eligibility', path: '/admissions/eligibility' }
-					],
-				},
-			]
-		},
+		
 		
 		{
 			label: 'Notices',
