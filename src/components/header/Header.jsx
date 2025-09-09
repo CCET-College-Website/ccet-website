@@ -75,6 +75,42 @@ const Header = () => {
 			]
 		},
 		{
+			label: 'Admissions',
+			menu: <AdmissionsMenu />,
+			sections: [
+				{
+					title: 'Admissions',
+					links: [
+						{ name: 'Admission Notices', path: '/admissions/notices' },
+						{ name: 'Help Desk', path: '/admissions/help-desk' }
+					],
+				},
+				{
+					title: 'Programmes',
+					links: [
+						{ name: 'Degree Course', path: '/admissions/degree-course' },
+						{ name: 'Degree Course (PU-LEET)', path: '/admissions/pu-leet' },
+						{ name: 'Doctorate (PhD)', path: '/admissions/phd' }
+					],
+				},
+				{
+					title: 'JAC',
+					links: [
+						{ name: 'Portal', path: '/admissions/jac-portal' },
+						{ name: 'Counselling Schedule', path: '/admissions/counselling-schedule' },
+						{ name: 'JAC Brochure 2025', path: '/admissions/jac-brochure-2025' },
+						{ name: 'Opening/Closing Rank', path: '/admissions/opening-closing-rank' }
+					],
+				},
+				{
+					title: 'Criteria',
+					links: [
+						{ name: 'Eligibility', path: '/admissions/eligibility' }
+					],
+				},
+			]
+		},
+		{
 			label: 'Academics',
 			menu: <AcademicsMenu />,
 			sections: [
@@ -164,7 +200,7 @@ const Header = () => {
 						{ name: 'Apratim', external: true, url: 'https://apratim.ccet.ac.in/' },
 						{ name: 'ACM @ CCET', path: 'https://ccet.acm.org/', external: true },
 						{ name: 'ASME @ CCET', path: '/events/asme' },
-						{ name: 'NSS', path: '/events/nss' }
+								{ name: 'NSS', path: '/events/nss' }
 					],
 				},
 				{
@@ -176,43 +212,8 @@ const Header = () => {
 				},
 			]
 		},
-		{
-			label: 'Admissions',
-			menu: <AdmissionsMenu />,
-			sections: [
-				{
-					title: 'Admissions',
-					links: [
-						{ name: 'Admission Notices', path: '/admissions/notices' },
-						{ name: 'Help Desk', path: '/admissions/help-desk' }
-					],
-				},
-				{
-					title: 'Programmes',
-					links: [
-						{ name: 'Degree Course', path: '/admissions/degree-course' },
-						{ name: 'Degree Course (PU-LEET)', path: '/admissions/pu-leet' },
-						{ name: 'Doctorate (PhD)', path: '/admissions/phd' }
-					],
-				},
-				{
-					title: 'JAC',
-					links: [
-						{ name: 'Portal', path: '/admissions/jac-portal' },
-						{ name: 'Counselling Schedule', path: '/admissions/counselling-schedule' },
-						{ name: 'JAC Brochure 2025', path: '/admissions/jac-brochure-2025' },
-						{ name: 'Opening/Closing Rank', path: '/admissions/opening-closing-rank' }
-					],
-				},
-				{
-					title: 'Criteria',
-					links: [
-						{ name: 'Eligibility', path: '/admissions/eligibility' }
-					],
-				},
-			]
-		},
-		{ label: 'Placements', path: '/placements' },
+		{ label: 'Placements', path: 'https://ccet.ac.in/tnp/', external: true },
+		
 		{
 			label: 'Notices',
 			menu: <NoticesMenu />,
@@ -264,7 +265,11 @@ const Header = () => {
 	const handleMainMenuClick = (menuItem) => {
 		if (menuItem.path) {
 			// Direct navigation for items with paths
-			navigate(menuItem.path);
+			if (menuItem.external) {
+				window.open(menuItem.path, '_blank');
+			} else {
+				navigate(menuItem.path);
+			}
 			setActiveNav(menuItem.label);
 			setMenuOpen(false);
 		} else if (menuItem.sections) {
@@ -326,7 +331,6 @@ const Header = () => {
 							src={CCETLogo}
 							alt="College Logo"
 						/>
-
 					</div>
 					<div className="flex flex-col flex-shrink items-center px-2 w-full max-w-[900px]">
 						<h1 className="font-serif text-white text-4xl text-center leading-tight">
@@ -364,7 +368,15 @@ const Header = () => {
 									? 'bg-yellow-400 text-red-700 shadow-md'
 									: 'text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md'
 								}`}
-								onClick={() => path && navigate(path)}
+								onClick={() => {
+									if (path) {
+										if (external) {
+											window.open(path, '_blank');
+										} else {
+											navigate(path);
+										}
+									}
+								}}
 							>
 								{label}
 							</div>
