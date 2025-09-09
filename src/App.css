@@ -1,27 +1,40 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+/* Recent Updates Styling */
+.recent-updates-wrapper {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5; /* grey strip */
+  padding: 5px 0;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  position: relative;
 }
 
+.recent-tab {
+  background: #f68b1e; /* dark orange tab */
+  color: white;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 0 12px 12px 0;
+  margin-left: 15%;   /* <-- push it towards middle like original */
+  white-space: nowrap;
+}
+
+
+.updates-marquee {
+  flex: 1;
+  margin-left: 20px;
+  color: #222;
+}
+  
 #root {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: white;
 }
-
-@layer utilities {
-  @keyframes scroll {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-  }
-
-  .animate-scroll {
-    animation: scroll 30s linear infinite;
-  }
+  
+.new-tag {
+  color: red;
+  font-weight: bold;
+  margin-right: 5px;
 }
-

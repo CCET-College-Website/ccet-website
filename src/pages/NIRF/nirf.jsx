@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "../../components/header/Header";
-import Footer from "../../components/Footer/Footer";
+import Footer from "../../components/footer/Footer";
 import nirfLogo from '../../assets/NIRF/nirf_logo.png';
 
 

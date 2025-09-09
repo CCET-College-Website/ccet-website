@@ -1,0 +1,51 @@
+.body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+.heading {
+    font-size: 60px;
+    font-weight: 500;
+    color: #1C2C4C;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.underline {
+    width: 170px;
+    height: 12px;
+    background: #FF9900;
+    border-radius: 28px;
+    margin-bottom: 40px;
+}
+
+.yearHeading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1C2C4C;
+    background: #FF9900;
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    margin: 40px 0 20px;
+}
+
+.pdfPlaceholder {
+    width: 80%;
+    max-width: 1000px;
+    height: 600px;
+    border: 2px dashed #aaa;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    font-size: 18px;
+}

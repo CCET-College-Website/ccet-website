@@ -1,0 +1,220 @@
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+    padding: 3rem 1rem;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.headerSection {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.mainHeading {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #0c3081;
+    margin-bottom: 1rem;
+    animation: fadeIn 1s ease-out;
+}
+
+.underline {
+    width: 8rem ;
+    height: 4px;
+    background-color: #facc15;
+    margin: 0 auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(250, 204, 21, 0.3);
+    animation: slideIn 1.5s ease-out 0.5s both;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: cardEntrance 0.6s ease-out both;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Delay Animations */
+.cardDelay0 {
+    animation-delay: 0.1s;
+}
+
+.cardDelay1 {
+    animation-delay: 0.3s;
+}
+
+.cardDelay2 {
+    animation-delay: 0.5s;
+}
+
+.imageContainer {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+}
+
+.profileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .profileImage {
+    transform: scale(1.1);
+}
+
+.imageOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+}
+
+.cardContent {
+    padding: 1.5rem;
+}
+
+.officialName {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.card:hover .officialName {
+    color: #2563eb;
+}
+
+.position {
+    font-size: 0.875rem;
+    color: #2563eb;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.contactInfo {
+    margin-bottom: 1.5rem;
+}
+
+.contactItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    color: #4b5563;
+    transition: color 0.2s ease;
+}
+
+.contactItem:hover {
+    color: #2563eb;
+}
+
+.contactIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    color: #facc15;
+    transition: transform 0.2s ease;
+}
+
+.contactItem:hover .contactIcon {
+    transform: scale(1.1);
+}
+
+.contactLink {
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: inherit;
+    word-break: break-all;
+}
+
+.contactLink:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 8rem;
+        opacity: 1;
+    }
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem 1rem;
+    }
+
+    .mainHeading {
+        font-size: 2rem;
+    }
+
+    .cardsGrid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .underline {
+        width: 6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .mainHeading {
+        font-size: 1.75rem;
+    }
+
+    .cardContent {
+        padding: 1rem;
+    }
+
+    .imageContainer {
+        height: 400px;
+    }
+}

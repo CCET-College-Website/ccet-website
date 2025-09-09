@@ -53,12 +53,6 @@ export default function LatestEvents() {
             <div className="p-4">
               <h3 className="font-semibold text-lg mb-2">{event.title}</h3>
               <p className="text-sm mb-2">{event.description}</p>
-              <a
-                href={event.link}
-                className="text-blue-600 hover:underline text-sm"
-              >
-                Click here for more info.
-              </a>
             </div>
           </div>
         ))}

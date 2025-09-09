@@ -7,13 +7,16 @@ const StudentsSectionMenu = () => {
       title: "Academics",
       links: [
         { name: "Student Forms", url: "/student-forms" },
-        { name: "Vidya Lakshmi (Education Loan)", url: "/vidya-lakshmi" },
         {
-          name: "National Apprenticeship Training",
-          url: "/national-apprenticeship",
+          name: "Vidya Lakshmi (Education Loan)",
+          external : true,
+          url: "https://pmvidyalaxmi.co.in/StudentLogin.aspx" },
+        {
+          name: 'National Apprenticeship Training',
+          external: true,
+          url: 'https://nats.education.gov.in/'
         },
-        { name: "Scholarships", url: "/scholarships" },
-        { name: "Fit India", url: "/fit-india" },
+        { name: "Scholarships", url: "/scholarships" }
       ],
     },
     {
@@ -28,29 +31,29 @@ const StudentsSectionMenu = () => {
     {
       title: "Student Welfare",
       links: [
-        { name: "Officials @ Student Welfare", url: "/officials" },
+        { name: "Officials @ Student Welfare", url: "/student-welfare/officials" },
         { name: "Student Council", url: "/student-council" },
         { name: "Anti Ragging", url: "/anti-ragging" },
         { name: "Anti Ragging Committee", url: "/anti-ragging-committee" },
         {
-          name: "Student Fee Payment (HDFC)",
+          name: "Student Fee Payment",
           url: "https://paydirect.eduqfix.com/app/3qTjKfysWsfqEyNTM4giVFX4VGVYGZss5NYRHpY65DaJgmu14S3Ff6NKoVa3l2Ay/6593",
         },
-        { name: "Application form to be a New Voter", url: "/new-voter" },
+        { name: "Application form to be a New Voter", url: "https://voters.eci.gov.in/" },
       ],
     },
     {
       title: "Hostel",
       links: [
         { name: "Boys Hostel", url: "/boys-hostel" },
-        { name: "Girls Hostel", url: "/girls-hostel" },
+        { name: 'Girls Hostel', url: '/girls-hostel' }
       ],
     },
     {
       title: "Events",
       links: [
-        { name: "Student Chapters/Clubs", url: "/student-chapters" },
-        { name: "Apratim", url: "/apratim" },
+        { name: "Student Chapters/Clubs", url: "/student-chapters-clubs" }, 
+        { name: "Apratim", url: "https://apratim.ccet.ac.in/" },
         { name: "ACM @ CCET", url: "https://ccet.acm.org/" },
         {
           name: "ASME @ CCET",
@@ -63,8 +66,7 @@ const StudentsSectionMenu = () => {
       title: "Sports",
       links: [
         { name: "Sports Facilities", url: "/sports-facilities" },
-        { name: "Fit India Initiative", url: "/fit-india-initiative" },
-        { name: "Sports Tournaments", url: "/sports-tournaments" },
+        { name: "Fit India Initiative", url: "/fit-india" }
       ],
     },
   ];

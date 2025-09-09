@@ -1,8 +1,9 @@
 import React from 'react';
 import './AcademicProspectusPage.css';
+import Prospectus2025 from "../../assets/PDFs/AcademicProspectus/Prospectus-2025-26.pdf"
 
 const AcademicProspectusPage = () => {
-  const currentProspectusURL = "/ccet-website/public/pdfs/Prospectus-2025.pdf";
+    const currentProspectusURL = Prospectus2025;
 
   const previousProspectuses = [
     { year: "2024-25", url: "/ccet-website/public/pdfs/Prospectus-2024.pdf" },

@@ -1,0 +1,161 @@
+.infrastructure-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(120deg, #e0ecfa 0%, #f7f7f7 100%);
+    min-height: 100vh;
+    font-family: 'Georgia', serif;
+}
+
+.banner {
+    width: 100%;
+    height: 60vh;
+    background: url('infrastructure.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 0 0 32px 32px;
+    box-shadow: 0 6px 30px rgba(40,70,150,0.10);
+    overflow: hidden;
+    margin-bottom: 16px;
+    opacity: 0.70;
+}
+
+@media (max-width: 600px) {
+    .banner {
+        height: 120px;
+        border-radius: 0 0 16px 16px;
+    }
+}
+
+.info-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(60,80,180,0.11);
+    margin: 30px 0;
+    padding: 32px 36px;
+    width: 92%;
+    max-width: 900px;
+    border: 1.5px solid #e7eaf5;
+    transition: box-shadow 0.26s, border 0.26s;
+    position: relative;
+}
+
+.info-card:hover {
+    box-shadow: 0 12px 32px rgba(90,140,255,0.18), 0 1.5px 14px rgba(60,80,170,0.13);
+    border-color: #bad2ff;
+}
+
+.info-card > div,
+.info-card ul,
+.info-card li,
+.residential-info-card > div {
+    text-align: justify;
+    color: #333;
+}
+
+.section-title {
+    margin: 0 0 22px 0;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    font-size: 2.05rem;
+    color: #24487a;
+    text-shadow: 0 2.5px 12px rgba(80,82,120,0.08);
+    background: linear-gradient(90deg, #e3eeff 0%, #fafcff 100%);
+    border-radius: 7px;
+    padding: 7px 0;
+    box-shadow: 0 1.5px 8px rgba(185,205,245,0.16);
+}
+
+.info-card ul {
+    padding-left: 1.2em;
+    margin: 18px 0 0 0;
+    transition: padding-left 0.18s;
+}
+
+.info-card li {
+    margin-bottom: 11px;
+    font-size: 1.07rem;
+    line-height: 1.6;
+    transition: color 0.18s;
+    padding-left: 0.5em;
+}
+
+.bold {
+    font-weight: bold;
+    color: #1950aa;
+}
+
+@media (max-width: 800px) {
+    .info-card {
+        padding: 16px 10px;
+    }
+    .section-title {
+        font-size: 1.3rem;
+        padding: 4px 0;
+    }
+}
+
+.residential-info-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(60,80,180,0.10);
+    margin-top: 24px;
+    margin-bottom: 36px;
+    padding: 32px 36px;
+    width: 93%;
+    max-width: 1000px;
+    text-align: left;
+    border: 1.5px solid #e7eaf5;
+    transition: box-shadow 0.22s, border 0.24s;
+    position: relative;
+}
+
+.residential-info-card:hover {
+    box-shadow: 0 12px 32px rgba(90,140,255,0.13), 0 1.5px 14px rgba(60,80,170,0.09);
+    border-color: #b6d5ff;
+}
+
+@media (max-width: 500px) {
+    .info-card,
+    .residential-info-card {
+        padding: 8px 4px;
+    }
+    .residential-info-card {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 1rem;
+    }
+}
+
+.info-card:not(:last-child)::after,
+.residential-info-card:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 76%;
+    height: 1.5px;
+    background: linear-gradient(90deg, #e1eaf4, #bfd2fa 50%, #e1eaf4);
+    margin: 30px auto 0 auto;
+    border-radius: 2px;
+}
+
+.bold:hover {
+    background: #ecf5ff;
+    border-radius: 5px;
+    transition: background 0.19s;
+}
+
+.infrastructure-container {
+    scrollbar-width: thin;
+    scrollbar-color: #6da7f2 #eef4fa;
+}
+.infrastructure-container::-webkit-scrollbar {
+    width: 10px;
+    background: #eef4fa;
+}
+.infrastructure-container::-webkit-scrollbar-thumb {
+    background: #6da7f2;
+    border-radius: 5px;
+}

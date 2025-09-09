@@ -1,0 +1,154 @@
+.container {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.heading {
+    font-size: 60px;
+    font-weight: 500;
+    color: #1C2C4C;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.underline {
+    width: 220px;
+    height: 12px;
+    background: #FF9900;
+    border-radius: 28px;
+    margin-bottom: 40px;
+}
+
+.pdfPlaceholder {
+    width: 80%;
+    max-width: 1000px;
+    height: 600px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
+.pdfViewer {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.pdfFallback {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #777;
+    font-size: 18px;
+    text-align: center;
+    padding: 20px;
+}
+
+.pdfFallback p {
+    margin: 10px 0;
+}
+
+.pdfFallback p:last-child {
+    font-size: 14px;
+    color: #999;
+}
+
+.downloadButton {
+    background: #FF9900;
+    color: #1C2C4C;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', Arial, sans-serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(255, 153, 0, 0.3);
+}
+
+.downloadButton:hover {
+    background: #e68900;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 153, 0, 0.4);
+}
+
+.downloadButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(255, 153, 0, 0.3);
+}
+
+.downloadButton:focus {
+    outline: 2px solid #FF9900;
+    outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .heading {
+        font-size: 40px;
+    }
+
+    .underline {
+        width: 180px;
+    }
+
+    .pdfPlaceholder {
+        width: 95%;
+        height: 400px;
+    }
+
+    .container {
+        padding: 20px 10px;
+    }
+
+    .downloadButton {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .pdfFallback {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading {
+        font-size: 32px;
+    }
+
+    .underline {
+        width: 150px;
+        height: 10px;
+    }
+
+    .pdfPlaceholder {
+        height: 300px;
+    }
+
+    .pdfFallback {
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    .downloadButton {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+}

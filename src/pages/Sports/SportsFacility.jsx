@@ -1,168 +1,205 @@
 import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import {Link} from 'react-router-dom';
+import styles from './SportsFacility.module.css';
+
+import sportsImage1 from '../../assets/Sports/sports-1.jpg';
+import sportsImage2 from '../../assets/Sports/sports-2.jpg';
+import sportsImage3 from '../../assets/Sports/sports-3.jpg';
+import sportsImage4 from '../../assets/Sports/sports-4.jpg';
+import sportsImage5 from '../../assets/Sports/sports-5.jpg';
+import sportsImage6 from '../../assets/Sports/sports-6.jpg';
+import sportsImage7 from '../../assets/Sports/sports-7.jpg';
+import sportsImage8 from '../../assets/Sports/sports-8.jpg';
+import sportsImage9 from '../../assets/Sports/sports-9.jpg';
+import sportsImage10 from '../../assets/Sports/sports-10.jpg';
+import profileImage from '../../assets/CSE-Department/sarabjeet_singh.jpg';
+import athleticMeetPdf from '../../assets/PDFs/Sports/Atheletic-Meet-result-2025.pdf';
+import sportsBgImage from '../../assets/Sports/Sports-bg.jpg'; // Update path as needed
 
 const SportsFacility = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
-  const images = [
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
-    "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
-    "https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1770&q=80",
-    "https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1776&q=80"
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const carouselImages = [
+    { src: sportsImage1, alt: 'Sports Complex Overview', title: 'State-of-the-art Sports Complex' },
+    { src: sportsImage2, alt: 'Football Ground', title: 'Professional Football Ground' },
+    { src: sportsImage3, alt: 'Indoor Sports Hall', title: 'Indoor Sports Facilities' },
+    { src: sportsImage4, alt: 'Athletic Track', title: 'Athletic Track & Field' },
+    { src: sportsImage5, alt: 'Basketball Court', title: 'Modern Basketball Court' },
+    { src: sportsImage6, alt: 'Swimming Pool', title: 'Olympic-size Swimming Pool' },
+    { src: sportsImage7, alt: 'Tennis Courts', title: 'Multiple Tennis Courts' },
+    { src: sportsImage8, alt: 'Gymnasium', title: 'Fully Equipped Gymnasium' },
+    { src: sportsImage9, alt: 'Cricket Field', title: 'Spacious Cricket Field' },
+    { src: sportsImage10, alt: 'Yoga & Meditation Zone', title: 'Peaceful Yoga & Meditation Zone' }
   ];
 
+  const teams = [
+    { srNo: 1, team: 'Boxing Women', captain: 'Toshiba', branch: 'CIVIL' },
+    { srNo: 2, team: 'Volleyball Men', captain: 'Harpinder Singh', branch: 'MECH' },
+    { srNo: 3, team: 'Football', captain: 'Jagrit Singh', branch: 'CSE' }
+  ];
+
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 5000);
+
+    return () => clearInterval(slideInterval);
+  }, [carouselImages.length]);
+
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
+    setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
+    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
   };
 
   const goToSlide = (index) => {
-    setCurrentIndex(index);
+    setCurrentSlide(index);
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 4000);
-    
-    return () => clearInterval(interval);
-  }, [currentIndex]);
-
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-50 p-4">
-        <h2 className='p-2 text-3xl'>Sports Facility</h2>
-        <hr className='w-24 border-2 border-gray-600 mb-4' />
-      <div className="w-full max-w-4xl mx-auto">
-        {/* Carousel Section */}
-        <div className="relative w-full overflow-hidden rounded-lg shadow-lg mb-8">
-          <div className="relative h-64 sm:h-80 md:h-96">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className={`absolute inset-0 transition-opacity duration-700 ease-in-out
-                  ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
-              >
+      <div className={styles.pageWrapper}>
+        <div className={styles.backgroundImage}>
+          <img src={sportsBgImage} alt="Sports Background" />
+        </div>
+        <div className={styles.container}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>
+              Sports Facility
+              <div className={styles.underline}></div>
+            </h1>
+          </div>
+
+          <div className={styles.carouselSection}>
+            <div className={styles.carousel}>
+              <div className={styles.carouselContainer}>
+                <div
+                    className={styles.carouselTrack}
+                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {carouselImages.map((image, index) => (
+                      <div key={index} className={styles.carouselSlide}>
+                        <img
+                            src={image.src}
+                            alt={image.alt}
+                            className={styles.carouselImage}
+                        />
+                        <div className={styles.carouselCaption}>
+                          <h3>{image.title}</h3>
+                        </div>
+                      </div>
+                  ))}
+                </div>
+
+                <button
+                    className={`${styles.carouselNav} ${styles.carouselNavPrev}`}
+                    onClick={prevSlide}
+                    aria-label="Previous slide"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button
+                    className={`${styles.carouselNav} ${styles.carouselNavNext}`}
+                    onClick={nextSlide}
+                    aria-label="Next slide"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              </div>
+
+              <div className={styles.carouselDots}>
+                {carouselImages.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`${styles.carouselDot} ${currentSlide === index ? styles.carouselDotActive : ''}`}
+                        onClick={() => goToSlide(index)}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.fitIndiaSection}>
+            <div className={styles.fitIndiaLink}>
+              <Link to="/fit-india" className={styles.linkButton}>
+                Click here to see activities as a part of FIT INDIA movement conducted at CCET.
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.teamsSection}>
+            <h2 className={styles.sectionTitle}>Existing Teams</h2>
+            <div className={styles.tableContainer}>
+              <table className={styles.teamsTable}>
+                <thead>
+                <tr>
+                  <th>Sr. No</th>
+                  <th>Team</th>
+                  <th>Captain</th>
+                  <th>Branch</th>
+                </tr>
+                </thead>
+                <tbody>
+                {teams.map((team, index) => (
+                    <tr key={index}>
+                      <td>{team.srNo}</td>
+                      <td>{team.team}</td>
+                      <td>{team.captain}</td>
+                      <td>{team.branch}</td>
+                    </tr>
+                ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className={styles.officialSection}>
+            <h2 className={styles.sectionTitle}>Sports Official(s)</h2>
+            <div className={styles.officialCard}>
+              <div className={styles.profileImageContainer}>
                 <img
-                  src={image}
-                  alt={`Slide ${index + 1}`}
-                  className="w-full h-full object-cover"
+                    src={profileImage}
+                    alt="Dr. Sarabjeet Singh"
+                    className={styles.profileImage}
                 />
               </div>
-            ))}
-            
-            <button
-              onClick={prevSlide}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full p-2 transition-all duration-300"
-              aria-label="Previous slide"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            
-            <button
-              onClick={nextSlide}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white rounded-full p-2 transition-all duration-300"
-              aria-label="Next slide"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+              <div className={styles.officialInfo}>
+                <h3 className={styles.officialName}>Dr. Sarabjeet Singh</h3>
+                <p className={styles.officialTitle}>Sports In-charge</p>
+                <div className={styles.contactInfo}>
+                  <div className={styles.contactItem}>
+                    <strong>Email:</strong>
+                    <a href="mailto:sports@ccet.ac.in" className={styles.contactLink}>
+                      sports@ccet.ac.in
+                    </a>
+                  </div>
+                  <div className={styles.contactItem}>
+                    <strong>Mobile:</strong>
+                    <a href="tel:9463739413" className={styles.contactLink}>
+                      9463739413
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <div className="absolute bottom-3 left-0 right-0 flex justify-center space-x-2">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300
-                  ${index === currentIndex ? 'bg-white scale-125' : 'bg-white/60'}`}
-                aria-label={`Go to slide ${index + 1}`}
+
+          <div className={styles.resultsSection}>
+            <h2 className={styles.sectionTitle}>Official Athletic Meet Results</h2>
+            <div className={styles.pdfContainer}>
+              <embed
+                  src={athleticMeetPdf}
+                  type="application/pdf"
+                  className={styles.pdfViewer}
+                  title="Athletic Meet Results"
               />
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-blue-50 p-4 rounded-lg shadow-md mb-8">
-          <a href="#" className="text-blue-600 hover:text-blue-800 font-medium text-lg flex items-center">
-            <span className="mr-2">Click here to see activities as a part of FIT INDIA movement conducted at CCET.</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Existing Teams</h2>
-          <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sr. No</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Team</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Captain</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Branch</th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                <tr>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Boxing Women</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Toshiba</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">CIVIL</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Volleyball Men</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Harpinder Singh</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MECH</td>
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">3</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Football</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jagrit Singh</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">CSE</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Sports Officials Section */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Sports Official(s)</h2>
-          <div className="flex flex-col md:flex-row md:items-center">
-            <div className="flex-1">
-              <h3 className="text-xl font-semibold text-gray-700">Dr. Sarabjeet Singh</h3>
-              <p className="text-gray-600">Sports In-charge</p>
-              <p className="text-blue-600 mt-2">Email: sports@ccet.ac.in</p>
-              <p className="text-gray-600">Mobile: 9483739413</p>
-            </div>
-            <div className="mt-4 md:mt-0">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
-                Contact
-              </button>
             </div>
           </div>
-        </div>
-
-        <div className="bg-green-50 p-4 rounded-lg shadow-md">
-          <a href="#" className="text-green-600 hover:text-green-800 font-medium text-lg flex items-center">
-            <span className="mr-2">Click here to download the official Annual Athletic Meet 2025 Results</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-          </a>
         </div>
       </div>
-    </div>
   );
 };
 

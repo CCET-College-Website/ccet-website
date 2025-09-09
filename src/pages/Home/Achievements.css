@@ -1,13 +1,17 @@
 .achievements-section {
   padding: 40px;
   background: #f9f9f9;
-  border-radius: 12px;
-  max-width: 900px;
+  border-radius: 16px;
   margin: auto;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   height: 500px;
   overflow: hidden;
   position: relative;
+}
+
+.dark .achievements-section {
+  background: #1f2937;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
 .achievements-title {
@@ -17,24 +21,27 @@
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 12px;
+}
+
+.dark .achievements-title {
+  color: #e5e7eb;
 }
 
 .achievements-scroll {
-  animation: scrollUp 80s linear infinite;
-}
-
-@keyframes scrollUp {
-  0% { transform: translateY(100%); }
-  100% { transform: translateY(-100%); }
+  height: 420px;
+  overflow-y: hidden;
+  padding-right: 12px;
 }
 
 .achievement-category {
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 .achievement-category h3 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+  font-weight: 600;
   color: #00509e;
   margin-bottom: 10px;
   display: flex;
@@ -42,35 +49,62 @@
   gap: 8px;
 }
 
+.dark .achievement-category h3 {
+  color: #93c5fd;
+}
+
 .achievement-category ul {
-  list-style: none;
-  padding-left: 0;
+  list-style: disc;
+  padding-left: 20px;
 }
 
 .achievement-category li {
   background: #fff;
-  padding: 12px 16px;
-  margin-bottom: 10px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  transition: transform 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, background 0.3s;
+  font-size: 0.95rem;
+}
+
+.dark .achievement-category li {
+  background: #374151;
+  color: #f9fafb;
 }
 
 .achievement-category li:hover {
   transform: scale(1.02);
 }
 
-.icon {
-  color: #ff6600;
+.achievement-category p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  background: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.image-box {
-  margin: 15px 0;
-  text-align: center;
+.dark .achievement-category p {
+  background: #374151;
+  color: #f9fafb;
 }
 
-.image-box img {
-  max-width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+/* Icons */
+.icon-gold {
+  color: #fbbf24;
+}
+.icon-green {
+  color: #22c55e;
+}
+.icon-blue {
+  color: #3b82f6;
+}
+.icon-purple {
+  color: #a855f7;
+}
+.icon-red {
+  color: #ef4444;
 }

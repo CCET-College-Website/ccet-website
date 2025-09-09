@@ -1,6 +1,7 @@
 import React from "react";
 import events from "../../assets/home/Events/events.js";
 import eventBg from "../../assets/home/Events/event-bg.jpg";
+import {Link} from "react-router-dom";
 
 const EventCalendar = () => {
   const visibleEvents = events.slice(0, 3);
@@ -38,9 +39,9 @@ const EventCalendar = () => {
           ))}
         </div>
 
-        <button className="btn btn-warning fw-bold px-4 py-2" style={{ fontSize: "1.1rem" }}>
+        <Link to="/event-calendar" className="btn btn-warning fw-bold px-4 py-2" style={{ fontSize: "1.1rem" }}>
           Read More
-        </button>
+        </Link>
       </div>
 
       <style>{`

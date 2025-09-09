@@ -85,14 +85,14 @@ const Gallery = () => {
             </div>
           ))}
         </div>
-        <div className="text-center mt-3">
+        {/* <div className="text-center mt-3">
           <button
             onClick={() => navigate('/gallery-more')}
             className="btn px-4 py-2 rounded-pill fw-medium gallery-button"
           >
             View Full Gallery
           </button>
-        </div>
+        </div> */}
       </div>
 
       <Modal
