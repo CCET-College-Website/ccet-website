@@ -22,8 +22,8 @@ const NoticesMenu = () => {
     {
       title: "Detailed Info (B.E. Exams)",
       links: [
-        { name: "Exam Notice 1", url: "/notices/exam-notice-1" },
-        { name: "Exam Notice 2", url: "/notices/exam-notice-2" },
+        { name: "All Even Semester reappear students have to send their answer sheets on the email Id:- reappeareven032022@ccet.ac.in. In case of any query, Kindly contact Er. Animesh Singh(Asstt Professor CSE) :- +919584035345",url:"" },
+        { name: "Date-sheet for B.E. Even Semester Examination to be held in Jan-June, 2025", url: "/notices/exam-notice-2" },
       ],
     },
   ];

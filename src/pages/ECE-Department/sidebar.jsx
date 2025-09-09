@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const quickLinks = [
-  { label: "Overview", path: "/ece" },
-  { label: "HOD Desk", path: "/ece/hod-desk" },
+  { label: "Overview", path: "/ece/ece-overview" },
+  { label: "HOD Desk", path: "/ece/ece-hod" },
   { label: "Faculty", path: "/ece/ece-faculty" },
   { label: "Time Table", path: "/ece/timetable" },  
-  { label: "Syllabus", path: "/ece/syllabus" },
+  { label: "Syllabus", path: "/ece/ece-syllabus" },
   { label: "Laboratories", path: "/ece/ece-labs" },
-  { label: "Research", path: "/ece/research" },
 ];
 
 export default function ECEQuickLinksSidebar() {
