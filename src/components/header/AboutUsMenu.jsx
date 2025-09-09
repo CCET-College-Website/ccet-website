@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const AboutUsMenu = () => {
   const [adminOpen, setAdminOpen] = useState(false);
+  const [nbaOpen, setNbaOpen] = useState(false);
 
   const sections = [
     {
@@ -39,7 +40,7 @@ const AboutUsMenu = () => {
           Academic Heads
         </Link>,
 
-        /* Administrator block — a single element inside the links array */
+        // Administrator block
         <div key="administrator" className="w-full">
           <button
             onClick={() => setAdminOpen(!adminOpen)}
@@ -47,8 +48,6 @@ const AboutUsMenu = () => {
             className="w-full flex items-center justify-between text-left px-0 py-1 rounded hover:bg-[#FB923C] hover:text-white transition-colors duration-200"
           >
             <span>Administrator</span>
-
-            {/* arrow that rotates when open */}
             <span
               className={`inline-block transform transition-transform duration-200 ${
                 adminOpen ? "rotate-90" : "rotate-0"
@@ -59,10 +58,10 @@ const AboutUsMenu = () => {
             </span>
           </button>
 
-          {/* submenu (links) — slides & fades */}
+          {/* Administrator Submenu */}
           <div
             className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
-              adminOpen ? "max-h-44 opacity-100 mt-2" : "max-h-0 opacity-0"
+              adminOpen ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
             }`}
           >
             <ul className="ml-0 bg-white border border-gray-200 rounded shadow-md">
@@ -82,10 +81,74 @@ const AboutUsMenu = () => {
                   Audit Reports
                 </Link>
               </li>
-              <li className="block px-4 py-2 text-gray-700 rounded hover:bg-orange-400 hover:text-white">
-                <Link to="/administrator/nba" className="w-full block">
-                  NBA
-                </Link>
+
+              {/* NBA Submenu */}
+              <li className="block w-full">
+                <button
+                  onClick={() => setNbaOpen(!nbaOpen)}
+                  aria-expanded={nbaOpen}
+                  className="w-full flex items-center justify-between px-4 py-2 text-gray-700 rounded hover:bg-orange-400 hover:text-white transition-colors duration-200"
+                >
+                  <span>NBA</span>
+                  <span
+                    className={`inline-block transform transition-transform duration-200 ${
+                      nbaOpen ? "rotate-90" : "rotate-0"
+                    }`}
+                    aria-hidden
+                  >
+                    ▶
+                  </span>
+                </button>
+
+                {/* NBA Submenu links */}
+                <div
+                  className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
+                    nbaOpen ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
+                  }`}
+                >
+                  <ul className="grid grid-cols-1 gap-2 bg-white border border-gray-200 rounded shadow-md">
+                    <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
+                      <Link
+                        to="https://ccet.ac.in/pdf/notices/general/NBA%20Accreditation%20Letter.pdf"
+                        className="block w-full"
+                      >
+                        NBA Accreditation Letter
+                      </Link>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
+                      <Link
+                        to="/nba/cse"
+                        className="block w-full"
+                      >
+                        CSE
+                      </Link>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
+                      <Link
+                        to="/nba/ece"
+                        className="block w-full"
+                      >
+                        ECE
+                      </Link>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
+                      <Link
+                        to="/nba/mech"
+                        className="block w-full"
+                      >
+                        MECH
+                      </Link>
+                    </li>
+                    <li className="px-4 py-2 hover:bg-orange-400 hover:text-white rounded">
+                      <Link
+                        to="/nba/civil"
+                        className="block w-full"
+                      >
+                        CIVIL
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </li>
             </ul>
           </div>
@@ -113,11 +176,7 @@ const AboutUsMenu = () => {
         <Link to="/about/canteen" className="block w-full" key="canteen">
           Canteen
         </Link>,
-        <Link
-          to="/infrastructure"
-          className="block w-full"
-          key="infrastructure"
-        >
+        <Link to="/infrastructure" className="block w-full" key="infrastructure">
           Infrastructure
         </Link>,
         <a
@@ -129,6 +188,10 @@ const AboutUsMenu = () => {
         >
           Policy on use of IT Resources
         </a>,
+
+        <Link to="/sports-facility" className="block w-full" key="sports-facility">
+          Sports Facility
+        </Link>,
       ],
     },
   ];
