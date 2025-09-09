@@ -213,7 +213,7 @@ const Header = () => {
 				},
 			]
 		},
-		{ label: 'Placements', path: '/placements' },
+		{ label: 'Placements', path: 'https://ccet.ac.in/tnp/', external: true },
 		{
 			label: 'Notices',
 			menu: <NoticesMenu />,
@@ -265,7 +265,11 @@ const Header = () => {
 	const handleMainMenuClick = (menuItem) => {
 		if (menuItem.path) {
 			// Direct navigation for items with paths
-			navigate(menuItem.path);
+			if (menuItem.external) {
+				window.open(menuItem.path, '_blank');
+			} else {
+				navigate(menuItem.path);
+			}
 			setActiveNav(menuItem.label);
 			setMenuOpen(false);
 		} else if (menuItem.sections) {
@@ -352,26 +356,34 @@ const Header = () => {
 				</div>
 
 				<nav className="w-full flex justify-center items-center gap-3 -mt-0 -mb-2 relative z-50">
-					{menuItems.map(({ label, menu, path }) => (
+					{menuItems.map((menuItem) => (
 						<div
-							key={label}
+							key={menuItem.label}
 							className="relative group"
-							onMouseEnter={() => setActiveNav(label)}
+							onMouseEnter={() => setActiveNav(menuItem.label)}
 							onMouseLeave={() => setTimeout(() => setActiveNav(''), undefined)}
 						>
 							<div
 								className={`cursor-pointer px-3 py-1 rounded-md font-serif text-xl whitespace-nowrap transition-all duration-200
-                  ${activeNav === label
+                  ${activeNav === menuItem.label
 									? 'bg-yellow-400 text-red-700 shadow-md'
 									: 'text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md'
 								}`}
-								onClick={() => path && navigate(path)}
+								onClick={() => {
+									if (menuItem.path) {
+										if (menuItem.external) {
+											window.open(menuItem.path, '_blank');
+										} else {
+											navigate(menuItem.path);
+										}
+									}
+								}}
 							>
-								{label}
+								{menuItem.label}
 							</div>
-							{menu && activeNav === label && (
+							{menuItem.menu && activeNav === menuItem.label && (
 								<div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-0">
-									{menu}
+									{menuItem.menu}
 								</div>
 							)}
 						</div>
