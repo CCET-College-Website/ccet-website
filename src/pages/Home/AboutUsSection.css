@@ -1,0 +1,111 @@
+/* Main container */
+.app-container {
+  padding: 20px 20px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f7f9fc;
+}
+
+/* ABOUT US heading */
+.section-heading {
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #0b2236;
+  position: relative;
+  display: inline-block;
+}
+
+/* Small accent line below ABOUT US */
+.section-heading::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #0e6b8f;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* Gradient box */
+.about-box {
+  
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+/* Left column */
+.about-text {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.about-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #00c3ff;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+/* Button */
+.enews-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: linear-gradient(#28c76f, #1aa251);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.enews-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(40, 199, 111, 0.35);
+}
+
+/* Right column */
+.video-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-container video,
+.video-container iframe {
+  width: 100%;
+  height: 320px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.video-caption {
+  margin-top: 10px;
+  font-style: italic;
+  color: #eee;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 900px) {
+  .about-box {
+    flex-direction: column;
+  }
+  .video-container video,
+  .video-container iframe {
+    height: 220px;
+  }
+}

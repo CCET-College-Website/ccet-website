@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 // Hook to detect if screen is mobile
@@ -15,7 +15,6 @@ const useIsMobile = () => {
 
 // Reusable FooterCard
 function FooterCard({ title, links }) {
-  const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(!isMobile);
 
@@ -25,14 +24,6 @@ function FooterCard({ title, links }) {
 
   const toggleOpen = () => {
     if (isMobile) setIsOpen((prev) => !prev);
-  };
-
-  const handleLinkClick = (link) => {
-    if (link.external) {
-      window.open(link.url || link.path, '_blank', 'noopener,noreferrer');
-    } else {
-      navigate(link.path);
-    }
   };
 
   const showLinks = !isMobile || isOpen;
@@ -57,7 +48,7 @@ function FooterCard({ title, links }) {
                     <div className="footer-link-item" key={i}>
                       {item.external ? (
                           <a
-                              href={item.url || item.path}
+                              href={item.url}
                               className="footer-link-anchor"
                               target="_blank"
                               rel="noopener noreferrer"
@@ -65,12 +56,9 @@ function FooterCard({ title, links }) {
                             <span className="link-text">{item.name}</span>
                           </a>
                       ) : (
-                          <div
-                              className="footer-link-anchor cursor-pointer"
-                              onClick={() => handleLinkClick(item)}
-                          >
+                          <Link to={item.url} className="footer-link-anchor">
                             <span className="link-text">{item.name}</span>
-                          </div>
+                          </Link>
                       )}
                     </div>
                 ))}
@@ -83,72 +71,63 @@ function FooterCard({ title, links }) {
 
 // Footer Component
 function Footer() {
-  const navigate = useNavigate();
-
   const sections = [
     {
       title: "Explore",
       links: [
-        { name: "Library", path: "/life/library" },
-        { name: "Sports", path: "/sports-facilities" },
-        { name: "Hostel", path: "/boys-hostel" },
-        { name: "IIRC", path: "/research/iirc" },
-        { name: "IPRC", path: "/research/iprc" },
-        { name: "Innovation Cell", path: "/academics/innovation-cell" },
-        { name: "Computer Center", path: "/life/computer-center" },
-        { name: "Research and Consultancy", path: "/research/consultancy" },
+        { name: "Library", url: "/life/library" },
+        { name: "Sports Facilities", url: "/sports-facilities" },
+        { name: "Boys Hostel", url: "/boys-hostel" },
+        { name: "Girls Hostel", url: "/girls-hostel" },
+        { name: "IIRC", url: "/about/iirc" }, // adjust if added
+        { name: "IPRC", url: "/about/iprc" }, // adjust if added
+        { name: "Innovation Cell", url: "/ecell" },
+        { name: "Computer Center", url: "/about/computer-center" }, // adjust if added
+        { name: "Research and Consultancy", url: "/about/research" }, // adjust if added
       ],
     },
     {
       title: "Important Links",
       links: [
-        { name: "PU", url: "https://puchd.ac.in/", external: true },
-        { name: "UPSC", url: "https://upsc.gov.in/", external: true },
-        { name: "AICTE", url: "https://www.aicte-india.org/", external: true },
-        { name: "UGC", url: "https://www.ugc.gov.in/", external: true },
-        { name: "DST", url: "https://dst.gov.in/", external: true },
-        { name: "MHRD", url: "http://mhrd.gov.in/", external: true },
-        { name: "JEE", url: "https://jeemain.nta.nic.in/", external: true },
-        { name: "KYC", url: "https://www.india.gov.in/content/know-your-college/", external: true },
-        { name: "BIS", url: "https://www.bis.gov.in/", external: true },
-        { name: "CRIKC", url: "https://crikc.puchd.ac.in/", external: true },
-        { name: "NKN", url: "http://nkn.in/", external: true },
-        { name: "NPTEL", url: "https://nptel.ac.in/", external: true },
-        { name: "NISCAIR", url: "http://op.niscair.res.in/", external: true },
-        { name: "GATE", path: "/admissions/gate" },
-        { name: "DRDO", url: "https://drdo.gov.in/drdo/", external: true },
-        { name: "CHD ADMIN", url: "https://chandigarh.gov.in/", external: true },
+        { name: "PU", external: true, url: "https://puchd.ac.in/" },
+        { name: "UPSC", external: true, url: "https://upsc.gov.in/" },
+        { name: "AICTE", external: true, url: "https://www.aicte-india.org/" },
+        { name: "UGC", external: true, url: "https://www.ugc.gov.in/" },
+        { name: "DST", external: true, url: "https://dst.gov.in/" },
+        { name: "MHRD", external: true, url: "http://mhrd.gov.in/" },
+        { name: "JEE", external: true, url: "https://jeemain.nta.nic.in/" },
+        { name: "KYC", external: true, url: "https://www.india.gov.in/content/know-your-college/" },
+        { name: "BIS", external: true, url: "https://www.bis.gov.in/" },
+        { name: "CRIKC", external: true, url: "https://crikc.puchd.ac.in/" },
+        { name: "NKN", external: true, url: "http://nkn.in/" },
+        { name: "NPTEL", external: true, url: "https://nptel.ac.in/" },
+        { name: "NISCAIR", external: true, url: "http://op.niscair.res.in/" },
+        { name: "GATE", url: "/academics/gate" }, // internal if you have route
+        { name: "DRDO", external: true, url: "https://drdo.gov.in/drdo/" },
+        { name: "CHD ADMIN", external: true, url: "https://chandigarh.gov.in/" },
       ],
     },
     {
       title: "Info",
       links: [
-        { name: "E-News Letter", path: "/magazine/fingerprint-vii-2" },
-        { name: "Notices", path: "/notices" },
-        { name: "Forms", path: "/student-forms" },
-        { name: "Tenders", path: "/notices/tenders" },
-        { name: "NIRF", path: "/academics/nirf" },
+        { name: "E-News Letter", url: "/magazine/fingerprint-vii-1" },
+        { name: "Notices", url: "/notices/tenders" },
+        { name: "Forms", url: "/student-forms" },
+        { name: "Tenders", url: "/notices/tenders" },
+        { name: "NIRF", url: "/academics/nirf" },
       ],
     },
     {
       title: "Departments",
       links: [
-        { name: "Computer Science and Engineering", path: "/academics/cse/overview" },
-        { name: "Electronics and Communication Engineering", path: "/academics/ece" },
-        { name: "Mechanical Engineering", path: "/academics/mechanical/overview" },
-        { name: "Civil Engineering", path: "/academics/civil/overview" },
-        { name: "Applied Sciences", path: "/academics/appliedscience/overview" },
+        { name: "Computer Science and Engineering", url: "/academics/cse/overview" },
+        { name: "Electronics and Communication Engineering", url: "/academics/ece" },
+        { name: "Mechanical Engineering", url: "/academics/mechanical/overview" },
+        { name: "Civil Engineering", url: "/academics/civil/overview" },
+        { name: "Applied Sciences", url: "/academics/appliedscience/overview" },
       ],
     },
   ];
-
-  const handleFooterNavClick = (path, external = false) => {
-    if (external) {
-      window.open(path, '_blank', 'noopener,noreferrer');
-    } else {
-      navigate(path);
-    }
-  };
 
   return (
       <footer className="footer-section">
@@ -170,36 +149,11 @@ function Footer() {
               <p className="copyright-text">© 2025, CCET, All rights reserved</p>
               <nav className="footer-nav" aria-label="Footer navigation">
                 <div className="footer-nav-links">
-                <span
-                    onClick={() => handleFooterNavClick('/')}
-                    className="cursor-pointer hover:text-yellow-300 transition-colors"
-                >
-                  Home
-                </span>
-                  <span
-                      onClick={() => handleFooterNavClick('/about/webmasters')}
-                      className="cursor-pointer hover:text-yellow-300 transition-colors"
-                  >
-                  Webmasters
-                </span>
-                  <span
-                      onClick={() => handleFooterNavClick('/student-welfare/anti-ragging')}
-                      className="cursor-pointer hover:text-yellow-300 transition-colors"
-                  >
-                  Anti-Ragging
-                </span>
-                  <span
-                      onClick={() => handleFooterNavClick('/privacy-policy')}
-                      className="cursor-pointer hover:text-yellow-300 transition-colors"
-                  >
-                  Privacy Policy
-                </span>
-                  <span
-                      onClick={() => handleFooterNavClick('/contact')}
-                      className="cursor-pointer hover:text-yellow-300 transition-colors"
-                  >
-                  Quick Inquiry
-                </span>
+                  <Link to="/">Home</Link>
+                  <Link to="/webmasters">Webmasters</Link>
+                  <Link to="/anti-ragging">Anti-Ragging</Link>
+                  <Link to="/privacy-policy">Privacy Policy</Link>
+                  <Link to="/contact">Quick Inquiry</Link>
                 </div>
               </nav>
             </div>

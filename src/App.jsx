@@ -17,6 +17,9 @@ import AntiRaggingCommittee from "./pages/Students-Section/Student-Welfare/Anti-
 import Academicheads from "./pages/AcadmicHeads/Academicheads.jsx";
 import Courses from "./pages/Courses/Courses.jsx";
 import Principal from "./pages/Principal/Principal.jsx";
+import RulesPolicies from "./pages/Administrator/RulesPolicies.jsx";
+import AuditReport from "./pages/Administrator/AuditReport.jsx";
+import Nba from "./pages/Administrator/Nba.jsx";
 import AcademicProspectusPage from "./pages/Academic-Prospectus/AcademicProspectusPage.jsx";
 import ContactUs from "./pages/ContactUs/ContactUs.jsx";
 import NIRF from "./pages/NIRF/nirf.jsx";
@@ -51,7 +54,7 @@ import BoysHostel from "./pages/BoysHostel/BoysHostel.jsx";
 import GirlsHostel from "./pages/GirlsHostel/GirlsHostel.jsx";
 import FingerPrintIssue1 from "./pages/FingerPrint/FingerPrint1.jsx";
 import FingerPrintIssue2 from "./pages/FingerPrint/FingerPrint2.jsx";
-import ExamNotice1 from "./pages/ExamNotice/ExamNotice1.jsx";
+
 import ExamNotice2 from "./pages/ExamNotice/ExamNotice2.jsx";
 import Scholarship from './pages/Students-Section/Scholarship.jsx';
 import Forms from './pages/Forms/Forms.jsx';
@@ -138,6 +141,9 @@ function App() {
                 <Route path="/about/campus-map" element={<CampusMap />} />
                 <Route path="/about/canteen" element={<Canteen />} />
                 <Route path="/about/classrooms" element={<Classrooms />} />
+                 <Route path="/administrator/rules-policies" element={<RulesPolicies />} />
+                 <Route path="/administrator/audit-report" element={<AuditReport />} />
+                 <Route path="/administrator/nba" element={<Nba />} />
 
                 {/* Programmes */}
                 <Route path="/programmes/pu-leet" element={<Leet />} />
@@ -218,7 +224,7 @@ function App() {
                 {/* Notices */}
                 <Route path="/magazine/fingerprint-vii-1" element={<FingerPrintIssue1 />} />
                 <Route path="/magazine/fingerprint-vii-2" element={<FingerPrintIssue2 />} />
-                <Route path="/notices/exam-notice-1" element={<ExamNotice1 />} />
+
                 <Route path="/notices/exam-notice-2" element={<ExamNotice2 />} />
 
             </Routes>

@@ -235,7 +235,6 @@ const Header = () => {
 				{
 					title: 'Detailed Info (B.E. Exams)',
 					links: [
-						{ name: 'Exam Notice 1', path: '/notices/exam-notice-1' },
 						{ name: 'Exam Notice 2', path: '/notices/exam-notice-2' }
 					],
 				},
