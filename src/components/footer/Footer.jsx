@@ -75,15 +75,15 @@ function Footer() {
     {
       title: "Explore",
       links: [
-        { name: "Library", url: "/life/library" },
+        { name: "Library",external: true, url: "https://ccet.ac.in/library" },
         { name: "Sports Facilities", url: "/sports-facilities" },
         { name: "Boys Hostel", url: "/boys-hostel" },
         { name: "Girls Hostel", url: "/girls-hostel" },
-        { name: "IIRC", url: "/about/iirc" }, // adjust if added
-        { name: "IPRC", url: "/about/iprc" }, // adjust if added
+        { name: "IIRC", url: "/iirc" },
+        { name: "IPRC", url: "/iprc" },
         { name: "Innovation Cell", url: "/ecell" },
-        { name: "Computer Center", url: "/about/computer-center" }, // adjust if added
-        { name: "Research and Consultancy", url: "/about/research" }, // adjust if added
+        { name: "Computer Center", url: "/computercentre" },
+        { name: "Research and Consultancy", url: "/research" },
       ],
     },
     {
@@ -121,7 +121,7 @@ function Footer() {
       title: "Departments",
       links: [
         { name: "Computer Science and Engineering", url: "/academics/cse/overview" },
-        { name: "Electronics and Communication Engineering", url: "/academics/ece" },
+        { name: "Electronics and Communication Engineering", url: "/ece" },
         { name: "Mechanical Engineering", url: "/academics/mechanical/overview" },
         { name: "Civil Engineering", url: "/academics/civil/overview" },
         { name: "Applied Sciences", url: "/academics/appliedscience/overview" },

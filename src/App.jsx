@@ -102,6 +102,10 @@ import CseLabs from "./pages/CSE-Department/CseLabs.jsx";
 import CseTimeTable from "./pages/CSE-Department/CseTimeTable.jsx";
 import CseSyllabus from "./pages/CSE-Department/CseSyllabus.jsx";
 import CseResearch from "./pages/CSE-Department/CseResearch.jsx";
+import IIRC from "./pages/IIRC/IIRC.jsx";
+import Research from "./pages/Research/Research.jsx";
+import IPRC from "./pages/IPRC/IPRC.jsx";
+import ComputerCentre from "./pages/ComputerCentre/ComputerCentre.jsx";
 
 function App() {
     return (
@@ -120,6 +124,10 @@ function App() {
                 <Route path="/convocation" element={<Convocation />} />
                 <Route path="/contact" element={<ContactUs />} />
                 <Route path="/admissions/help-desk" element={<HelpDesk />} />
+                <Route path="/iirc" element={<IIRC />} />
+                <Route path="/research" element={<Research />} />
+                <Route path="/iprc" element={<IPRC />} />
+                <Route path="/computercentre" element={<ComputerCentre />} />
 
                 {/* Student Section */}
                 <Route path="/anti-ragging" element={<AntiRagging />} />
