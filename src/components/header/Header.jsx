@@ -164,7 +164,7 @@ const Header = () => {
 						{ name: 'Apratim', external: true, url: 'https://apratim.ccet.ac.in/' },
 						{ name: 'ACM @ CCET', path: 'https://ccet.acm.org/', external: true },
 						{ name: 'ASME @ CCET', path: '/events/asme' },
-						{ name: 'NSS', path: '/events/nss' }
+								{ name: 'NSS', path: '/events/nss' }
 					],
 				},
 				{
@@ -176,6 +176,7 @@ const Header = () => {
 				},
 			]
 		},
+		{ label: 'Placements', path: 'https://ccet.ac.in/tnp/', external: true },
 		{
 			label: 'Admissions',
 			menu: <AdmissionsMenu />,
@@ -212,7 +213,7 @@ const Header = () => {
 				},
 			]
 		},
-		{ label: 'Placements', path: '/placements' },
+		
 		{
 			label: 'Notices',
 			menu: <NoticesMenu />,
@@ -264,7 +265,11 @@ const Header = () => {
 	const handleMainMenuClick = (menuItem) => {
 		if (menuItem.path) {
 			// Direct navigation for items with paths
-			navigate(menuItem.path);
+			if (menuItem.external) {
+				window.open(menuItem.path, '_blank');
+			} else {
+				navigate(menuItem.path);
+			}
 			setActiveNav(menuItem.label);
 			setMenuOpen(false);
 		} else if (menuItem.sections) {
@@ -364,7 +369,15 @@ const Header = () => {
 									? 'bg-yellow-400 text-red-700 shadow-md'
 									: 'text-white hover:bg-yellow-400 hover:text-red-700 hover:shadow-md'
 								}`}
-								onClick={() => path && navigate(path)}
+								onClick={() => {
+									if (path) {
+										if (external) {
+											window.open(path, '_blank');
+										} else {
+											navigate(path);
+										}
+									}
+								}}
 							>
 								{label}
 							</div>
