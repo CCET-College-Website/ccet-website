@@ -1,32 +1,104 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Forms.module.css';
 
 const Forms = () => {
     const [activeCategory, setActiveCategory] = useState('All');
+    const [forms, setForms] = useState([]);
+    const [allForms, setAllForms] = useState([]);
+    const [categories, setCategories] = useState(['All']);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const categories = ['All', 'Departmental Forms', 'T & P', 'Faculty/Staff Forms', 'Student Forms', 'Student Club Forms'];
+    const typeDisplayMap = {
+        'student': 'Student Forms',
+        'faculty': 'Faculty/Staff Forms',
+        'sc': 'Student Club Forms',
+        'departmental': 'Departmental Forms',
+        'tp': 'T & P'
+    };
 
-    const forms = [
-        { name: 'Performa for No Dues', date: '2025-08-28', category: 'Student Forms' },
-        { name: 'Refund for College/Hostel Security', date: '2024-06-25', category: 'Student Forms' },
-        { name: 'Hostel Application Form - Boys', date: '2024-05-26', category: 'Student Forms' },
-        { name: 'Hostel Application Form - Girls', date: '2024-05-26', category: 'Student Forms' },
-        { name: 'Student Attendance Shortage Undertaking', date: '2024-05-26', category: 'Student Forms' },
-        { name: 'Student Leave Application Form', date: '2024-05-26', category: 'Student Forms' },
-        { name: 'Proforma Computational', date: '2023-02-20', category: 'Departmental Forms' },
-        { name: 'Admission to PhD Programme', date: '2019-10-10', category: 'Student Forms' },
-        { name: 'ID Card Performa for PhD Students', date: '2019-10-10', category: 'Student Forms' },
-        { name: 'Payment to expert', date: '2019-10-10', category: 'Faculty/Staff Forms' },
-        { name: 'Performa for Issue of Certificate', date: '2019-10-10', category: 'Student Forms' },
-        { name: 'Permission to Leave Hostel (girls)', date: '2019-10-10', category: 'Student Forms' },
-        { name: 'Scholarship Claim', date: '2019-10-10', category: 'Student Forms' },
-        { name: 'Event Permission and Financial Sanction by Clubs', date: '2018-09-22', category: 'Student Club Forms' },
-        { name: 'Requirement-Repair of Computational Items', date: '2018-09-22', category: 'Departmental Forms' }
-    ];
+    useEffect(() => {
+        fetchAllForms();
+    }, []);
 
-    const filteredForms = activeCategory === 'All'
-        ? forms
-        : forms.filter(form => form.category === activeCategory);
+    const fetchAllForms = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const response = await fetch('https://ccet.ac.in/api/forms.php');
+            const result = await response.json();
+
+            if (result.success) {
+                setAllForms(result.data);
+                setForms(result.data);
+
+                // Extract unique types (case-insensitive) and create categories
+                const uniqueTypes = [...new Set(result.data.map(form => form.type.toLowerCase()))];
+                const displayCategories = ['All', ...uniqueTypes.map(type =>
+                    typeDisplayMap[type] || type.charAt(0).toUpperCase() + type.slice(1) + ' Forms'
+                )];
+                setCategories(displayCategories);
+            } else {
+                setError(result.error || 'Failed to fetch forms');
+            }
+        } catch (err) {
+            setError('Network error: ' + err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (activeCategory === 'All') {
+            setForms(allForms);
+        } else {
+            const dbType = Object.keys(typeDisplayMap).find(
+                key => typeDisplayMap[key] === activeCategory
+            ) || activeCategory.toLowerCase().replace(' forms', '');
+
+            const filtered = allForms.filter(form => form.type.toLowerCase() === dbType);
+            setForms(filtered);
+        }
+    }, [activeCategory, allForms]);
+
+    const handleDownload = (link) => {
+        if (link) {
+            const path = link.startsWith('/') ? link : `/${link}`;
+            const encodedPath = path.split('/').map(segment => encodeURIComponent(segment)).join('/');
+            const fullUrl = `https://ccet.ac.in${encodedPath}`;
+            window.open(fullUrl, '_blank');
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className={styles.container}>
+                <header className={styles.header}>
+                    <h1 className={styles.title}>FORMS</h1>
+                </header>
+                <div style={{ textAlign: 'center', padding: '50px' }}>
+                    <p>Loading forms...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className={styles.container}>
+                <header className={styles.header}>
+                    <h1 className={styles.title}>FORMS</h1>
+                </header>
+                <div style={{ textAlign: 'center', padding: '50px', color: 'red' }}>
+                    <p>{error}</p>
+                    <button onClick={fetchAllForms} style={{ marginTop: '20px', padding: '10px 20px' }}>
+                        Retry
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className={styles.container}>
@@ -56,19 +128,24 @@ const Forms = () => {
                     <div className={styles.headerCell}>Action</div>
                 </div>
 
-                {filteredForms.map((form, index) => (
+                {forms.map((form, index) => (
                     <div key={index} className={styles.formRow}>
                         <div className={styles.formCell}>
-                            <span className={styles.formName}>{form.name}</span>
+                            <span className={styles.formName}>{form.title}</span>
                         </div>
                         <div className={styles.formCell}>
-                            <span className={styles.formDate}>{form.date}</span>
+                            <span className={styles.formDate}>{form['date-issued']}</span>
                         </div>
                         <div className={styles.formCell}>
-                            <span className={styles.formCategory}>{form.category}</span>
+                            <span className={styles.formCategory}>
+                                {typeDisplayMap[form.type] || form.type.charAt(0).toUpperCase() + form.type.slice(1) + ' Forms'}
+                            </span>
                         </div>
                         <div className={styles.formCell}>
-                            <button className={styles.downloadBtn}>
+                            <button
+                                className={styles.downloadBtn}
+                                onClick={() => handleDownload(form.link)}
+                            >
                                 Download
                             </button>
                         </div>
@@ -76,7 +153,7 @@ const Forms = () => {
                 ))}
             </div>
 
-            {filteredForms.length === 0 && (
+            {forms.length === 0 && (
                 <div className={styles.noForms}>
                     <p>No forms available in this category.</p>
                 </div>
