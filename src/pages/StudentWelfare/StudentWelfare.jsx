@@ -1,70 +1,96 @@
 // StudentWelfareOfficials.jsx
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, Loader, AlertTriangle } from 'lucide-react'; // Added icons for better feedback
 import styles from './StudentWelfare.module.css';
-// These imports are now kept for potential fallback or if the API only returns filenames
-// You might need a function to map these filenames to the correct local paths if the API data is used.
-import sunilImage from 'https://www.ccet.ac.in/img/faculty-cse/sk_singh.jpg';
-import gulshanImage from 'https://www.ccet.ac.in/img/faculty-cse/sk_singh.jpg';
-import anilImage from 'https://www.ccet.ac.in/img/faculty-cse/sk_singh.jpg';
 
-// Define the API URL
+// Define the API URL and a base URL for images
 const API_URL = 'https://ccet.ac.in/api/student-welfare.php';
+// ASSUMPTION: If the API returns a filename (e.g., 'sk_singh.jpg'), 
+// this is the base URL to construct the full image path.
+const IMAGE_BASE_URL = 'https://ccet.ac.in/img/faculty-cse/'; 
 
-// Map API image filenames to local imports (assuming the API returns just the filename)
-const localImageMap = {
-    'CSE-hodDesk.jpg': sunilImage,
-    'gulshan_goyal.jpg': gulshanImage,
-    'anil_vaghmare.jpg': anilImage,
-    // Add other image mappings if necessary
-};
+// --- Component Definition ---
 
 const StudentWelfare = () => {
     const [officials, setOfficials] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Function to construct the full image URL
+    const getOfficialImageUrl = (filenameOrUrl) => {
+        // Check if the string looks like a full URL already (starts with http)
+        if (filenameOrUrl && filenameOrUrl.startsWith('http')) {
+            return filenameOrUrl;
+        }
+        // Otherwise, prepend the base URL to the filename
+        return filenameOrUrl ? `${IMAGE_BASE_URL}${filenameOrUrl}` : null;
+    };
+
     useEffect(() => {
         const fetchOfficials = async () => {
             try {
                 const response = await fetch(API_URL);
+                
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+                
                 const data = await response.json();
                 
-                // Process the data: Map image filenames to local imports or API image URLs
+                // Process the data: Construct the final image URL
                 const processedOfficials = data.map(official => ({
-                    id: official.id,
-                    name: official.name,
-                    position: official.position,
-                    email: official.email,
-                    mobile: official.mobile,
-                    // Use the local map to get the imported image path
-                    image: localImageMap[official.image] || official.image, // Fallback to filename if not in map (e.g., if it's an absolute URL)
+                    ...official, // Spread all existing properties (id, name, email, etc.)
+                    // Use the helper function to ensure we get a valid image URL
+                    image: getOfficialImageUrl(official.image),
                 }));
                 
                 setOfficials(processedOfficials);
                 setError(null);
             } catch (e) {
                 console.error("Failed to fetch student welfare officials:", e);
-                setError("Failed to load officials. Please try again later.");
-                // Optionally, you can set a fallback list of officials here
+                setError("Failed to load official data. Please check the network connection.");
             } finally {
                 setIsLoading(false);
             }
         };
 
         fetchOfficials();
-    }, []); // Empty dependency array means this runs once after the initial render
+    }, []);
+
+    // --- Conditional Rendering ---
 
     if (isLoading) {
-        return <div className={styles.container}><p>Loading officials...</p></div>;
+        return (
+            <div className={styles.container}>
+                <div className={styles.loadingState}>
+                    <Loader className={styles.loadingIcon} size={32} />
+                    <p>Loading officials...</p>
+                </div>
+            </div>
+        );
     }
 
     if (error) {
-        return <div className={styles.container}><p className={styles.errorMessage}>Error: {error}</p></div>;
+        return (
+            <div className={styles.container}>
+                <div className={styles.errorState}>
+                    <AlertTriangle className={styles.errorIcon} size={32} />
+                    <h2 className={styles.errorMessageHeader}>Data Error</h2>
+                    <p className={styles.errorMessage}>{error}</p>
+                </div>
+            </div>
+        );
     }
+
+    if (officials.length === 0) {
+        return (
+            <div className={styles.container}>
+                <p>No student welfare officials found at this time.</p>
+            </div>
+        );
+    }
+
+    // --- Main Render ---
 
     return (
         <div className={styles.container}>
@@ -81,15 +107,18 @@ const StudentWelfare = () => {
                 <div className={styles.cardsGrid}>
                     {officials.map((official, index) => (
                         <div
-                            key={official.id}
+                            key={official.id || index} // Use index as fallback key
                             className={`${styles.card} ${styles[`cardDelay${index}`]}`}
+                            role="region"
+                            aria-label={`${official.name} contact card`}
                         >
                             {/* Profile Image */}
                             <div className={styles.imageContainer}>
                                 <img
-                                    src={official.image}
-                                    alt={official.name}
+                                    src={official.image || "placeholder.jpg"} // Fallback to a local placeholder image if API link is null
+                                    alt={`Official photo of ${official.name}`} // Improved accessibility
                                     className={styles.profileImage}
+                                    loading="lazy" // Performance improvement
                                 />
                                 <div className={styles.imageOverlay}></div>
                             </div>
@@ -105,24 +134,28 @@ const StudentWelfare = () => {
 
                                 {/* Contact Information */}
                                 <div className={styles.contactInfo}>
-                                    <div className={styles.contactItem}>
-                                        <Mail className={styles.contactIcon} />
-                                        <a
-                                            href={`mailto:${official.email}`}
-                                            className={styles.contactLink}
-                                        >
-                                            {official.email}
-                                        </a>
-                                    </div>
-                                    <div className={styles.contactItem}>
-                                        <Phone className={styles.contactIcon} />
-                                        <a
-                                            href={`tel:${official.mobile}`}
-                                            className={styles.contactLink}
-                                        >
-                                            {official.mobile}
-                                        </a>
-                                    </div>
+                                    {official.email && (
+                                        <div className={styles.contactItem}>
+                                            <Mail className={styles.contactIcon} />
+                                            <a
+                                                href={`mailto:${official.email}`}
+                                                className={styles.contactLink}
+                                            >
+                                                {official.email}
+                                            </a>
+                                        </div>
+                                    )}
+                                    {official.mobile && (
+                                        <div className={styles.contactItem}>
+                                            <Phone className={styles.contactIcon} />
+                                            <a
+                                                href={`tel:${official.mobile}`}
+                                                className={styles.contactLink}
+                                            >
+                                                {official.mobile}
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
