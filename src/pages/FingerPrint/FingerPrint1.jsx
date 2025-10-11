@@ -1,37 +1,124 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Download } from 'lucide-react';
 import styles from './Report.module.css';
-import FingerPrintPdf from '../../assets/PDFs/FingerPrint/Newsletter-Issue-1.pdf';
 
 const FingerPrint = () => {
+    const [pdfs, setPdfs] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [activePdfIndex, setActivePdfIndex] = useState(0);
+
+    const TAB_ID = 68;
+
+    useEffect(() => {
+        fetchPdfs();
+    }, []);
+
+    const fetchPdfs = async () => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await fetch(`https://ccet.ac.in/api/header.php?endpoint=pdfs&tab_id=${TAB_ID}`);
+            const result = await response.json();
+
+            if (result.data && result.data.length > 0) {
+                setPdfs(result.data);
+            } else {
+                setError("No FingerPrint issues available");
+                setPdfs([]);
+            }
+        } catch (err) {
+            setError("Error loading FingerPrint issues");
+            console.error("FingerPrint fetch error:", err);
+            setPdfs([]);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getFullPdfUrl = (pdfLink) => {
+        if (!pdfLink) return '';
+        if (pdfLink.startsWith('http://') || pdfLink.startsWith('https://')) {
+            return pdfLink;
+        }
+        return `https://ccet.ac.in/${pdfLink.startsWith('/') ? pdfLink.slice(1) : pdfLink}`;
+    };
+
     const handleDownload = () => {
+        if (!currentPdf) return;
+
         const link = document.createElement('a');
-        link.href = FingerPrintPdf;
-        link.download = 'Newsletter-Issue-1.pdf';
+        link.href = pdfUrl;
+        link.download = currentPdf.pdf_name + '.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     };
 
+    if (loading) {
+        return (
+            <div className={styles.container}>
+                <h1 className={styles.heading}>FingerPrint</h1>
+                <div className={styles.underline}></div>
+                <div className="flex justify-center items-center py-16">
+                    <span className="text-gray-500">Loading FingerPrint issues...</span>
+                </div>
+            </div>
+        );
+    }
+
+    if (error && pdfs.length === 0) {
+        return (
+            <div className={styles.container}>
+                <h1 className={styles.heading}>FingerPrint</h1>
+                <div className={styles.underline}></div>
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
+                    <p className="text-red-700">{error}</p>
+                </div>
+            </div>
+        );
+    }
+
+    const currentPdf = pdfs[activePdfIndex];
+    const pdfUrl = getFullPdfUrl(currentPdf?.pdf_link);
+
     return (
         <div className={styles.container}>
-            <h1 className={styles.heading}>FingerPrint (Volume VII, Issue 1)</h1>
+            <h1 className={styles.heading}>
+                {currentPdf?.pdf_name || 'FingerPrint'}
+            </h1>
             <div className={styles.underline}></div>
+
+            {pdfs.length > 1 && (
+                <div className="mb-6 flex flex-wrap gap-2 justify-center">
+                    {pdfs.map((pdf, index) => (
+                        <button
+                            key={pdf.id}
+                            onClick={() => setActivePdfIndex(index)}
+                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                                activePdfIndex === index
+                                    ? 'bg-orange-600 text-white'
+                                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                            }`}
+                        >
+                            {pdf.pdf_name}
+                        </button>
+                    ))}
+                </div>
+            )}
 
             <div className={styles.pdfPlaceholder}>
                 <iframe
-                    src={FingerPrintPdf}
-                    title="FingerPrint (Volume VII, Issue 1)"
+                    src={pdfUrl}
+                    title={currentPdf?.pdf_name || 'FingerPrint'}
                     className={styles.pdfViewer}
                     frameBorder="0"
                 >
                     <div className={styles.pdfFallback}>
                         <p>PDF Viewer Placeholder</p>
                         <p>FingerPrint Magazine will be displayed here</p>
-                        <p>
-                            Your browser doesn't support PDF viewing. Please download the
-                            file.
-                        </p>
+                        <p>Your browser doesn't support PDF viewing. Please download the file.</p>
                     </div>
                 </iframe>
             </div>
@@ -42,7 +129,7 @@ const FingerPrint = () => {
                 type="button"
             >
                 <Download size={20} />
-                Download FingerPrint (Vol VII, Issue 1)
+                Download {currentPdf?.pdf_name || 'FingerPrint'}
             </button>
         </div>
     );

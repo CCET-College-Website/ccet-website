@@ -1,0 +1,80 @@
+/* ComputerCentre.css */
+
+.computer-centre-container {
+  padding: 2rem 0;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.computer-centre-header {
+  margin-bottom: 2.5rem;
+  padding-top: 2rem;
+}
+
+.computer-centre-header h1 {
+  font-weight: 400;
+  color: #222;
+  margin-bottom: 1rem;
+}
+
+.carousel-item {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.card-text {
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .carousel-item {
+    height: 40vh !important;
+  }
+  
+  .carousel-caption {
+    padding: 0.5rem;
+  }
+  
+  .carousel-caption h3 {
+    font-size: 1.2rem;
+  }
+  
+  .carousel-caption p {
+    font-size: 0.9rem;
+  }
+  
+  .portfolio-item {
+    margin-bottom: 1.5rem;
+  }
+}

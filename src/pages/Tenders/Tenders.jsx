@@ -1,86 +1,130 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./Tenders.css";
 
 const Tenders = () => {
-  const tenders = [
-    {
-      title:
-        "E-Tender for Providing Mess Services at CCET (Degree Wing) - 2025",
-      link: "#",
-      date: "2025-02-21",
-    },
-    {
-      title: "E-Tender for APRATIM 2k24",
-      link: "#",
-      date: "2024-10-29",
-    },
-    {
-      title:
-        "E-Tender for Providing Mess Services at CCET (Degree Wing), Sector 26, Chandigarh",
-      link: "#",
-      date: "2022-12-01",
-    },
-    {
-      title:
-        "E-Tender for Providing Mess Services at CCET (Degree Wing), Sector 26, Chandigarh (Old - 2)",
-      link: "#",
-      date: "2022-10-27",
-    },
-    {
-      title:
-        "E-Tender for Providing Mess Services at CCET (Degree Wing), Sector 26, Chandigarh (Old - 1)",
-      link: "#",
-      date: "2022-10-04",
-    },
-    {
-      title: "Purchase of Material for Various Labs of ME Department",
-      link: "#",
-      date: "2020-01-18",
-    },
-    {
-      title:
-        "E-tender for the purchase of equipments in the Labs of Electronics and Communication Engineering Department on item-wise basis for each scheme",
-      link: "#",
-      date: "2019-12-18",
-    },
-    {
-      title:
-        "E-tenders for the purchase of equipments in the Labs of ECE Department",
-      link: "#",
-      date: "2019-12-03",
-    },
-    {
-      title: "E-tender for APRATIM 2k19",
-      link: "#",
-      date: "2019-10-18",
-    },
-  ];
+  const [tenders, setTenders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchTenders();
+  }, []);
+
+  const fetchTenders = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch('https://ccet.ac.in/api/tenders.php');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch tenders');
+      }
+
+      const data = await response.json();
+
+      // Sort tenders by date (newest first)
+      const sortedTenders = data.sort((a, b) =>
+          new Date(b.date) - new Date(a.date)
+      );
+
+      setTenders(sortedTenders);
+    } catch (err) {
+      setError('Network error: ' + err.message);
+      console.error('Error fetching tenders:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleTenderClick = (link) => {
+    if (link && link !== '#') {
+      // Handle both absolute and relative URLs
+      if (link.startsWith('http')) {
+        window.open(link, '_blank', 'noopener,noreferrer');
+      } else {
+        const path = link.startsWith('/') ? link : `/${link}`;
+        const encodedPath = path.split('/').map(segment =>
+            encodeURIComponent(segment)
+        ).join('/');
+        const fullUrl = `https://ccet.ac.in${encodedPath}`;
+        window.open(fullUrl, '_blank', 'noopener,noreferrer');
+      }
+    }
+  };
+
+  if (loading) {
+    return (
+        <div className="tenders-container">
+          <h1 className="tenders-title">Tenders</h1>
+          <div style={{ textAlign: 'center', padding: '50px' }}>
+            <p>Loading tenders...</p>
+          </div>
+        </div>
+    );
+  }
+
+  if (error) {
+    return (
+        <div className="tenders-container">
+          <h1 className="tenders-title">Tenders</h1>
+          <div style={{ textAlign: 'center', padding: '50px', color: 'red' }}>
+            <p>{error}</p>
+            <button
+                onClick={fetchTenders}
+                style={{
+                  marginTop: '20px',
+                  padding: '10px 20px',
+                  cursor: 'pointer',
+                  borderRadius: '4px',
+                  border: '1px solid #ccc'
+                }}
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+    );
+  }
 
   return (
-    <div className="tenders-container">
-      <h1 className="tenders-title">Tenders</h1>
+      <div className="tenders-container">
+        <h1 className="tenders-title">Tenders</h1>
 
-      <table className="tenders-table">
-        <thead>
-          <tr>
-            <th>Tender Links</th>
-            <th>Uploaded Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tenders.map((tender, index) => (
-            <tr key={index}>
-              <td>
-                <a href={tender.link} target="_blank" rel="noopener noreferrer">
-                  {tender.title}
-                </a>
-              </td>
-              <td>{tender.date}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        {tenders.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '50px' }}>
+              <p>No tenders available at the moment.</p>
+            </div>
+        ) : (
+            <table className="tenders-table">
+              <thead>
+              <tr>
+                <th>Tender Links</th>
+                <th>Uploaded Date</th>
+              </tr>
+              </thead>
+              <tbody>
+              {tenders.map((tender, index) => (
+                  <tr key={tender.id || index}>
+                    <td>
+                      <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleTenderClick(tender.link);
+                          }}
+                          style={{ cursor: 'pointer' }}
+                      >
+                        {tender.title}
+                      </a>
+                    </td>
+                    <td>{tender.date}</td>
+                  </tr>
+              ))}
+              </tbody>
+            </table>
+        )}
+      </div>
   );
 };
 

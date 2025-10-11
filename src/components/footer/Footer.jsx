@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
-// Hook to detect if screen is mobile
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
   useEffect(() => {
@@ -13,7 +12,6 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-// Reusable FooterCard
 function FooterCard({ title, links }) {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(!isMobile);
@@ -46,18 +44,18 @@ function FooterCard({ title, links }) {
               <div className="footer-links-grid">
                 {links.map((item, i) => (
                     <div className="footer-link-item" key={i}>
-                      {item.external ? (
+                      {item.external || item.is_external ? (
                           <a
-                              href={item.url}
+                              href={item.url || item.link_url}
                               className="footer-link-anchor"
                               target="_blank"
                               rel="noopener noreferrer"
                           >
-                            <span className="link-text">{item.name}</span>
+                            <span className="link-text">{item.name || item.link_name}</span>
                           </a>
                       ) : (
-                          <Link to={item.url} className="footer-link-anchor">
-                            <span className="link-text">{item.name}</span>
+                          <Link to={item.url || item.link_url} className="footer-link-anchor">
+                            <span className="link-text">{item.name || item.link_name}</span>
                           </Link>
                       )}
                     </div>
@@ -69,65 +67,65 @@ function FooterCard({ title, links }) {
   );
 }
 
-// Footer Component
 function Footer() {
-  const sections = [
-    {
-      title: "Explore",
-      links: [
-        { name: "Library", url: "/life/library" },
-        { name: "Sports Facilities", url: "/sports-facilities" },
-        { name: "Boys Hostel", url: "/boys-hostel" },
-        { name: "Girls Hostel", url: "/girls-hostel" },
-        { name: "IIRC", url: "/about/iirc" }, // adjust if added
-        { name: "IPRC", url: "/about/iprc" }, // adjust if added
-        { name: "Innovation Cell", url: "/ecell" },
-        { name: "Computer Center", url: "/about/computer-center" }, // adjust if added
-        { name: "Research and Consultancy", url: "/about/research" }, // adjust if added
-      ],
-    },
-    {
-      title: "Important Links",
-      links: [
-        { name: "PU", external: true, url: "https://puchd.ac.in/" },
-        { name: "UPSC", external: true, url: "https://upsc.gov.in/" },
-        { name: "AICTE", external: true, url: "https://www.aicte-india.org/" },
-        { name: "UGC", external: true, url: "https://www.ugc.gov.in/" },
-        { name: "DST", external: true, url: "https://dst.gov.in/" },
-        { name: "MHRD", external: true, url: "http://mhrd.gov.in/" },
-        { name: "JEE", external: true, url: "https://jeemain.nta.nic.in/" },
-        { name: "KYC", external: true, url: "https://www.india.gov.in/content/know-your-college/" },
-        { name: "BIS", external: true, url: "https://www.bis.gov.in/" },
-        { name: "CRIKC", external: true, url: "https://crikc.puchd.ac.in/" },
-        { name: "NKN", external: true, url: "http://nkn.in/" },
-        { name: "NPTEL", external: true, url: "https://nptel.ac.in/" },
-        { name: "NISCAIR", external: true, url: "http://op.niscair.res.in/" },
-        { name: "GATE", url: "/academics/gate" }, // internal if you have route
-        { name: "DRDO", external: true, url: "https://drdo.gov.in/drdo/" },
-        { name: "CHD ADMIN", external: true, url: "https://chandigarh.gov.in/" },
-      ],
-    },
-    {
-      title: "Info",
-      links: [
-        { name: "E-News Letter", url: "/magazine/fingerprint-vii-1" },
-        { name: "Notices", url: "/notices/tenders" },
-        { name: "Forms", url: "/student-forms" },
-        { name: "Tenders", url: "/notices/tenders" },
-        { name: "NIRF", url: "/academics/nirf" },
-      ],
-    },
-    {
-      title: "Departments",
-      links: [
-        { name: "Computer Science and Engineering", url: "/academics/cse/overview" },
-        { name: "Electronics and Communication Engineering", url: "/academics/ece" },
-        { name: "Mechanical Engineering", url: "/academics/mechanical/overview" },
-        { name: "Civil Engineering", url: "/academics/civil/overview" },
-        { name: "Applied Sciences", url: "/academics/appliedscience/overview" },
-      ],
-    },
-  ];
+  const [sections, setSections] = useState([]);
+  const [bottomLinks, setBottomLinks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchFooterData();
+  }, []);
+
+  const fetchFooterData = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('https://ccet.ac.in/api/footer.php?endpoint=full-footer');
+      const result = await response.json();
+
+      if (result.sections && result.sections.length > 0) {
+        const formattedSections = result.sections.map(section => ({
+          title: section.section_name,
+          links: section.links.map(link => ({
+            name: link.link_name,
+            url: link.link_url,
+            external: link.is_external
+          }))
+        }));
+        setSections(formattedSections);
+      } else {
+        setError("No footer sections available");
+        setSections([]);
+      }
+
+      if (result.bottom_links && result.bottom_links.length > 0) {
+        setBottomLinks(result.bottom_links);
+      } else {
+        setBottomLinks([]);
+      }
+    } catch (err) {
+      setError("Error loading footer data");
+      console.error("Footer fetch error:", err);
+      setSections([]);
+      setBottomLinks([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+        <footer className="footer-section">
+          <div className="footer-container">
+            <div className="flex justify-center items-center py-8">
+              <span className="text-gray-400">Loading footer...</span>
+            </div>
+          </div>
+        </footer>
+    );
+  }
 
   return (
       <footer className="footer-section">
@@ -149,11 +147,22 @@ function Footer() {
               <p className="copyright-text">© 2025, CCET, All rights reserved</p>
               <nav className="footer-nav" aria-label="Footer navigation">
                 <div className="footer-nav-links">
-                  <Link to="/">Home</Link>
-                  <Link to="/webmasters">Webmasters</Link>
-                  <Link to="/anti-ragging">Anti-Ragging</Link>
-                  <Link to="/privacy-policy">Privacy Policy</Link>
-                  <Link to="/contact">Quick Inquiry</Link>
+                  {bottomLinks.map((link, idx) => (
+                      link.is_external ? (
+                          <a
+                              key={idx}
+                              href={link.link_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                          >
+                            {link.link_name}
+                          </a>
+                      ) : (
+                          <Link key={idx} to={link.link_url}>
+                            {link.link_name}
+                          </Link>
+                      )
+                  ))}
                 </div>
               </nav>
             </div>

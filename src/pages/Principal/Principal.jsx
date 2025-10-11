@@ -1,10 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, Building2 } from 'lucide-react'; // icons
-import principalImage from './Images/principal.png';
-import bannerImage from './Images/banner.png';
+// Icons - Added more icons for the new data fields from the API
+import { Mail, Phone, Building2, GraduationCap, Sparkles, MapPin } from 'lucide-react';
+import bannerImage from './Images/banner.png'; // Static banner image is kept
 
 const PrincipalDesk = () => {
+  // State to hold the principal's data, loading status, and any errors
+  const [principalData, setPrincipalData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // useEffect hook to fetch data when the component mounts
+  useEffect(() => {
+    const fetchPrincipalData = async () => {
+      try {
+        // Fetching data from the API endpoint
+        const response = await fetch('https://ccet.ac.in/api/faculty-cse.php');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const allFaculty = await response.json();
+
+        // Finding the specific data for the Principal from the fetched array
+        const principal = allFaculty.find(member => member.designation === 'Principal');
+
+        if (principal) {
+          setPrincipalData(principal);
+        } else {
+          throw new Error('Principal data not found in the API response.');
+        }
+      } catch (e) {
+        setError(e.message);
+        console.error("Failed to fetch principal data:", e);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPrincipalData();
+  }, []); // The empty dependency array ensures this effect runs only once on mount
+
+  // Conditional rendering for the loading state
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-white">
+        Loading Principal's Details...
+      </div>
+    );
+  }
+
+  // Conditional rendering for the error state
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-white text-red-600">
+        Error loading data: {error}
+      </div>
+    );
+  }
+
+  // The main component render after data is successfully fetched
   return (
     <div className="w-full min-h-screen bg-white font-sans">
       {/* Banner */}
@@ -28,51 +82,67 @@ const PrincipalDesk = () => {
           transition={{ duration: 0.3 }}
           className="w-full lg:w-[490px] flex flex-col shadow-xl rounded-3xl overflow-hidden bg-[#0F1E54] text-white"
         >
-          {/* Principal Image */}
+          {/* Principal Image - Fetched from API */}
           <img
-            src={principalImage}
-            alt="Dr. Manpreet Singh"
+            src={`https://ccet.ac.in/${principalData.img}`}
+            alt={principalData.name}
             className="w-full h-[250px] md:h-[350px] object-cover"
           />
 
-          {/* Info Section */}
+          {/* Info Section - All data here is now dynamic */}
           <div className="flex-1 px-6 py-6">
-            <h2 className="text-2xl font-bold mb-4 border-b border-white/30 pb-2">
-              Dr. Manpreet Singh
+            <h2 className="text-2xl font-bold mb-1 border-b border-white/30 pb-2">
+              {principalData.name}
             </h2>
+            <p className="text-blue-200 text-lg mb-4">{principalData.designation}</p>
 
             <div className="space-y-4">
-              <p className="flex items-center text-sm md:text-base">
-                <Building2 className="w-5 h-5 mr-3 text-blue-200" />
+              <p className="flex items-start text-sm md:text-base">
+                <Building2 className="w-5 h-5 mr-3 text-blue-200 flex-shrink-0 mt-1" />
                 <span className="text-gray-100">
                   Chandigarh College of Engineering and Technology
                 </span>
               </p>
 
+              <p className="flex items-start text-sm md:text-base">
+                <MapPin className="w-5 h-5 mr-3 text-blue-200 flex-shrink-0 mt-1" />
+                <span className="text-gray-100">{principalData.address}</span>
+              </p>
+
+              <p className="flex items-start text-sm md:text-base">
+                <GraduationCap className="w-5 h-5 mr-3 text-blue-200 flex-shrink-0 mt-1" />
+                <span className="text-gray-100">{principalData.edu}</span>
+              </p>
+
+              <p className="flex items-start text-sm md:text-base">
+                <Sparkles className="w-5 h-5 mr-3 text-blue-200 flex-shrink-0 mt-1" />
+                <span className="text-gray-100"><strong>Interest:</strong> {principalData.interest}</span>
+              </p>
+
               <p className="flex items-center text-sm md:text-base">
-                <Mail className="w-5 h-5 mr-3 text-blue-200" />
+                <Mail className="w-5 h-5 mr-3 text-blue-200 flex-shrink-0" />
                 <a
-                  href="mailto:principal@ccet.ac.in"
+                  href={`mailto:${principalData.email}`}
                   className="hover:text-yellow-300 transition-colors"
                 >
-                  principal@ccet.ac.in
+                  {principalData.email}
                 </a>
               </p>
 
               <p className="flex items-center text-sm md:text-base">
-                <Phone className="w-5 h-5 mr-3 text-green-300" />
+                <Phone className="w-5 h-5 mr-3 text-green-300 flex-shrink-0" />
                 <a
-                  href="tel:+911722750872"
+                  href={`tel:${principalData.number}`}
                   className="hover:text-yellow-300 transition-colors"
                 >
-                  0172-2750872
+                  {principalData.number}
                 </a>
               </p>
             </div>
           </div>
         </motion.div>
 
-        {/* Principal Message */}
+        {/* Principal Message - Static content as it's not in the API */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -83,7 +153,6 @@ const PrincipalDesk = () => {
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6 not-italic font-serif">
             Principal’s Message
           </h2>
-
           <p>
             With technology spreading its domain to all walks of life, there is
             a need to upgrade the ever-widening knowledge base. CCET has risen

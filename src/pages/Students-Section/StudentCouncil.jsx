@@ -1,11 +1,58 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const StudentCouncil = () => {
+  const [councilData, setCouncilData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://ccet.ac.in/api/student-council.php");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setCouncilData(data);
+      } catch (e) {
+        setError("Failed to fetch student council data.");
+        console.error("Fetching error: ", e);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="container my-5 text-center">
+        <h2>Student Council</h2>
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p>Loading student council data...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="container my-5 text-center">
+        <h2>Student Council</h2>
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container my-5">
       <h2 className="text-center mb-4">Student Council</h2>
-      
-      {/* Table Section */}
+
+      {/* Table Section (Dynamically populated with API data) */}
       <div className="table-responsive">
         <table className="table table-bordered text-center">
           <thead className="table-dark">
@@ -20,60 +67,34 @@ const StudentCouncil = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>President</td>
-              <td>Akshansh Thakur</td>
-              <td>CO22306</td>
-              <td>2nd Year / 4th Sem.</td>
-              <td>CSE</td>
-              <td>8219816256</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Vice President</td>
-              <td>Divyansh Manro</td>
-              <td>CO22327</td>
-              <td>3rd Year / 6th Sem.</td>
-              <td>CSE</td>
-              <td>8360799948</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Secretary</td>
-              <td>Aditya Yadav</td>
-              <td>CO22327</td>
-              <td>3rd Year / 6th Sem.</td>
-              <td>CSE</td>
-              <td>9736191204</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Joint Secretary</td>
-              <td>Dikshant Suri</td>
-              <td>CO24518</td>
-              <td>1st Year / 2nd Sem.</td>
-              <td>CSE</td>
-              <td>9478142569</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Treasurer</td>
-              <td>Nikhil</td>
-              <td>CO22532</td>
-              <td>3rd Year / 6th Sem.</td>
-              <td>ECE</td>
-              <td>9350577043</td>
-            </tr>
+            {councilData.map((member, index) => (
+              <tr key={member.id}>
+                <td>{index + 1}</td>
+                <td>{member.position}</td>
+                <td>{member.name}</td>
+                <td>{member.roll_no}</td>
+                <td>{member.year_semester}</td>
+                <td>{member.branch}</td>
+                <td>{member.mobile_no}</td>
+              </tr>
+            ))}
+            {councilData.length === 0 && (
+              <tr>
+                <td colSpan="7">No student council members found.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
 
-      {/* PDF Section */}
+      <hr/>
+
+      {/* PDF Section (Updated with absolute URL) */}
       <div className="mt-5">
         <h3 className="mb-3">Student Council FAQs</h3>
         <iframe
-          src="/pdfs/StudentCouncilFAQ.pdf"
+          // *** SRC updated to the absolute URL ***
+          src="https://www.ccet.ac.in/pdf/StudentCouncilFAQ.pdf"
           width="100%"
           height="600px"
           title="Student Council FAQs"

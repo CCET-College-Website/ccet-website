@@ -1,100 +1,122 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ECEHeader from "./ece_header";
 import ECEQuickLinksSidebar from "./sidebar";
+import SharedEceLayout from "./SharedEceLayout";
+import styles from "./EceFaculty.module.css";
 
-const facultyData = [
-  {
-    name: "Dr. Devinder Singh Saini",
-    designation: "Professor and HOD",
-    qualifications: [
-      "B.E., M.Tech, Ph.D.",
-      "Area of Specialization: IoT, Fiber, VLSI Design, CDMA, Wireless Sensor Network.",
-    ],
-    additionalInfo: [
-      "Fellow member of IETE, ISTE, IEI, AFOEM (ECS), Reviewer in leading Academic Journals, Incharge Library, Incharge CCIE Cell, Incharge ACTU.",
-    ],
-    contact: {
-      mobile: "8146943224",
-      email: "dsainifac@ccet.ac.in",
-      office: "Available at: Room No 308, 2nd FLOOR, CCET (Degree Wing), CHANDIGARH",
-    },
-  },
-  {
-    name: "Dr. Krishna Gopal Sharma",
-    designation: "Professor",
-    qualifications: [
-      "B.E., M.Tech, Ph.D.",
-      "Area of Specialization: Optical Fiber, VLSI Design",
-    ],
-    additionalInfo: [
-      "Associated member: Professional Bodies including Incharge Training & Placement and CCIE Student Initiative Association Cell.",
-    ],
-    contact: {
-      mobile: "9888058987",
-      email: "krishnagopal@ccet.ac.in",
-      office: "Available at: H. No. 3522, Sector – 42/A, Chandigarh",
-    },
-  },
-  {
-    name: "Dr. Bhasker Gupta",
-    designation: "Professor",
-    qualifications: [
-      "B.E., M.Tech, Ph.D.",
-      "Area of Specialization: IoT, Fiber, VLSI Design, CDMA, Wireless Sensor Network.",
-    ],
-    additionalInfo: [
-      "Fellow member of IETE, ISTE, IEI, Reviewer in leading Academic Journals, Incharge Library, Incharge CCIE Cell, Incharge ACTU.",
-    ],
-    contact: {
-      mobile: "8146870598",
-      email: "bhosker@ccet.ac.in",
-      office: "Available at: Room No 308, 2nd FLOOR, CCET (Degree Wing), CHANDIGARH",
-    },
-  },
-];
+const imgBaseUrl = "https://ccet.ac.in/";
+const resumeBaseUrl = "https://ccet.ac.in/";
 
-export default function ECE_Faculty() {
+const EceFaculty = () => {
+  const [facultyData, setFacultyData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch("https://ccet.ac.in/api/faculty-ece.php")
+      .then((response) => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.json();
+      })
+      .then((data) => {
+        setFacultyData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message || "Failed to fetch data");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <SharedEceLayout pageTitle="Faculty">
+        <div className={styles.pageContainer}>Loading faculty data...</div>
+      </SharedEceLayout>
+    );
+  }
+
+  if (error) {
+    return (
+      <SharedEceLayout pageTitle="Faculty">
+        <div className={styles.pageContainer}>Error: {error}</div>
+      </SharedEceLayout>
+    );
+  }
+
   return (
-    <div className="font-sans bg-gray-100 min-h-screen font-serif">
-        <ECEQuickLinksSidebar />
-        <ECEHeader />
-      {/* Faculty Members Section */}
-      <div className="max-w-7xl mx-auto p-8 rounded-md">
-        <h2 className="text-center text-black font-bold text-3xl mb-14">Faculty Members</h2>
-        {facultyData.map((f) => (
-          <div
-            key={f.contact.email}
-            className="md:bg-gradient-to-r md:from-blue-900 md:to-slate-900  rounded-2xl text-white flex flex-row items-start shadow-lg mb-8"
-          >
-            {/* Placeholder for profile pic */}
-            <div className="w-36 h-40 bg-blue-200 rounded-lg m-6 flex-shrink-0" />
-            {/* Details */}
-            <div className="py-6 pr-8">
-              <h3 className="text-xl font-bold mb-2">{f.name}</h3>
-              <p className="mb-1 font-semibold">{f.designation}</p>
-              {f.qualifications.map((q, i) => (
-                <p key={i} className="mb-0.5">
-                  {q}
-                </p>
-              ))}
-              {f.additionalInfo.map((info, i) => (
-                <p key={i} className="italic my-1.5">
-                  {info}
-                </p>
-              ))}
-              <p className="mt-2 mb-0.5">
-                <b>Mobile Number</b>: {f.contact.mobile}
-              </p>
-              <p className="mb-0.5">
-                <b>Email</b>: {f.contact.email}
-              </p>
-              <p>
-                <b>{f.contact.office}</b>
-              </p>
-            </div>
-          </div>
-        ))}
+    <SharedEceLayout pageTitle="Faculty">
+      <div className={styles.pageContainer}>
+        <header className={styles.pageHeader}>
+          <h1 className={styles.pageTitle}>Our Faculty</h1>
+          <div className={styles.titleUnderline}></div>
+        </header>
+        <main className={styles.facultyCards}>
+          {facultyData.map((faculty) => (
+            <article key={faculty.id} className={styles.facultyCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.profileImageContainer}>
+                  <div className={styles.profileBg}></div>
+                  <img
+                    className={styles.profileImg}
+                    src={imgBaseUrl + faculty.img}
+                    alt={faculty.name}
+                  />
+                </div>
+                <div className={styles.facultyInfo}>
+                  <h2 className={styles.facultyName}>{faculty.name}</h2>
+                  <p className={styles.facultyTitle}>{faculty.designation}</p>
+                </div>
+              </div>
+              <div className={styles.cardContent}>
+                <div className={styles.infoSection}>
+                  <h3 className={styles.sectionTitle}>Qualifications:</h3>
+                  <p className={styles.sectionContent}>{faculty.edu}</p>
+                </div>
+                <div className={styles.infoSection}>
+                  <h3 className={styles.sectionTitle}>
+                    Area of Specialization:
+                  </h3>
+                  <p className={styles.sectionContent}>{faculty.interest}</p>
+                </div>
+                <div className={styles.infoSection}>
+                  <h3 className={styles.sectionTitle}>Additional Roles:</h3>
+                  <p className={styles.sectionContent}>
+                    {faculty.add_role || "N/A"}
+                  </p>
+                </div>
+                <div className={styles.infoSection}>
+                  <h3 className={styles.sectionTitle}>Contact</h3>
+                  <div className={styles.contactInfo}>
+                    <div className={styles.contactItem}>
+                      <span>Email: {faculty.email}</span>
+                    </div>
+                    <div className={styles.contactItem}>
+                      <span>Phone: {faculty.number}</span>
+                    </div>
+                    <div className={styles.contactItem}>
+                      <span>Address: {faculty.address}</span>
+                    </div>
+                    {faculty.resume_link && (
+                      <div className={styles.contactItem}>
+                        <a
+                          href={resumeBaseUrl + faculty.resume_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          View Resume
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </main>
       </div>
-    </div>
+    </SharedEceLayout>
   );
-}
+};
+
+export default EceFaculty;

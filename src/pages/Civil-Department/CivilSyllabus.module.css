@@ -1,5 +1,8 @@
+/* Styling for CivilSyllabus.js */
+
 .body {
     margin: 0;
+    /* Font family should be imported or available globally */
     font-family: 'Poppins', Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -35,10 +38,15 @@
     margin: 40px 0 20px;
 }
 
+/* ------------------------------------------------ */
+/* --- STYLES FOR THE LARGE PDF VIEWER/CONTAINER --- */
+/* ------------------------------------------------ */
+
+/* Placeholder used when the PDF content is not available */
 .pdfPlaceholder {
-    width: 80%;
+    width: 90%; /* Increased from 80% for larger look */
     max-width: 1000px;
-    height: 600px;
+    height: 900px; /* Increased Height to match the large embedded viewer */
     border: 2px dashed #aaa;
     border-radius: 10px;
     background-color: #fff;
@@ -48,4 +56,48 @@
     align-items: center;
     color: #777;
     font-size: 18px;
+}
+
+/* Container for the live PDF iframe */
+.pdfContainer {
+    width: 90%; /* Should match the width of pdfPlaceholder */
+    max-width: 1000px; 
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 10px; /* Padding for the download link/text */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Style for the embedded iframe */
+.pdfIframe {
+    width: 100%;
+    height: 900px; /* Set Height to match the large box */
+    border: none; /* Removed border for a clean embed */
+    border-radius: 8px;
+    display: block;
+}
+
+/* Utility styles for the download link */
+.pdfLinkContainer {
+    text-align: center;
+    padding-bottom: 10px;
+    margin: 0;
+}
+
+.pdfLink {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pdfLink:hover {
+    text-decoration: underline;
+}
+
+.noData {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 20px;
 }

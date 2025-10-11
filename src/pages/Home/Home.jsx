@@ -33,7 +33,7 @@ function Home() {
 
       <AboutUsSection />
 
-      <div className="flex flex-col md:flex-row gap-4 justify-center items-stretch">
+      <div className="flex flex-col md:flex-row gap-4 justify-center items-stretch px-4">
         <VisionMission />
         <div className="flex justify-center items-stretch">
           <NewsPanel />

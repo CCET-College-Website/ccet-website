@@ -1,41 +1,118 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./AboutUsSection.css";
 
 const AboutUsSection = () => {
+  const [aboutData, setAboutData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const BASE_URL = 'https://www.ccet.ac.in/';
+
+  useEffect(() => {
+    fetchAboutData();
+  }, []);
+
+  const fetchAboutData = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('https://ccet.ac.in/api/about-us.php?is_active=true');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const data = await response.json();
+
+      if (data && data.length > 0) {
+        setAboutData(data[0]);
+      } else {
+        setError('No data available');
+      }
+    } catch (err) {
+      setError(err.message);
+      console.error('Error fetching about data:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getFullUrl = (url) => {
+    if (!url) return '';
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      return url;
+    }
+    return BASE_URL + url.replace(/^\/+/, '');
+  };
+
+  if (loading) {
+    return (
+        <div className="app-container">
+          <h1 className="section-heading">ABOUT US</h1>
+          <div style={{ textAlign: 'center', padding: '50px' }}>Loading...</div>
+        </div>
+    );
+  }
+
+  if (error) {
+    return (
+        <div className="app-container">
+          <h1 className="section-heading">ABOUT US</h1>
+          <div style={{ textAlign: 'center', padding: '50px', color: 'red' }}>
+            Error: {error}
+          </div>
+        </div>
+    );
+  }
+
+  if (!aboutData) {
+    return (
+        <div className="app-container">
+          <h1 className="section-heading">ABOUT US</h1>
+          <div style={{ textAlign: 'center', padding: '50px' }}>
+            No content available
+          </div>
+        </div>
+    );
+  }
+
   return (
-    <div className="app-container">
-      {/* Top heading */}
-      <h1 className="section-heading">ABOUT US</h1>
+      <div className="app-container">
+        <h1 className="section-heading">ABOUT US</h1>
 
-      <section className="about-box">
-        {/* Left Column: Text */}
-        <div className="about-text">
-          <h2 className="about-title">WHO ARE WE?</h2>
-          <p>
-            CCET is well known for its huge infrastructure and state of the art
-            facilities. It is also known as Green Campus because it has a unique
-            environment friendly & energy efficient building with fabulous
-            architecture, lush verdant woods and landscape gardens that provide an
-            idyllic academic environment to our students. CCET offers B.E.
-            (Bachelor of Engineering) courses in four streams i.e. Electronics &
-            Communication Engineering, Computer Science & Engineering, Mechanical
-            Engineering and Civil Engineering.
-          </p>
-           <a href="https://www.ccet.ac.in/pdf/ENewsLetter/Newsletter-Vol%20IX%20Issue%20I.pdf"  target="_blank" className="enews-btn">
-            E-News Letter
-          </a>
-        </div>
+        <section className="about-box">
+          <div className="about-text">
+            <h2 className="about-title">WHO ARE WE?</h2>
+            <p>{aboutData.about_text}</p>
 
-        {/* Right Column: Video */}
-        <div className="video-container">
-          <video controls>
-            <source src="/videos/intro.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <div className="video-caption">Introductory Video</div>
-        </div>
-      </section>
-    </div>
+            {aboutData.enews_url && (
+                <a
+                    href={getFullUrl(aboutData.enews_url)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="enews-btn"
+                >
+                  E-News Letter
+                </a>
+            )}
+          </div>
+
+          <div className="video-container">
+            {aboutData.video_url ? (
+                <>
+                  <video controls autoPlay muted loop playsInline>
+                    <source src={getFullUrl(aboutData.video_url)} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                  <div className="video-caption">Introductory Video</div>
+                </>
+            ) : (
+                <div style={{ textAlign: 'center', padding: '50px' }}>
+                  No video available
+                </div>
+            )}
+          </div>
+        </section>
+      </div>
   );
 };
 

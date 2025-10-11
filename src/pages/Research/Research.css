@@ -1,0 +1,124 @@
+.research-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.research-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 30px 0;
+}
+
+.research-header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #084386;
+  margin-bottom: 20px;
+}
+
+.research-subtitle {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0;
+}
+
+.research-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+  gap: 40px;
+}
+
+.research-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.research-image-container {
+  flex: 1;
+  max-width: 60%;
+}
+
+.research-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.research-text-container {
+  flex: 1;
+  padding: 20px;
+}
+
+.research-text-container h2 {
+  font-size: 2rem;
+  color: #084386;
+  margin-bottom: 20px;
+}
+
+.research-text-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #444;
+  text-align: justify;
+}
+
+.research-button-wrapper {
+  margin-top: 25px;
+}
+
+.research-button {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #084386;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.research-button:hover {
+  background-color: #053265;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.research-activities {
+  margin: 60px 0;
+}
+
+.research-activities h2 {
+  font-size: 2rem;
+  color: #084386;
+  margin-bottom: 25px;
+}
+
+.research-activities ol {
+  padding-left: 20px;
+}
+
+.research-activities li {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .research-section,
+  .research-section.reverse {
+    flex-direction: column;
+  }
+
+  .research-image-container {
+    max-width: 100%;
+    order: 1;
+  }
+
+  .research-text-container {
+    order: 2;
+  }
+}

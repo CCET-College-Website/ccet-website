@@ -1,0 +1,220 @@
+.pageContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.pageHeader {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.pageTitle {
+  color: #063068;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.titleUnderline {
+  width: 170px;
+  height: 12px;
+  background: #ff9900;
+  border-radius: 28px;
+  margin: 0 auto 30px;
+}
+
+.facultyCards {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.facultyCard {
+  background: white;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cardHeader {
+  background: linear-gradient(180deg, #1f4590 0%, #09142a 100%);
+  padding: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+}
+
+.profileImageContainer {
+  width: 230px;
+  height: 230px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profileBg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #ff9900;
+  border-radius: 50%;
+}
+
+.profileImg {
+  width: 210px;
+  height: 210px;
+  position: absolute;
+  border-radius: 50%;
+  object-fit: cover;
+  top: 10px;
+  left: 10px;
+  border: 4px solid white;
+}
+
+.facultyInfo {
+  color: white;
+}
+
+.facultyName {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.facultyTitle {
+  color: #ff9900;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.cardContent {
+  padding: 40px;
+}
+
+.infoSection {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.infoSection:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sectionTitle {
+  color: #063068;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.sectionContent {
+  color: #4a4a4a;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.contactInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .cardHeader {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .profileImageContainer {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pageTitle {
+    font-size: 36px;
+  }
+
+  .facultyName {
+    font-size: 28px;
+  }
+
+  .facultyTitle {
+    font-size: 18px;
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+  }
+
+  .sectionContent {
+    font-size: 18px;
+  }
+
+  .profileImageContainer {
+    width: 200px;
+    height: 200px;
+  }
+
+  .profileImg {
+    width: 180px;
+    height: 180px;
+    top: 10px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle {
+    font-size: 32px;
+  }
+
+  .titleUnderline {
+    width: 140px;
+    height: 10px;
+  }
+
+  .cardHeader {
+    padding: 20px 15px;
+  }
+
+  .cardContent {
+    padding: 25px 15px;
+  }
+
+  .profileImageContainer {
+    width: 180px;
+    height: 180px;
+  }
+
+  .profileImg {
+    width: 160px;
+    height: 160px;
+  }
+}
