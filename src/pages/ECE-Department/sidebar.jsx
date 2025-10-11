@@ -8,6 +8,7 @@ const quickLinks = [
 	{ label: "Time Table", path: "/ece/timetable" },
 	{ label: "Syllabus", path: "/ece/ece-syllabus" },
 	{ label: "Laboratories", path: "/ece/ece-labs" },
+	{ label: "Research", path: "/ece/research" },
 ];
 
 export default function ECEQuickLinksSidebar() {

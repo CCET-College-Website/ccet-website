@@ -72,6 +72,7 @@ import EceLabs from "./pages/ECE-Department/ece-labs.jsx";
 import EceHOD from "./pages/ECE-Department/ece-hod.jsx";
 import EceTimeTable from "./pages/ECE-Department/ece-timetable.jsx";
 import EceSyllabus from "./pages/ECE-Department/ece-syllabus.jsx";
+import EceResearch from "./pages/ECE-Department/ece-research.jsx";
 
 //Applied Sciences Department
 import ASOverview from "./pages/AS-Department/ASOverview.jsx";
@@ -204,6 +205,7 @@ function App() {
                 <Route path="/ece/ece-hod" element={<EceHOD />} />
                 <Route path="/ece/timetable" element={<EceTimeTable />} />
                 <Route path="/ece/ece-syllabus" element={<EceSyllabus />} />
+                <Route path="/ece/research" element={<EceResearch />} />
 
                 {/* CSE Department */}
                 <Route path="/academics/cse/overview" element={<CseOverview />} />
