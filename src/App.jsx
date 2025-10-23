@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./index.css";
 
-import NoPage from "./pages/Nopage/NoPage.jsx";
+import NoPage from "./pages/NoPage/NoPage.jsx";
 import FAQ from "./pages/FAQ/faq";
 import Nss from "./pages/Nss/Nss.jsx";
 import VisionMission from "./pages/vision-mission/vision-mission.jsx";
