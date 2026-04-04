@@ -1,0 +1,363 @@
+.container {
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    background: #F3F7FF;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin: 20px auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.header {
+    text-align: center;
+    margin: 50px 0 30px;
+    width: 100%;
+    padding: 0 20px;
+    background: transparent;
+}
+
+.title {
+    color: #063068;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.underline {
+    width: 170px;
+    height: 12px;
+    background: #EEF300;
+    border-radius: 28px;
+    margin: 0 auto 15px;
+}
+
+.subtitle {
+    color: #333;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.profileSection {
+    width: 100%;
+    background: linear-gradient(135deg, #063068 0%, #0a4a9b 100%);
+    padding: 60px 40px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.profileSection::before {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    top: -50px;
+    left: -50px;
+}
+
+.profileSection::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    bottom: -50px;
+    right: -50px;
+}
+
+.profileContainer {
+    width: 230px;
+    height: 230px;
+    position: relative;
+    margin-bottom: 30px;
+    z-index: 2;
+}
+
+.profileBg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #EEF300;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+}
+
+.profileImg {
+    width: 210px;
+    height: 210px;
+    position: absolute;
+    border-radius: 50%;
+    object-fit: cover;
+    top: 10px;
+    left: 10px;
+    border: 4px solid white;
+}
+
+.hodInfo {
+    text-align: center;
+    margin-bottom: 25px;
+    z-index: 2;
+}
+
+.hodName {
+    color: white;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.designation {
+    color: #EEF300;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.department {
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.emailBox {
+    display: inline-flex;
+    align-items: center;
+    background: #F3F7FF;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 28px;
+    padding: 12px 25px;
+    z-index: 2;
+    margin-bottom: 10px;
+}
+
+.emailIcon {
+    width: 20px;
+    height: 16px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emailText {
+    color: #063068;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.contentBox {
+    width: 100%;
+    background: white;
+    padding: 50px 40px 60px;
+    margin: 0;
+}
+
+.message {
+    color: #4A4A4A;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.message p {
+    margin-bottom: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        margin: 20px 10px;
+    }
+
+    .header {
+        margin: 40px 0 20px;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .underline {
+        width: 140px;
+        height: 10px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+    }
+
+    .profileSection {
+        padding: 40px 20px;
+    }
+
+    .profileContainer {
+        width: 200px;
+        height: 200px;
+    }
+
+    .profileImg {
+        width: 180px;
+        height: 180px;
+    }
+
+    .hodName {
+        font-size: 28px;
+    }
+
+    .designation, .department {
+        font-size: 18px;
+    }
+
+    .emailBox {
+        padding: 10px 20px;
+    }
+
+    .emailText {
+        font-size: 14px;
+    }
+
+    .message {
+        font-size: 18px;
+    }
+
+    .contentBox {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 15px 10px;
+        border-radius: 15px;
+    }
+
+    .header {
+        margin: 30px 0 20px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .underline {
+        width: 120px;
+        height: 8px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+    }
+
+    .profileSection {
+        padding: 30px 15px;
+    }
+
+    .profileContainer {
+        width: 170px;
+        height: 170px;
+        margin-bottom: 20px;
+    }
+
+    .profileBg {
+        width: 170px;
+        height: 170px;
+    }
+
+    .profileImg {
+        width: 150px;
+        height: 150px;
+        top: 10px;
+        left: 10px;
+        border: 3px solid white;
+    }
+
+    .hodName {
+        font-size: 24px;
+    }
+
+    .designation, .department {
+        font-size: 16px;
+    }
+
+    .emailBox {
+        padding: 8px 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .emailIcon {
+        margin-right: 8px;
+    }
+
+    .emailText {
+        font-size: 13px;
+        word-break: break-all;
+    }
+
+    .contentBox {
+        padding: 25px 15px;
+    }
+
+    .message {
+        font-size: 16px;
+        line-height: 1.6;
+        text-align: left;
+    }
+
+    .message p {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .title {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .profileContainer {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profileBg {
+        width: 150px;
+        height: 150px;
+    }
+
+    .profileImg {
+        width: 130px;
+        height: 130px;
+    }
+
+    .hodName {
+        font-size: 20px;
+    }
+
+    .designation, .department {
+        font-size: 14px;
+    }
+
+    .emailText {
+        font-size: 12px;
+    }
+
+    .message {
+        font-size: 15px;
+    }
+}

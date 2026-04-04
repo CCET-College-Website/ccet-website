@@ -1,0 +1,67 @@
+.carousel-container {
+  height: 600px;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 500px 100px;
+  align-items: center;
+  justify-items: center;
+}
+
+#carousel {
+  grid-row: 1 / 2;
+  width: 100vw;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 600px;
+  --middle: calc(var(--items) / 2);
+  --position: 1;
+  pointer-events: none;
+}
+
+.item {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  --r: calc(var(--position) - var(--offset));
+  --abs: max(calc(var(--r) * -1), var(--r));
+  transition: all 0.25s linear;
+  transform: rotateY(calc(-10deg * var(--r)))
+  translateX(calc(-300px * var(--r)));
+  z-index: calc((var(--position) - var(--abs)));
+}
+
+/* Radio button styling */
+input[type="radio"] {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  accent-color: #2563eb;
+}
+
+input[type="radio"]:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-container {
+    height: 500px;
+    grid-template-rows: 400px 100px;
+  }
+
+  #carousel {
+    height: 400px;
+    perspective: 400px;
+  }
+
+  .item {
+    width: 250px;
+    height: 350px;
+    transform: rotateY(calc(-8deg * var(--r)))
+    translateX(calc(-250px * var(--r)));
+  }
+}

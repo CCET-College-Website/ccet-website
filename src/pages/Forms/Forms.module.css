@@ -1,0 +1,256 @@
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.66) 0%, #ffffff 100%);
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title {
+    color: #0f0f5e;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #ffd700, #ffed4e);
+    border-radius: 2px;
+}
+
+.categoryNav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.categoryBtn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    color: #0f0f5e;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.categoryBtn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #ffd700;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+.categoryBtn.active {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1e3c72;
+    border-color: #ffd700;
+    font-weight: 700;
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+}
+
+.formsGrid {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.tableHeader {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1fr;
+    background: linear-gradient(45deg, #1e3c72, #2a5298);
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.headerCell {
+    padding: 20px 15px;
+    border-bottom: 3px solid #ffd700;
+    position: relative;
+}
+
+.headerCell::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr 1fr;
+    border-bottom: 1px solid rgba(30, 60, 114, 0.1);
+    transition: all 0.3s ease;
+}
+
+.formRow:hover {
+    background: linear-gradient(90deg, rgba(255, 215, 0, 0.05), rgba(30, 60, 114, 0.05));
+    transform: translateX(5px);
+    box-shadow: -5px 0 15px rgba(255, 215, 0, 0.1);
+}
+
+.formRow:last-child {
+    border-bottom: none;
+}
+
+.formCell {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.formName {
+    font-weight: 600;
+    color: #1e3c72;
+    position: relative;
+}
+
+.formName::before {
+    content: '📄';
+    margin-right: 8px;
+}
+
+.formDate {
+    color: #666;
+    font-size: 0.9rem;
+    background: rgba(30, 60, 114, 0.1);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-family: monospace;
+}
+
+.formCategory {
+    color: #2a5298;
+    font-weight: 500;
+    font-size: 0.9rem;
+    background: rgba(255, 215, 0, 0.2);
+    padding: 4px 10px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.downloadBtn {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    color: #1e3c72;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+}
+
+.downloadBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+    background: linear-gradient(45deg, #ffed4e, #ffd700);
+}
+
+.downloadBtn:active {
+    transform: translateY(0);
+}
+
+.noForms {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .categoryNav {
+        gap: 8px;
+    }
+
+    .categoryBtn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .tableHeader,
+    .formRow {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .headerCell,
+    .formCell {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    .headerCell {
+        background: rgba(30, 60, 114, 0.8);
+        margin-bottom: 2px;
+    }
+
+    .formRow {
+        background: rgba(255, 255, 255, 0.95);
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border: none;
+    }
+
+    .formCell {
+        border-bottom: 1px solid rgba(30, 60, 114, 0.1);
+    }
+
+    .formCell:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .categoryBtn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .headerCell,
+    .formCell {
+        padding: 10px;
+    }
+}

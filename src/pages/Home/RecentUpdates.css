@@ -1,0 +1,100 @@
+.recent-updates-strip {
+  display: flex;
+  align-items: center;
+  background: #fffbe6;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 6px 10px;
+  overflow: hidden;
+}
+
+.recent-label {
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px 4px 0 0;
+  margin-right: 15px;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.updates-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.updates-scroll {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 70s linear infinite;
+}
+
+.update-item {
+  display: inline-block;
+  margin-right: 60px;
+  position: relative;
+}
+
+.update-item::after {
+  content: '|';
+  position: absolute;
+  right: -30px;
+  color: #ff9800;
+  font-weight: bold;
+}
+
+.update-item:last-child::after {
+  display: none;
+}
+
+.new-tag {
+  color: red;
+  font-weight: bold;
+  margin-right: 5px;
+  animation: blink 1s infinite;
+}
+
+.update-item a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.update-item a:hover {
+  color: #ff9800;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .recent-label {
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+
+  .update-item {
+    margin-right: 30px;
+  }
+
+  .update-item::after {
+    right: -15px;
+  }
+}

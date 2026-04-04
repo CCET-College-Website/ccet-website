@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+.page {
+    min-height: 100vh;
+    background: #f4f6fb;
+    font-family: 'Source Sans 3', sans-serif;
+    color: #1a1a2e;
+}
+
+/* ── Hero Banner ─────────────────────────────── */
+.hero {
+    background: linear-gradient(135deg, #6a6f7c 0%, #6a6f7c 50%, #6a6f7c 100%);
+    padding: 48px 24px 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 40px,
+            rgba(255,255,255,0.015) 40px,
+            rgba(255,255,255,0.015) 80px
+    );
+    pointer-events: none;
+}
+
+.heroInner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.heroEyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.heroEyebrow span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #f0c040;
+}
+
+.heroEyebrow::before,
+.heroEyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+}
+
+.heroEyebrow::before { max-width: 40px; }
+
+.heroTitle {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 10px;
+    line-height: 1.2;
+}
+
+.heroSubtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.heroDivider {
+    width: 60px;
+    height: 3px;
+    background: #f0c040;
+    margin: 0 auto;
+    border-radius: 2px;
+}
+
+/* ── Content Area ────────────────────────────── */
+.content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+}
+
+/* ── Info Box ────────────────────────────────── */
+.infoBox {
+    background: #fff;
+    border-left: 4px solid #1a3a7a;
+    border-radius: 0 8px 8px 0;
+    padding: 18px 22px;
+    margin-bottom: 36px;
+    box-shadow: 0 2px 12px rgba(15,42,94,0.08);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.infoIcon {
+    width: 36px;
+    height: 36px;
+    background: #0f2a5e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.infoIcon svg {
+    width: 18px;
+    height: 18px;
+    fill: #f0c040;
+}
+
+.infoText {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+}
+
+.infoText strong {
+    color: #0f2a5e;
+}
+
+/* ── Section Heading ─────────────────────────── */
+.sectionHeading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.sectionHeading h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #0f2a5e;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.sectionHeading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #d0d8e8;
+}
+
+/* ── Table Card ──────────────────────────────── */
+.tableCard {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(15,42,94,0.08);
+    border: 1px solid #e0e6f0;
+}
+
+.tableCard table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableCard thead {
+    background: #0f2a5e;
+}
+
+.tableCard thead th {
+    padding: 13px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    text-align: left;
+}
+
+.tableCard thead th:last-child {
+    text-align: right;
+    width: 120px;
+}
+
+.tableCard tbody tr {
+    border-bottom: 1px solid #edf0f7;
+    transition: background 0.15s ease;
+}
+
+.tableCard tbody tr:last-child {
+    border-bottom: none;
+}
+
+.tableCard tbody tr:nth-child(even) {
+    background: #f8fafd;
+}
+
+.tableCard tbody tr:hover {
+    background: #eef2fb;
+}
+
+.srNo {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a3a7a;
+    width: 50px;
+    vertical-align: top;
+}
+
+.docTitle {
+    padding: 14px 16px 14px 0;
+    font-size: 14px;
+    color: #2a2a3e;
+    line-height: 1.55;
+    vertical-align: top;
+}
+
+.docTitle span {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    margin-top: 3px;
+    font-style: italic;
+}
+
+.downloadCell {
+    padding: 14px 20px;
+    text-align: right;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.downloadBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #6a6f7c;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.18s ease, transform 0.15s ease;
+}
+
+.downloadBtn:hover {
+    background: #c0392b;
+    transform: translateY(-1px);
+}
+
+.downloadBtn svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 640px) {
+    .tableCard thead {
+        display: none;
+    }
+
+    .tableCard tbody tr {
+        display: block;
+        padding: 14px 16px;
+        border-bottom: 1px solid #e0e6f0;
+    }
+
+    .srNo,
+    .docTitle,
+    .downloadCell {
+        display: block;
+        padding: 0;
+    }
+
+    .srNo {
+        font-size: 11px;
+        color: #888;
+        margin-bottom: 4px;
+    }
+
+    .docTitle {
+        margin-bottom: 10px;
+    }
+
+    .downloadCell {
+        text-align: left;
+    }
+}

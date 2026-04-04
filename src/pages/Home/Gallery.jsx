@@ -1,164 +1,231 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
-import achintyam from './gallery-images/achintyam.jpg';
-import beatles from './gallery-images/beatles.jpg';
-import crowd from './gallery-images/crowd.jpg';
-import apratim from './gallery-images/apratim.jpg'
-import crowd2 from './gallery-images/crowd2.jpeg'
-import tpc from './gallery-images/tpc.jpg'
+import './gallery.css';
 
 Modal.setAppElement('#root');
 
+const API_BASE_URL = 'https://ccet.ac.in/api/gallery.php';
+
 const Gallery = () => {
   const navigate = useNavigate();
+  const [allImages, setAllImages] = useState([]);
+  const [displayedImages, setDisplayedImages] = useState([]);
+  const [currentBatch, setCurrentBatch] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const autoSlide = useRef(null);
+  const batchInterval = useRef(null);
 
-  const allImages = [
-    { src: achintyam, alt: '' },
-    { src: crowd, alt: ' ' },
-    { src: beatles, alt: ' ' },
-    { src: apratim, alt: '' },
-    { src: crowd2, alt: '' },
-    { src: tpc, alt: '' },
-  ];
+  const isMobile = window.innerWidth <= 600;
+  const BATCH_SIZE = 6;
+  const BATCH_DURATION = 5000; // 5 seconds
 
-  const [modalIsOpen, setModalIsOpen] = React.useState(false);
-  const [currentIndex, setCurrentIndex] = React.useState(0);
-  const [autoSlide, setAutoSlide] = React.useState(null);
+  useEffect(() => {
+    fetchGalleryImages();
+  }, []);
+
+  const fetchGalleryImages = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(API_BASE_URL);
+      const data = await response.json();
+
+      if (Array.isArray(data)) {
+        const formattedImages = data.map(img => ({
+          src: getFullUrl(img.uploaded_image),
+          alt: `${img.image_type} - ${img.date}`,
+          type: img.image_type,
+          date: img.date,
+          id: img.id
+        }));
+        setAllImages(formattedImages);
+
+        if (formattedImages.length > 0) {
+          setDisplayedImages(formattedImages.slice(0, BATCH_SIZE));
+        }
+      } else {
+        setError("Failed to load gallery images");
+      }
+    } catch (err) {
+      setError("Error loading gallery images");
+      console.error("Gallery fetch error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getFullUrl = (path) => {
+    if (!path) return '';
+    if (path.startsWith('http://') || path.startsWith('https://')) return path;
+    return `https://ccet.ac.in/${path.startsWith('/') ? path.slice(1) : path}`;
+  };
+
+  useEffect(() => {
+    if (allImages.length <= BATCH_SIZE || modalIsOpen) {
+      return; // No need to rotate if we have 6 or fewer images, or if modal is open
+    }
+
+    batchInterval.current = setInterval(() => {
+      setCurrentBatch(prev => {
+        const totalBatches = Math.ceil(allImages.length / BATCH_SIZE);
+        const nextBatch = (prev + 1) % totalBatches;
+
+        const startIdx = nextBatch * BATCH_SIZE;
+        const endIdx = startIdx + BATCH_SIZE;
+        setDisplayedImages(allImages.slice(startIdx, endIdx));
+
+        return nextBatch;
+      });
+    }, BATCH_DURATION);
+
+    return () => {
+      if (batchInterval.current) {
+        clearInterval(batchInterval.current);
+      }
+    };
+  }, [allImages, modalIsOpen]);
 
   const openModal = (index) => {
-    setCurrentIndex(index);
+    const actualIndex = allImages.findIndex(img => img.src === displayedImages[index].src);
+    setCurrentIndex(actualIndex);
     setModalIsOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
-    clearInterval(autoSlide);
+    clearInterval(autoSlide.current);
+    document.body.style.overflow = '';
   };
 
-  const prevImage = () => {
+  const prevImage = (e) => {
+    e && e.stopPropagation();
     setCurrentIndex((prev) => (prev === 0 ? allImages.length - 1 : prev - 1));
   };
 
-  const nextImage = () => {
+  const nextImage = (e) => {
+    e && e.stopPropagation();
     setCurrentIndex((prev) => (prev === allImages.length - 1 ? 0 : prev + 1));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (modalIsOpen) {
-      const interval = setInterval(() => {
+      autoSlide.current = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % allImages.length);
       }, 3000);
-      setAutoSlide(interval);
+    } else {
+      clearInterval(autoSlide.current);
     }
-    return () => clearInterval(autoSlide);
-  }, [modalIsOpen]);
+    return () => clearInterval(autoSlide.current);
+  }, [modalIsOpen, allImages.length]);
+
+  const handleModalOverlayClick = (e) => {
+    if (!isMobile && e.target.classList.contains('ReactModal__Overlay')) {
+      closeModal();
+    }
+  };
+
+  if (loading) {
+    return (
+        <div className="py-5 text-white bg-gradient-to-r from-blue-900 to-slate-900">
+          <div className="text-center mb-4">
+            <h2 className="fw-bold display-5 gallery-title">PHOTO GALLERY</h2>
+          </div>
+          <div className="container">
+            <div className="flex justify-center items-center py-16">
+              <span className="text-gray-300">Loading gallery...</span>
+            </div>
+          </div>
+        </div>
+    );
+  }
 
   return (
-    <div className="py-5 text-white bg-gradient-to-r from-blue-900 to-slate-900">
-      <div className="text-center mb-4">
-        <h2 className="fw-bold display-5 gallery-title">PHOTO GALLERY</h2>
-      </div>
+      <div className="py-5 text-white bg-gradient-to-r from-blue-900 to-slate-900">
+        <div className="text-center mb-4">
+          <h2 className="fw-bold display-5 gallery-title">PHOTO GALLERY</h2>
+          {allImages.length > BATCH_SIZE && (
+              <p className="text-gray-300 text-sm mt-2">
+                Showing {currentBatch * BATCH_SIZE + 1}-{Math.min((currentBatch + 1) * BATCH_SIZE, allImages.length)} of {allImages.length} images
+              </p>
+          )}
+        </div>
 
-      <div className="container">
-        <div className="row">
-          {allImages.map((img, index) => (
-            <div className="col-12 col-sm-6 col-md-4 mb-4 text-center" key={index}>
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="img-fluid rounded shadow w-100 gallery-img"
-                style={{
-                  height: '220px',
-                  objectFit: 'cover',
-                  cursor: 'pointer',
-                  transition: 'transform 0.3s',
-                }}
-                onClick={() => openModal(index)}
-                onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.03)')}
-                onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-              />
-              <p className="mt-2 text-light small gallery-caption">{img.alt}</p>
+        {error && (
+            <div className="container mb-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
+                <p className="text-red-700">{error}</p>
+              </div>
             </div>
-          ))}
+        )}
+
+        <div className="container">
+          <div className="row">
+            {displayedImages.length > 0 ? (
+                displayedImages.map((img, index) => (
+                    <div className="col-12 col-sm-6 col-md-4 mb-4 text-center" key={`${img.id}-${index}`}>
+                      <img
+                          src={img.src}
+                          alt={img.alt}
+                          className="gallery-img"
+                          onClick={() => openModal(index)}
+                          onError={(e) => e.target.src = 'https://via.placeholder.com/400x300?text=Image+Not+Found'}
+                      />
+                      <p className="gallery-caption">{img.alt}</p>
+                    </div>
+                ))
+            ) : (
+                <div className="col-12 text-center py-8">
+                  <p className="text-gray-300">No images found in gallery</p>
+                </div>
+            )}
+          </div>
         </div>
 
-        <div className="text-center mt-3">
-          <button
-            onClick={() => navigate('/gallery-more')}
-            className="btn btn-light px-4 py-2 rounded-pill fw-medium gallery-button"
-          >
-            View Full Gallery
-          </button>
-        </div>
+        <Modal
+            isOpen={modalIsOpen}
+            overlayClassName="ReactModal__Overlay"
+            className="ReactModal__Content"
+            shouldCloseOnOverlayClick={false}
+            onRequestClose={closeModal}
+            contentLabel="Image Modal"
+            ariaHideApp={false}
+            parentSelector={() => document.body}
+            onAfterOpen={() => (document.body.style.overflow = 'hidden')}
+            onAfterClose={() => (document.body.style.overflow = '')}
+            onClick={handleModalOverlayClick}
+        >
+          <div style={{ position: 'relative', textAlign: 'center' }}>
+            <img
+                src={allImages[currentIndex]?.src}
+                alt={allImages[currentIndex]?.alt}
+                className="gallery-modal-img"
+                style={{ cursor: isMobile ? 'default' : 'pointer' }}
+                onClick={(e) => e.stopPropagation()}
+            />
+            <p className="gallery-modal-caption">{allImages[currentIndex]?.alt}</p>
+            {!isMobile && (
+                <>
+                  <button onClick={prevImage} className="arrow-btn left">&#8592;</button>
+                  <button onClick={nextImage} className="arrow-btn right">&#8594;</button>
+                </>
+            )}
+            <button
+                onClick={closeModal}
+                className="modal-close-btn"
+                aria-label="Close"
+            >
+              ×
+            </button>
+          </div>
+        </Modal>
       </div>
-
-      {/* Modal */}
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="Image Modal"
-        style={{
-          content: {
-            background: 'black',
-            border: 'none',
-            padding: '0',
-            inset: '5% 5%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
-          overlay: { backgroundColor: 'rgba(0, 0, 0, 0.85)' },
-        }}
-      >
-        <div style={{ position: 'relative', textAlign: 'center' }}>
-          <img
-            src={allImages[currentIndex].src}
-            alt={allImages[currentIndex].alt}
-            style={{
-              maxHeight: '80vh',
-              maxWidth: '90vw',
-              borderRadius: '10px',
-            }}
-          />
-          <p style={{ color: 'white', marginTop: '10px' }}>{allImages[currentIndex].alt}</p>
-
-          <button onClick={prevImage} style={arrowStyle('left')}>&#8592;</button>
-          <button onClick={nextImage} style={arrowStyle('right')}>&#8594;</button>
-
-          <button
-            onClick={closeModal}
-            style={{
-              position: 'absolute',
-              top: '10px',
-              right: '15px',
-              background: 'white',
-              border: 'none',
-              borderRadius: '50%',
-              width: '30px',
-              height: '30px',
-              fontWeight: 'bold',
-              cursor: 'pointer',
-            }}
-          >
-            ×
-          </button>
-        </div>
-      </Modal>
-    </div>
   );
 };
-
-const arrowStyle = (side) => ({
-  position: 'absolute',
-  top: '50%',
-  [side]: '20px',
-  transform: 'translateY(-50%)',
-  background: 'transparent',
-  border: 'none',
-  color: 'white',
-  fontSize: '2.5rem',
-  cursor: 'pointer',
-});
 
 export default Gallery;

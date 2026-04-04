@@ -1,0 +1,255 @@
+.container {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+.heading {
+    font-size: 60px;
+    font-weight: 500;
+    color: #1C2C4C;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.underline {
+    width: 170px;
+    height: 12px;
+    background: #EEF300;
+    border-radius: 28px;
+    margin-bottom: 40px;
+}
+
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+}
+
+.loadingText {
+    color: #777;
+    font-size: 18px;
+}
+
+.semesterTabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.tabButton {
+    padding: 14px 32px;
+    border: 2px solid #063068;
+    background: white;
+    color: #063068;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+.tabButton:hover:not(.disabled) {
+    background: #063068;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(6, 48, 104, 0.3);
+}
+
+.tabButton.active {
+    background: #063068;
+    color: white;
+    box-shadow: 0 4px 12px rgba(6, 48, 104, 0.3);
+}
+
+.tabButton.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #ccc;
+    color: #999;
+}
+
+.unavailable {
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.pdfContainer {
+    width: 90%;
+    max-width: 1200px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.pdfViewer {
+    width: 100%;
+    height: 800px;
+    border: none;
+    display: block;
+}
+
+.downloadSection {
+    padding: 20px;
+    background: #F3F7FF;
+    border-top: 2px solid #e0e0e0;
+    display: flex;
+    justify-content: center;
+}
+
+.downloadButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: #063068;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(6, 48, 104, 0.2);
+}
+
+.downloadButton:hover {
+    background: #0a4a8a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(6, 48, 104, 0.3);
+}
+
+.downloadButton svg {
+    width: 20px;
+    height: 20px;
+}
+
+.noDataContainer {
+    width: 80%;
+    max-width: 1000px;
+    height: 500px;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    color: #999;
+}
+
+.noDataContainer svg {
+    opacity: 0.5;
+}
+
+.noDataText {
+    font-size: 18px;
+    color: #777;
+    margin: 0;
+}
+
+.errorContainer {
+    width: 80%;
+    max-width: 1000px;
+    padding: 30px;
+    background: #fff3f3;
+    border: 2px solid #ffccc7;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.errorText {
+    color: #d32f2f;
+    font-size: 16px;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .heading {
+        font-size: 40px;
+    }
+
+    .container {
+        padding: 20px 10px;
+    }
+
+    .semesterTabs {
+        gap: 10px;
+    }
+
+    .tabButton {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+
+    .pdfContainer {
+        width: 95%;
+    }
+
+    .pdfViewer {
+        height: 500px;
+    }
+
+    .noDataContainer {
+        width: 95%;
+        height: 400px;
+    }
+
+    .noDataText {
+        font-size: 16px;
+        padding: 0 20px;
+    }
+
+    .downloadButton {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading {
+        font-size: 32px;
+    }
+
+    .semesterTabs {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .tabButton {
+        width: 100%;
+    }
+
+    .pdfViewer {
+        height: 400px;
+    }
+
+    .noDataContainer {
+        height: 300px;
+    }
+
+    .noDataContainer svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .noDataText {
+        font-size: 14px;
+    }
+}

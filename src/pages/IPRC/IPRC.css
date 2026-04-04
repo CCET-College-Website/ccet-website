@@ -1,0 +1,158 @@
+.iprc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.iprc-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 30px 0;
+}
+
+.iprc-header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #084386;
+  margin-bottom: 20px;
+}
+
+.iprc-subtitle {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0;
+}
+
+.iprc-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.iprc-main-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.iprc-main-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.iprc-text-section {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: justify;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.iprc-section {
+  margin: 40px 0;
+}
+
+.iprc-section-title {
+  margin-bottom: 20px;
+}
+
+.iprc-section-title h2 {
+  font-size: 2rem;
+  color: #084386;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #084386;
+  display: inline-block;
+}
+
+.iprc-section-content {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.iprc-section-image {
+  flex: 1;
+  max-width: 40%;
+}
+
+.iprc-section-image img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.iprc-section-text {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  text-align: justify;
+}
+
+.iprc-section-text p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.iprc-news {
+  margin-top: 50px;
+}
+
+.iprc-news h2 {
+  font-size: 2rem;
+  color: #084386;
+  margin-bottom: 20px;
+}
+
+.iprc-table-container {
+  overflow-x: auto;
+}
+
+.iprc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.iprc-table th, 
+.iprc-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.iprc-table th {
+  background-color: #084386;
+  color: white;
+}
+
+.iprc-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.iprc-table tr:hover {
+  background-color: #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .iprc-section-content {
+    flex-direction: column;
+  }
+  
+  .iprc-section-image {
+    max-width: 100%;
+  }
+  
+  .iprc-text-section,
+  .iprc-section-text {
+    padding: 20px 15px;
+  }
+}
