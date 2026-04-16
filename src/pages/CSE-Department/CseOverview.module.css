@@ -618,3 +618,50 @@
         font-size: 14px;
     }
 }
+
+@media (max-width: 768px) {
+    .aboutSection,
+    .deptInfoContainer,
+    .infoCard,
+    .sectionHeading,
+    .linkCard,
+    .eventCard,
+    .galleryItem,
+    .tourContainer,
+    .eventsHero,
+    .animateOnScroll {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
+    .delay1, .delay2 {
+        transition-delay: 0s !important;
+    }
+
+    .aboutSection,
+    .deptInfoContainer,
+    .infoCard,
+    .sectionHeading,
+    .linkCard,
+    .eventCard,
+    .galleryItem,
+    .tourContainer,
+    .eventsHero {
+        transition: none !important;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .aboutSection,
+    .deptInfoContainer,
+    .infoCard,
+    .sectionHeading,
+    .linkCard,
+    .eventCard,
+    .galleryItem,
+    .tourContainer,
+    .eventsHero {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MapPin } from "lucide-react";
-import eventBg from "../../assets/home/Events/event-bg.jpg";
+import eventBg from "../../assets/home/bg3.jpg";
 
 const API_BASE_URL = 'https://ccet.ac.in/api/event-calender.php';
 
