@@ -56,7 +56,7 @@ const AboutUsSection = () => {
   if (error) {
     return (
         <div className="app-container">
-          <h1 className="section-heading">ABOUT US</h1>
+          <h1 className="section-heading">About Us</h1>
           <div style={{ textAlign: 'center', padding: '50px', color: 'red' }}>
             Error: {error}
           </div>
@@ -67,7 +67,7 @@ const AboutUsSection = () => {
   if (!aboutData) {
     return (
         <div className="app-container">
-          <h1 className="section-heading">ABOUT US</h1>
+          <h1 className="section-heading">About Us</h1>
           <div style={{ textAlign: 'center', padding: '50px' }}>
             No content available
           </div>
@@ -77,7 +77,7 @@ const AboutUsSection = () => {
 
   return (
       <div className="app-container">
-        <h1 className="section-heading">ABOUT US</h1>
+        <h1 className="section-heading">About Us</h1>
 
         <section className="about-box">
           <div className="about-text">

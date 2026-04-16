@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./NewAlumni.css";
-import alumniBg from "../../assets/home/Events/event-bg.jpg";
 
 const NewAlumni = () => {
 	const [alumniData, setAlumniData] = useState([]);
@@ -76,25 +75,12 @@ const NewAlumni = () => {
 
 	if (loading) {
 		return (
-			<section
-				className="alumni-section position-relative text-center py-5"
-				style={{
-					backgroundImage: `url(${alumniBg})`,
-					backgroundSize: "cover",
-					backgroundPosition: "center",
-					backgroundRepeat: "no-repeat",
-					minHeight: "100vh",
-				}}
-			>
-				<div
-					className="position-absolute top-0 start-0 w-100 h-100"
-					style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", zIndex: 1 }}
-				/>
+			<section className="alumni-section position-relative text-center py-5">
 				<div className="position-relative" style={{ zIndex: 2 }}>
-					<h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+					<h2 className="text-4xl lg:text-5xl font-bold mb-4">
 						Our Alumni
 					</h2>
-					<div className="text-white py-8">
+					<div className="py-8">
 						Loading alumni data...
 					</div>
 				</div>
@@ -104,25 +90,12 @@ const NewAlumni = () => {
 
 	if (error || alumniData.length === 0) {
 		return (
-			<section
-				className="alumni-section position-relative text-center py-5"
-				style={{
-					backgroundImage: `url(${alumniBg})`,
-					backgroundSize: "cover",
-					backgroundPosition: "center",
-					backgroundRepeat: "no-repeat",
-					minHeight: "100vh",
-				}}
-			>
-				<div
-					className="position-absolute top-0 start-0 w-100 h-100"
-					style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", zIndex: 1 }}
-				/>
+			<section className="alumni-section position-relative text-center py-5">
 				<div className="position-relative" style={{ zIndex: 2 }}>
-					<h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+					<h2 className="text-4xl lg:text-5xl font-bold mb-4">
 						Our Alumni
 					</h2>
-					<div className="text-white py-8">
+					<div className="py-8">
 						{error || "No alumni data available"}
 					</div>
 				</div>
@@ -133,24 +106,10 @@ const NewAlumni = () => {
 	const items = alumniData.length;
 
 	return (
-		<section
-			className="alumni-section position-relative text-center py-5"
-			style={{
-				backgroundImage: `url(${alumniBg})`,
-				backgroundSize: "cover",
-				backgroundPosition: "center",
-				backgroundRepeat: "no-repeat",
-				minHeight: "auto",
-			}}
-		>
-			<div
-				className="position-absolute top-0 start-0 w-100 h-100"
-				style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", zIndex: 1 }}
-			/>
-
+		<section className="alumni-section position-relative text-center py-5">
 			<div className="position-relative" style={{ zIndex: 2 }}>
 				<div className="text-center m-2 p-2">
-					<h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+					<h2 className="text-4xl lg:text-5xl font-bold mb-4">
 						Our Alumni
 					</h2>
 				</div>

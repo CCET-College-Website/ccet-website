@@ -32,7 +32,7 @@ export default function VisionMission() {
 		<>
 			<div className="bg-gradient-to-r from-blue-900 to-slate-900 shadow-2xl text-white rounded-3xl p-6 w-full max-w-5xl mt-8 mb-8 flex flex-col h-full">
 				<h2 className="text-4xl font-bold text-center mb-8">
-					VISION & MISSION
+					Vission & Mission
 				</h2>
 
 				<div

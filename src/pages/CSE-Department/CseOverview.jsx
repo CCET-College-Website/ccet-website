@@ -23,7 +23,31 @@ const CseOverview = () => {
         fetchAllData();
     }, []);
 
+    // Helper function to add element to refs
+    const addToRefs = (el) => {
+        if (el && !animatedElementsRef.current.includes(el)) {
+            animatedElementsRef.current.push(el);
+        }
+    };
+
+    // Force visibility on mobile devices
+    const forceMobileVisibility = () => {
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+            animatedElementsRef.current.forEach(element => {
+                if (element && !element.classList.contains(styles.animated)) {
+                    element.classList.add(styles.animated);
+                }
+            });
+        }
+    };
+
     useEffect(() => {
+        if (loading) return;
+
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        // Create observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -31,13 +55,66 @@ const CseOverview = () => {
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        animatedElementsRef.current.forEach(element => {
-            if (element) observer.observe(element);
+        }, {
+            threshold: isMobile ? 0.01 : 0.1,
+            rootMargin: isMobile ? '50px 0px 50px 0px' : '0px 0px -50px 0px'
         });
 
-        return () => observer.disconnect();
+        // Observe elements that aren't already animated
+        const observeElements = () => {
+            animatedElementsRef.current.forEach(element => {
+                if (element && !element.classList.contains(styles.animated)) {
+                    observer.observe(element);
+                }
+            });
+        };
+
+        // Check for already visible elements
+        const checkVisibleElements = () => {
+            animatedElementsRef.current.forEach(element => {
+                if (element && !element.classList.contains(styles.animated)) {
+                    const rect = element.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight - 50 && rect.bottom > 0;
+                    if (isVisible) {
+                        element.classList.add(styles.animated);
+                        observer.unobserve(element);
+                    }
+                }
+            });
+        };
+
+        // Initialize animations
+        const initializeAnimations = () => {
+            checkVisibleElements();
+            observeElements();
+        };
+
+        // Run initialization with delays to ensure DOM is ready
+        setTimeout(initializeAnimations, 50);
+        setTimeout(initializeAnimations, 150);
+
+        // Force visibility on mobile as fallback
+        setTimeout(forceMobileVisibility, 300);
+
+        // Handle scroll and resize events
+        const handleScroll = () => {
+            requestAnimationFrame(checkVisibleElements);
+        };
+
+        const handleResize = () => {
+            setTimeout(checkVisibleElements, 100);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleResize);
+        window.addEventListener('orientationchange', handleResize);
+
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('orientationchange', handleResize);
+        };
     }, [loading]);
 
     const fetchAllData = async () => {
@@ -132,7 +209,7 @@ const CseOverview = () => {
         <SharedCseLayout pageTitle="Overview">
             {/* About Section */}
             {departmentInfo && (
-                <section ref={el => animatedElementsRef.current[0] = el} className={`${styles.aboutSection} ${styles.animateOnScroll}`}>
+                <section ref={addToRefs} className={styles.aboutSection}>
                     <div className={styles.aboutImage}>
                         <img
                             src={getFullUrl(departmentInfo.about_image)}
@@ -155,7 +232,7 @@ const CseOverview = () => {
 
             {/* Department Info Section */}
             <section className={styles.deptInfo}>
-                <div ref={el => animatedElementsRef.current[1] = el} className={`${styles.deptInfoContainer} ${styles.animateOnScroll}`}>
+                <div ref={addToRefs} className={styles.deptInfoContainer}>
                     <div className={styles.deptInfoHeader}>
                         <h2 style={{fontSize: '40px'}}>
                             {departmentInfo?.department_name || 'Department of Computer Science and Engineering'}
@@ -168,11 +245,11 @@ const CseOverview = () => {
                     {/* Vision */}
                     {departmentInfo?.vision && (
                         <>
-                            <div ref={el => animatedElementsRef.current[2] = el} className={`${styles.sectionHeading} ${styles.animateOnScroll}`}>
+                            <div ref={addToRefs} className={styles.sectionHeading}>
                                 <div className={styles.yellowLine}></div>
                                 <h3>Vision</h3>
                             </div>
-                            <div ref={el => animatedElementsRef.current[3] = el} className={`${styles.infoCard} ${styles.animateOnScroll} ${styles.delay1}`}>
+                            <div ref={addToRefs} className={`${styles.infoCard} ${styles.delay1}`}>
                                 <p>{departmentInfo.vision}</p>
                             </div>
                         </>
@@ -181,11 +258,11 @@ const CseOverview = () => {
                     {/* Mission */}
                     {departmentInfo?.mission && (
                         <>
-                            <div ref={el => animatedElementsRef.current[4] = el} className={`${styles.sectionHeading} ${styles.animateOnScroll}`}>
+                            <div ref={addToRefs} className={styles.sectionHeading}>
                                 <div className={styles.yellowLine}></div>
                                 <h3>Mission</h3>
                             </div>
-                            <div ref={el => animatedElementsRef.current[5] = el} className={`${styles.infoCard} ${styles.animateOnScroll} ${styles.delay1}`}>
+                            <div ref={addToRefs} className={`${styles.infoCard} ${styles.delay1}`}>
                                 <ul>
                                     {departmentInfo.mission.split('\n').filter(m => m.trim()).map((mission, index) => (
                                         <li key={index}>{mission}</li>
@@ -198,11 +275,11 @@ const CseOverview = () => {
                     {/* Program Outcomes */}
                     {programOutcomes.length > 0 && (
                         <>
-                            <div ref={el => animatedElementsRef.current[6] = el} className={`${styles.sectionHeading} ${styles.animateOnScroll}`}>
+                            <div ref={addToRefs} className={styles.sectionHeading}>
                                 <div className={styles.yellowLine}></div>
                                 <h3>Program Outcomes</h3>
                             </div>
-                            <div ref={el => animatedElementsRef.current[7] = el} className={`${styles.infoCard} ${styles.animateOnScroll} ${styles.delay1}`}>
+                            <div ref={addToRefs} className={`${styles.infoCard} ${styles.delay1}`}>
                                 <p>Graduates of the Computer Science and Engineering program will demonstrate:</p>
                                 <ul>
                                     {programOutcomes.map((outcome) => (
@@ -216,11 +293,11 @@ const CseOverview = () => {
                     {/* Program Educational Objectives */}
                     {objectives.length > 0 && (
                         <>
-                            <div ref={el => animatedElementsRef.current[8] = el} className={`${styles.sectionHeading} ${styles.animateOnScroll}`}>
+                            <div ref={addToRefs} className={styles.sectionHeading}>
                                 <div className={styles.yellowLine}></div>
                                 <h3>Program Educational Objectives</h3>
                             </div>
-                            <div ref={el => animatedElementsRef.current[9] = el} className={`${styles.infoCard} ${styles.animateOnScroll} ${styles.delay1}`}>
+                            <div ref={addToRefs} className={`${styles.infoCard} ${styles.delay1}`}>
                                 <ul>
                                     {objectives.map((objective) => (
                                         <li key={objective.id}>{objective.objective_text}</li>
@@ -233,11 +310,11 @@ const CseOverview = () => {
                     {/* Program Specific Outcomes */}
                     {specificOutcomes.length > 0 && (
                         <>
-                            <div ref={el => animatedElementsRef.current[10] = el} className={`${styles.sectionHeading} ${styles.animateOnScroll}`}>
+                            <div ref={addToRefs} className={styles.sectionHeading}>
                                 <div className={styles.yellowLine}></div>
                                 <h3>Program Specific Outcomes</h3>
                             </div>
-                            <div ref={el => animatedElementsRef.current[11] = el} className={`${styles.infoCard} ${styles.animateOnScroll} ${styles.delay1}`}>
+                            <div ref={addToRefs} className={`${styles.infoCard} ${styles.delay1}`}>
                                 <p>Graduates will be able to:</p>
                                 <ul>
                                     {specificOutcomes.map((outcome) => (
@@ -253,7 +330,7 @@ const CseOverview = () => {
             {/* Quick Links Section */}
             {quickLinks.length > 0 && (
                 <section className={styles.quickLinks}>
-                    <h2 ref={el => animatedElementsRef.current[12] = el} className={`${styles.sectionTitle} ${styles.animateOnScroll}`}>Quick Links</h2>
+                    <h2 ref={addToRefs} className={styles.sectionTitle}>Quick Links</h2>
                     <div className={styles.sectionUnderline} style={{filter: 'none'}}></div>
 
                     <div className={styles.linksGrid}>
@@ -261,8 +338,8 @@ const CseOverview = () => {
                             <Link
                                 key={link.id}
                                 to={link.link_url}
-                                ref={el => animatedElementsRef.current[13 + index] = el}
-                                className={`${styles.linkCard} ${styles.animateOnScroll} ${index % 3 === 1 ? styles.delay1 : index % 3 === 2 ? styles.delay2 : ''}`}
+                                ref={addToRefs}
+                                className={`${styles.linkCard} ${index % 3 === 1 ? styles.delay1 : index % 3 === 2 ? styles.delay2 : ''}`}
                             >
                                 <div className={styles.linkIcon}>
                                     {link.icon_svg ? (
@@ -283,11 +360,11 @@ const CseOverview = () => {
             {/* Events Section */}
             {(featuredEvent || events.length > 0) && (
                 <section className={styles.eventsSection}>
-                    <h2 ref={el => animatedElementsRef.current[19] = el} className={`${styles.sectionTitle} ${styles.animateOnScroll}`}>Department Events</h2>
+                    <h2 ref={addToRefs} className={styles.sectionTitle}>Department Events</h2>
                     <div className={styles.sectionUnderline} style={{filter: 'none'}}></div>
 
                     {featuredEvent && (
-                        <div ref={el => animatedElementsRef.current[20] = el} className={`${styles.eventsHero} ${styles.animateOnScroll}`}>
+                        <div ref={addToRefs} className={styles.eventsHero}>
                             <div className={styles.eventsImage}>
                                 <img
                                     src={getFullUrl(featuredEvent.event_image)}
@@ -310,8 +387,8 @@ const CseOverview = () => {
                             {events.map((event, index) => (
                                 <div
                                     key={event.id}
-                                    ref={el => animatedElementsRef.current[21 + index] = el}
-                                    className={`${styles.eventCard} ${styles.animateOnScroll} ${index === 1 ? styles.delay1 : index === 2 ? styles.delay2 : ''}`}
+                                    ref={addToRefs}
+                                    className={`${styles.eventCard} ${index === 1 ? styles.delay1 : index === 2 ? styles.delay2 : ''}`}
                                 >
                                     <div className={styles.eventCardHeader}>
                                         <h4>
@@ -329,19 +406,19 @@ const CseOverview = () => {
                 </section>
             )}
 
-            {/* Tour Section - Updated with Gallery Images */}
+            {/* Tour Section */}
             {gallery.length > 0 && (
                 <section className={styles.tourSection}>
-                    <h2 ref={el => animatedElementsRef.current[24] = el} className={`${styles.sectionTitle} ${styles.animateOnScroll}`}>CSE Department Tour</h2>
+                    <h2 ref={addToRefs} className={styles.sectionTitle}>CSE Department Tour</h2>
                     <div className={styles.sectionUnderline} style={{filter: 'none'}}></div>
 
-                    <div ref={el => animatedElementsRef.current[25] = el} className={`${styles.tourContainer} ${styles.animateOnScroll}`}>
+                    <div ref={addToRefs} className={styles.tourContainer}>
                         <div className={styles.galleryGrid}>
                             {gallery.map((image, index) => (
                                 <div
                                     key={image.id}
-                                    ref={el => animatedElementsRef.current[26 + index] = el}
-                                    className={`${styles.galleryItem} ${styles.animateOnScroll} ${index % 3 === 1 ? styles.delay1 : index % 3 === 2 ? styles.delay2 : ''}`}
+                                    ref={addToRefs}
+                                    className={`${styles.galleryItem} ${index % 3 === 1 ? styles.delay1 : index % 3 === 2 ? styles.delay2 : ''}`}
                                 >
                                     <img
                                         src={getFullUrl(image.image_url)}

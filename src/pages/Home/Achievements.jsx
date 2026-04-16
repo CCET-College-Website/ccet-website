@@ -97,7 +97,7 @@ function Achievements() {
     return (
         <div className="achievements-section p-6 shadow-lg rounded-2xl">
           <h2 className="achievements-title text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
-            <FaTrophy className="text-yellow-500" /> ACHIEVEMENTS
+            <FaTrophy className="text-yellow-500" /> Achievements
           </h2>
           <div className="flex justify-center items-center py-16">
             <span className="text-gray-500">Loading achievements...</span>
@@ -109,7 +109,7 @@ function Achievements() {
   return (
       <div className="achievements-section p-6 shadow-lg rounded-2xl">
         <h2 className="achievements-title text-3xl font-bold text-center mb-6 flex items-center justify-center gap-2">
-          <FaTrophy className="text-yellow-500" /> ACHIEVEMENTS
+          <FaTrophy className="text-yellow-500" /> Achievements
         </h2>
 
         {error && (

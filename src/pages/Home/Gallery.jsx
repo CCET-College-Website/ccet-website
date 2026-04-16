@@ -21,7 +21,7 @@ const Gallery = () => {
 
   const isMobile = window.innerWidth <= 600;
   const BATCH_SIZE = 6;
-  const BATCH_DURATION = 5000; // 5 seconds
+  const BATCH_DURATION = 5000;
 
   useEffect(() => {
     fetchGalleryImages();
@@ -67,7 +67,7 @@ const Gallery = () => {
 
   useEffect(() => {
     if (allImages.length <= BATCH_SIZE || modalIsOpen) {
-      return; // No need to rotate if we have 6 or fewer images, or if modal is open
+      return;
     }
 
     batchInterval.current = setInterval(() => {
@@ -132,13 +132,16 @@ const Gallery = () => {
 
   if (loading) {
     return (
-        <div className="py-5 text-white bg-gradient-to-r from-blue-900 to-slate-900">
+        <div className="py-5 text-white bg-gradient-to-r from-blue-900 to-slate-900 min-vh-100">
           <div className="text-center mb-4">
-            <h2 className="fw-bold display-5 gallery-title">PHOTO GALLERY</h2>
+            <h2 className="fw-bold display-5 gallery-title">Photo Gallery</h2>
           </div>
           <div className="container">
             <div className="flex justify-center items-center py-16">
-              <span className="text-gray-300">Loading gallery...</span>
+              <div className="spinner-container">
+                <div className="spinner"></div>
+                <span className="text-gray-300 mt-3 d-block">Loading gallery images...</span>
+              </div>
             </div>
           </div>
         </div>
@@ -148,7 +151,7 @@ const Gallery = () => {
   return (
       <div className="py-5 text-white bg-gradient-to-r from-blue-900 to-slate-900">
         <div className="text-center mb-4">
-          <h2 className="fw-bold display-5 gallery-title">PHOTO GALLERY</h2>
+          <h2 className="fw-bold display-5 gallery-title">Photo Gallery</h2>
           {allImages.length > BATCH_SIZE && (
               <p className="text-gray-300 text-sm mt-2">
                 Showing {currentBatch * BATCH_SIZE + 1}-{Math.min((currentBatch + 1) * BATCH_SIZE, allImages.length)} of {allImages.length} images

@@ -65,7 +65,7 @@ export default function NewsPanel() {
   if (loading) {
     return (
         <div className="news-carousel-container">
-          <h2 className="news-title">NEWS</h2>
+          <h2 className="news-title">News</h2>
           <div className="carousel">
             <div className="carousel-content">
               <span className="news-text">Loading news...</span>
@@ -78,7 +78,7 @@ export default function NewsPanel() {
   if (error || newsItems.length === 0) {
     return (
         <div className="news-carousel-container">
-          <h2 className="news-title">NEWS</h2>
+          <h2 className="news-title">News</h2>
           <div className="carousel">
             <div className="carousel-content">
               <span className="news-text">{error || "No news available"}</span>
@@ -94,7 +94,7 @@ export default function NewsPanel() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
       >
-        <h2 className="news-title">NEWS</h2>
+        <h2 className="news-title">News</h2>
         <div className="carousel">
           <button
               className="carousel-btn left"

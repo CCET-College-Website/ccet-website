@@ -66,9 +66,9 @@ const Contact = () => {
   }
 
   return (
-      <section className="py-8 px-4 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+      <section className="py-8 px-4 bg-gray-500/80 dark:bg-gray-900 transition-colors duration-300">
         <div className="max-w-[1140px] mx-auto">
-          <h2 className="text-center mb-4 text-4xl lg:text-5xl font-bold text-gray-900 dark:text-[#30709aff]">
+          <h2 className="text-center mb-4 text-4xl lg:text-5xl font-bold text-white dark:text-[#30709aff]">
             Contact Us
           </h2>
 

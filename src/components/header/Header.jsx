@@ -234,7 +234,7 @@ const Header = () => {
 	return (
 		<>
 			{/* Placeholder to prevent content from jumping behind fixed header */}
-			<div className={`w-full transition-all duration-300 ${isScrolled ? 'h-[50px] lg:h-[60px]' : 'h-[130px] lg:h-[200px]'}`} />
+			<div className={`w-full transition-all duration-300 ${isScrolled ? 'h-[50px] lg:h-[60px]' : 'h-[135px] lg:h-[220px]'}`} />
 
 			<div className="w-full bg-white md:bg-gradient-to-r md:from-blue-900 md:to-slate-900 fixed top-0 left-0 right-0 z-50 shadow-lg transition-all duration-300">
 				{/* Mobile View */}

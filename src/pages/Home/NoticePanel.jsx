@@ -62,12 +62,20 @@ export default function NoticePanel() {
     return `https://ccet.ac.in/${path}`;
   };
 
+  // Function to check if a notice is new (less than 1 week old)
+  const isNewNotice = (dateString) => {
+    const noticeDate = new Date(dateString);
+    const currentDate = new Date();
+    const oneWeekAgo = new Date(currentDate.getTime() - 7 * 24 * 60 * 60 * 1000);
+    return noticeDate >= oneWeekAgo;
+  };
+
   return (
       <div className="flex justify-center items-start bg-[#f7f4f4] dark:bg-gray-700 p-8 gap-16 font-sans mt-8 mb-8 mr-2 ml-2 rounded-3xl shadow-lg transition-colors duration-300">
 
         <div className="w-full max-w-2xl">
           <h1 className="text-5xl font-semibold text-center mb-6 text-black dark:text-[#30709aff]">
-            NOTICES
+            Notices
           </h1>
 
           <div className="mb-6">
@@ -111,6 +119,16 @@ export default function NoticePanel() {
               .scrollbar-container::-webkit-scrollbar-thumb:hover {
                 background: #2a5f87;
               }
+              
+              @keyframes blink {
+                50% {
+                  opacity: 0;
+                }
+              }
+              
+              .new-tag {
+                animation: blink 1s infinite;
+              }
             `}</style>
                 <ul className="space-y-4">
                   {notices.map((notice, index) => (
@@ -125,6 +143,11 @@ export default function NoticePanel() {
                             className="hover:underline flex-1"
                         >
                           {notice.title}
+                          {isNewNotice(notice.date) && (
+                              <span className="new-tag text-red-600 font-bold text-xs bg-red-100 px-2 py-0.5 rounded ml-2">
+                                NEW
+                              </span>
+                          )}
                         </a>
                         <span className="text-gray-900 dark:text-gray-400 text-sm ml-4">
                     {formatDate(notice.date)}
