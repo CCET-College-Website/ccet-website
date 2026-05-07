@@ -164,7 +164,7 @@ function BannerCarousel() {
                                 style={{
                                     minWidth: '100%', width: '100%',
                                     display: 'block', objectFit: 'cover',
-                                    maxHeight: '560px',
+                                    maxHeight: '100%',
                                 }}
                                 onError={(e) => { e.target.src = fallbackBanner; }}
                                 draggable={false}
