@@ -17,14 +17,11 @@ import homeBackground3 from "../../assets/home/Events/event-bg.jpg"; // Add thir
 const BANNER_API = 'https://ccet.ac.in/api/home-banner.php';
 const SLIDE_DURATION = 5000;
 
-// ── Exactly the same pattern as Gallery.jsx ──────────────────────────────────
 const getFullUrl = (path) => {
     if (!path) return '';
     if (path.startsWith('http://') || path.startsWith('https://')) return path;
     return `https://ccet.ac.in/${path.startsWith('/') ? path.slice(1) : path}`;
 };
-
-// ─── BannerCarousel ──────────────────────────────────────────────────────────
 
 function BannerCarousel() {
     const [banners, setBanners]         = useState([]);
@@ -33,7 +30,6 @@ function BannerCarousel() {
     const [loading, setLoading]         = useState(true);
     const timerRef                      = useRef(null);
 
-    // ── Fetch ─────────────────────────────────────────────────────────────
     useEffect(() => {
         const fetchBanners = async () => {
             try {
@@ -78,7 +74,6 @@ function BannerCarousel() {
         fetchBanners();
     }, []);
 
-    // ── Navigation ────────────────────────────────────────────────────────
     const goTo = useCallback((index) => {
         if (isAnimating || banners.length <= 1) return;
         setIsAnimating(true);
@@ -89,7 +84,6 @@ function BannerCarousel() {
     const next = useCallback(() => goTo(current + 1), [current, goTo]);
     const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
-    // ── Auto-play ─────────────────────────────────────────────────────────
     const resetTimer = useCallback(() => {
         clearInterval(timerRef.current);
         if (banners.length > 1) {
@@ -102,7 +96,6 @@ function BannerCarousel() {
         return () => clearInterval(timerRef.current);
     }, [resetTimer]);
 
-    // ── Keyboard ──────────────────────────────────────────────────────────
     useEffect(() => {
         const onKey = (e) => {
             if (e.key === 'ArrowLeft')  prev();
@@ -112,7 +105,6 @@ function BannerCarousel() {
         return () => window.removeEventListener('keydown', onKey);
     }, [prev, next]);
 
-    // ── Touch swipe ───────────────────────────────────────────────────────
     const touchStartX = useRef(null);
     const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
     const onTouchEnd   = (e) => {
@@ -122,7 +114,6 @@ function BannerCarousel() {
         touchStartX.current = null;
     };
 
-    // ── Loading ───────────────────────────────────────────────────────────
     if (loading) {
         return (
             <div style={{
@@ -159,11 +150,6 @@ function BannerCarousel() {
                 willChange: 'transform',
             }}>
                 {banners.map((banner, i) => {
-                    /*
-                     * <picture> lets the browser pick the right source automatically:
-                     *  - screens ≤ 767 px  → mobile crop
-                     *  - screens ≥ 768 px  → desktop crop
-                     */
                     const picture = (
                         <picture key={banner.id ?? i} style={{ minWidth: '100%', display: 'block' }}>
                             {/* Mobile image — used on screens up to 767 px */}
@@ -178,7 +164,7 @@ function BannerCarousel() {
                                 style={{
                                     minWidth: '100%', width: '100%',
                                     display: 'block', objectFit: 'cover',
-                                    maxHeight: '520px',
+                                    maxHeight: '560px',
                                 }}
                                 onError={(e) => { e.target.src = fallbackBanner; }}
                                 draggable={false}
@@ -286,8 +272,6 @@ const arrowStyle = (side) => ({
     transition: 'background 0.2s',
     boxShadow: '0 2px 12px rgba(0,0,0,0.35)',
 });
-
-// ─── Home ─────────────────────────────────────────────────────────────────────
 
 function Home() {
     const [currentBg, setCurrentBg] = useState(homeBackground);
