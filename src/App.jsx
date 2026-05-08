@@ -5,7 +5,7 @@ import Footer from "./components/footer/Footer.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./index.css";
-import BackToTop from "./components/backToTop/BackToTop.jsx";
+import BackToTop from "./components/BackToTop/BackToTop.jsx";
 
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop.jsx";
 import NoPage from "./pages/Nopage/NoPage.jsx";
