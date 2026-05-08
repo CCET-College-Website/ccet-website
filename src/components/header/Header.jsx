@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import CCETLogo from "../../assets/header/ccetLogo.png";
 import IndianEmblem from "../../assets/header/Indian-Emblem.png";
+import styles from "./Header.module.css";
 
 const Header = () => {
 	const navigate = useNavigate();
@@ -233,8 +234,8 @@ const Header = () => {
 
 	return (
 		<>
-			{/* Placeholder to prevent content from jumping behind fixed header */}
-			<div className={`w-full transition-all duration-300 ${isScrolled ? 'h-[50px] lg:h-[60px]' : 'h-[135px] lg:h-[220px]'}`} />
+			{/* Placeholder to prevent content from jumping behind fixed header //from 220 to 205*/}
+			<div className={`${styles.headerPlaceholder} w-full transition-all duration-300 ${isScrolled ? 'h-[50px] lg:h-[60px]' : 'h-[135px] lg:h-[205px]'}`} />
 
 			<div className="w-full bg-white md:bg-gradient-to-r md:from-blue-900 md:to-slate-900 fixed top-0 left-0 right-0 z-50 shadow-lg transition-all duration-300">
 				{/* Mobile View */}
@@ -334,7 +335,7 @@ const Header = () => {
 						<div className="flex w-full items-center justify-center gap-2 transition-all duration-300">
 							<div className="flex items-center h-full mx-14 min-w-[96px]">
 								<img
-									className="h-36 w-auto object-contain"
+									className="h-32 w-auto object-contain" //Header Size is Changed from here 36 -32
 									src={CCETLogo}
 									alt="College Logo"
 								/>
