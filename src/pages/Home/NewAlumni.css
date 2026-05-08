@@ -29,12 +29,33 @@
   --r: calc(var(--position) - var(--offset));
   --abs: max(calc(var(--r) * -1), var(--r));
   transition: all 0.25s linear;
-  transform: rotateY(calc(-10deg * var(--r)))
-  translateX(calc(-300px * var(--r)));
+  transform: rotateY(calc(-10deg * var(--r))) translateX(calc(-300px * var(--r)));
   z-index: calc((var(--position) - var(--abs)));
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border-radius: 1rem;
+  border: 2px solid #9ca3af !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
 }
 
-/* Radio button styling */
+.item .text-gray-900,
+.item h5,
+.item .font-semibold {
+  color: #1f2937;
+}
+
+.item .text-gray-600,
+.item .text-gray-500 {
+  color: #374151;
+}
+
+.item.bg-white {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  border: 2px solid #9ca3af !important;
+}
+
 input[type="radio"] {
   width: 15px;
   height: 15px;
@@ -46,7 +67,6 @@ input[type="radio"]:hover {
   transform: scale(1.2);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .carousel-container {
     height: 500px;
@@ -61,7 +81,6 @@ input[type="radio"]:hover {
   .item {
     width: 250px;
     height: 350px;
-    transform: rotateY(calc(-8deg * var(--r)))
-    translateX(calc(-250px * var(--r)));
+    transform: rotateY(calc(-8deg * var(--r))) translateX(calc(-250px * var(--r)));
   }
 }

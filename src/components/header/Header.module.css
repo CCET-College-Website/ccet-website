@@ -1,0 +1,11 @@
+@media (min-width: 1125px) and (max-width: 1275px) {
+    .headerPlaceholder {
+        height: 245px !important;
+    }
+}
+
+@media (min-width: 1020px) and (max-width: 1125px) {
+    .headerPlaceholder {
+        height: 250px !important;
+    }
+}
