@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import CCETLogo from "../../assets/header/ccetLogo.png";
 import IndianEmblem from "../../assets/header/Indian-Emblem.png";
 import styles from "./Header.module.css";
 
 const Header = () => {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [activeNav, setActiveNav] = useState("Home");
 	const [expandedMenu, setExpandedMenu] = useState(null);
@@ -15,6 +16,9 @@ const Header = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [lastUpdated, setLastUpdated] = useState("");
 	const [fontSize, setFontSize] = useState("normal");
+	const [scrollProgress, setScrollProgress] = useState(0);
+	const [isScrolling, setIsScrolling] = useState(false);
+	const scrollTimeoutRef = useRef(null);
 	const mobileNavRef = useRef(null);
 
 	useEffect(() => {
@@ -46,10 +50,34 @@ const Header = () => {
 	useEffect(() => {
 		const handleScroll = () => {
 			setIsScrolled(window.scrollY > 50);
+
+			// Calculate scroll progress
+			const scrollTop = window.scrollY;
+			const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+			const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+			setScrollProgress(progress);
+
+			// Show progress bar when scrolling
+			setIsScrolling(true);
+
+			// Clear existing timeout
+			if (scrollTimeoutRef.current) {
+				clearTimeout(scrollTimeoutRef.current);
+			}
+
+			// Hide progress bar after 1.5 seconds of no scrolling
+			scrollTimeoutRef.current = setTimeout(() => {
+				setIsScrolling(false);
+			}, 1500);
 		};
 
 		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+			if (scrollTimeoutRef.current) {
+				clearTimeout(scrollTimeoutRef.current);
+			}
+		};
 	}, []);
 
 	const fetchNavigationData = async () => {
@@ -155,6 +183,13 @@ const Header = () => {
 		}
 	};
 
+	// Update active nav based on current route
+	useEffect(() => {
+		const currentPath = location.pathname;
+		// You can add logic here to set activeNav based on current route
+		// For now, we'll keep it as is
+	}, [location]);
+
 	const renderDropdownMenu = (sections, label) => {
 		let positionClass = "left-1/2 -translate-x-1/2";
 		let gridCols = "grid-cols-3";
@@ -234,10 +269,22 @@ const Header = () => {
 
 	return (
 		<>
-			{/* Placeholder to prevent content from jumping behind fixed header //from 220 to 205*/}
+			{/* Placeholder to prevent content from jumping behind fixed header */}
 			<div className={`${styles.headerPlaceholder} w-full transition-all duration-300 ${isScrolled ? 'h-[50px] lg:h-[60px]' : 'h-[135px] lg:h-[205px]'}`} />
 
 			<div className="w-full bg-white md:bg-gradient-to-r md:from-blue-900 md:to-slate-900 fixed top-0 left-0 right-0 z-50 shadow-lg transition-all duration-300">
+				{/* Scroll Progress Bar - Only visible when scrolling */}
+				<div
+					className={`absolute bottom-0 left-0 w-full h-1 bg-gray-300/30 overflow-hidden transition-opacity duration-300 ${
+						isScrolling && scrollProgress > 0 ? 'opacity-100' : 'opacity-0'
+					}`}
+				>
+					<div
+						className="h-full bg-gradient-to-r from-yellow-400 to-orange-500 transition-all duration-150 ease-out"
+						style={{ width: `${scrollProgress}%` }}
+					/>
+				</div>
+
 				{/* Mobile View */}
 				<div className="lg:hidden w-full bg-gradient-to-r from-blue-900 to-slate-900 shadow">
 					<div className={`w-full px-2 flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-2' : 'py-3'}`}>
@@ -335,7 +382,7 @@ const Header = () => {
 						<div className="flex w-full items-center justify-center gap-2 transition-all duration-300">
 							<div className="flex items-center h-full mx-14 min-w-[96px]">
 								<img
-									className="h-32 w-auto object-contain" //Header Size is Changed from here 36 -32
+									className="h-32 w-auto object-contain"
 									src={CCETLogo}
 									alt="College Logo"
 								/>
